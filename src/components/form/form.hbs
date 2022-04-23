@@ -1,0 +1,14 @@
+<form action="" class="form">
+    <h4 class="form__description">{{description}}</h4>
+
+    <ul class="form__inputs"></ul>
+        {{#each inputElements}}
+          <li class="form__input">{{> (lookup . 'name')}}</li>
+        {{/each}}
+    </ul>
+
+    <div class="form__footer">
+        {{>buttonSubmit}}
+        <a class="form__support-link" href="#">link</a>
+    </div>
+</form>

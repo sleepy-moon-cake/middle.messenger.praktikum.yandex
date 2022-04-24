@@ -8,6 +8,7 @@ import {
 } from '../index'
 
 export const registerFormComponent = (name, option) => {
+
     registerInput('inputPartial');
 
     registerButton('buttonPartial');

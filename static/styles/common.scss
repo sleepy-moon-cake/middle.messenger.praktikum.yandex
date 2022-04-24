@@ -1,4 +1,5 @@
 @import "normalize.scss";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;600&display=swap');;
 
 * {
     box-sizing: border-box;
@@ -14,9 +15,11 @@ ul {
 }
 
 body {
-    height: 100vh;
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+    background: #e5e5e5;
 }
 
 a {
-    text-decoration: none
+    text-decoration: none;
 }

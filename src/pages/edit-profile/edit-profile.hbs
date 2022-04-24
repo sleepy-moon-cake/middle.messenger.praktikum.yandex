@@ -1,0 +1,15 @@
+<div class="edit-profile">
+    <span class="edit-profile__image"><img src="" alt=""></span>
+
+    <ul class="edit-profile__list">
+        {{#each fields}}
+        <li class="edit-profile__element">
+            {{#>edit-profile-field this}}
+                {{>edit-profile-input}}
+            {{/edit-profile-field}}
+        </li>
+        {{/each}}
+    </ul>
+
+    {{>edit-profile-save-button buttonElement}}
+</div>

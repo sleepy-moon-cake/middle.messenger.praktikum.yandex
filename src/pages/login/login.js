@@ -30,6 +30,6 @@ const authorizationFormParams = {
 
 registerFormComponent('authorizationForm', authorizationFormParams)
 
-export const loginHTML = () => {
+export const loginPageHTML = () => {
     return template();
 }

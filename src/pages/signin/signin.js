@@ -53,6 +53,6 @@ const registerationFormParams = {
 
 registerFormComponent('registerationForm', registerationFormParams)
 
-export const signinHTML = () => {
+export const signinPageHTML = () => {
     return template();
 }

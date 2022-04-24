@@ -1,41 +1,35 @@
 import loginStyles from './login.scss';
 import template from './login.hbs';
 import {
-    registerForm
+    registerFormComponent
 } from '../../components';
 
+
 const authorizationFormParams = {
-    name: 'authorizationForm',
-    params: {
-        description: 'Вход',
-        inputElements: [{
-            name: 'inputLogin',
-            params: {
-                class: 'input',
-                type: 'text',
-                placeholder: 'Логин'
-            }
+    description: 'Вход',
+    inputElements: [{
+        class: 'input',
+        type: 'text',
+        placeholder: 'Логин'
 
-        }, {
-            name: 'inputPassword',
-            params: {
-                class: 'input',
-                type: 'password',
-                placeholder: 'Пароль'
-            }
+    }, {
+        class: 'input',
+        type: 'password',
+        placeholder: 'Пароль'
 
-        }],
-        buttonElement: {
-            name: 'buttonSubmit',
-            params: {
-                content: 'Авторизоваться',
-                class: 'button'
-            }
-        }
+    }],
+    buttonElement: {
+        content: 'Авторизоваться',
+        class: 'button'
     },
+    linkElement: {
+        content: 'Нет аккаунта?',
+        href: '#'
+    }
 }
 
-registerForm(authorizationFormParams.name, authorizationFormParams.params)
+registerFormComponent('authorizationForm', authorizationFormParams)
 
-
-export const login = template;
+export const loginHTML = () => {
+    return template();
+}

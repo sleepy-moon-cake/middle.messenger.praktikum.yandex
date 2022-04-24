@@ -3,26 +3,16 @@ import template from "./form.hbs";
 import Handlebars from "handlebars";
 import {
     registerInput,
-    registerButton
+    registerButton,
+    registerLink
 } from '../index'
 
+export const registerFormComponent = (name, option) => {
+    registerInput('inputPartial');
 
+    registerButton('buttonPartial');
 
-export const registerForm = (name, options) => {
-    const {
-        inputElements,
-        buttonElement
-    } = options;
+    registerLink('linkPartial');
 
-    if (inputElements) {
-        inputElements.forEach(inputElement => {
-            registerInput(inputElement.name, inputElement.params)
-        });
-    }
-
-    if (buttonElement) {
-        registerButton(buttonElement.name, buttonElement.params)
-    }
-
-    Handlebars.registerPartial(name, template(options))
+    Handlebars.registerPartial(name, template(option));
 }

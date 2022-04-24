@@ -3,12 +3,13 @@
 
     <ul class="form__inputs"></ul>
         {{#each inputElements}}
-          <li class="form__input">{{> (lookup . 'name')}}</li>
+            <li class="form__input">{{>inputPartial this}}</li>
         {{/each}}
     </ul>
 
     <div class="form__footer">
-        {{>buttonSubmit}}
-        <a class="form__support-link" href="#">link</a>
+        {{>buttonPartial this.buttonElement}}
+
+        {{>linkPartial this.linkElement}}
     </div>
 </form>

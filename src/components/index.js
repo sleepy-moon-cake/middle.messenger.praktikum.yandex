@@ -1,3 +1,4 @@
-export {registerButton} from './button/button.js';
+export {registerButton} from './button/button';
+export {registerFormComponent} from './form/form';
 export {registerInput} from './input/input';
-export {registerForm} from './form/form';
+export {registerLink} from './link/link';

@@ -4,12 +4,12 @@
   "description": "---",
   "browserslist": "> 0.5%, last 2 versions, not dead",
   "source": "src/index.html",
-  "main": "src/main.js",
   "type": "module",
   "engines": {
     "node": ">=16.0.0"
   },
   "scripts": {
+    "start": "parcel build && node server.js",
     "start:parcel": "parcel -p 3000",
     "build:parcel": "parcel build",
     "prebuild": "engine-version",

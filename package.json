@@ -27,26 +27,12 @@
   "homepage": "https://github.com/readOnlyMode/middle.messenger.praktikum.yandex#readme",
   "devDependencies": {
     "@parcel/transformer-sass": "^2.5.0",
-    "assert": "^2.0.0",
-    "browserify-zlib": "^0.2.0",
-    "buffer": "^6.0.3",
-    "crypto-browserify": "^3.12.0",
     "engine-version": "^1.0.2",
-    "events": "^3.3.0",
-    "nodemon": "^2.0.15",
     "parcel": "^2.5.0",
-    "parcel-transformer-hbs": "^1.0.4",
-    "path-browserify": "^1.0.1",
-    "process": "^0.11.10",
-    "querystring-es3": "^0.2.1",
-    "stream-browserify": "^3.0.0",
-    "stream-http": "^3.2.0",
-    "url": "^0.11.0",
-    "util": "^0.12.4"
+    "parcel-transformer-hbs": "^1.0.4"
   },
   "dependencies": {
     "express": "^4.17.3",
-    "handlebars": "^4.7.7",
-    "normalize-scss": "^7.0.1"
+    "handlebars": "^4.7.7"
   }
 }

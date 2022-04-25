@@ -1,7 +1,7 @@
 import loginStyles from './login.scss';
 import template from './login.hbs';
 import {
-    registerFormComponent
+    registerForm
 } from '../../components';
 
 
@@ -28,8 +28,8 @@ const authorizationFormParams = {
     }
 }
 
-registerFormComponent('authorizationForm', authorizationFormParams)
+registerForm('authorizationForm')
 
 export const loginPageHTML = () => {
-    return template();
+    return template(authorizationFormParams);
 }

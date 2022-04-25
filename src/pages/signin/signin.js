@@ -1,7 +1,7 @@
 import signinStyles from './signin.scss';
 import template from './signin.hbs';
 import {
-    registerFormComponent
+    registerForm
 } from '../../components';
 
 const registerationFormParams = {
@@ -51,8 +51,8 @@ const registerationFormParams = {
     }
 }
 
-registerFormComponent('registerationForm', registerationFormParams)
+registerForm('registerationForm')
 
 export const signinPageHTML = () => {
-    return template();
+    return template(registerationFormParams);
 }

@@ -7,13 +7,11 @@ import {
     registerLink
 } from '../index'
 
-export const registerFormComponent = (name, option) => {
-
+export const registerForm = (name) => {
     registerInput('inputPartial');
 
     registerButton('buttonPartial');
 
     registerLink('linkPartial');
-
-    Handlebars.registerPartial(name, template(option));
+    Handlebars.registerPartial(name, template);
 }

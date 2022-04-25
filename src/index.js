@@ -1,3 +1,5 @@
+import commonStyles from '../static/styles/common.scss';
+
 import { loginPageHTML } from './pages/login/login.js'
 import { signinPageHTML } from './pages/signin/signin.js';
 import { notFoundPageHTML } from './pages/errors/not-found/not-found.js';

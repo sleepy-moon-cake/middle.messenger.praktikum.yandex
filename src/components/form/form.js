@@ -1,17 +1,13 @@
-import formStyles from "./form.scss";
+import { registerInput, registerButton, registerLink } from "../index";
 import template from "./form.hbs";
+import formStyles from "./form.scss";
 import Handlebars from "handlebars";
-import {
-    registerInput,
-    registerButton,
-    registerLink
-} from '../index'
 
 export const registerForm = (name) => {
-    registerInput('inputPartial');
+  registerInput("inputPartial");
 
-    registerButton('buttonPartial');
+  registerButton("buttonPartial");
 
-    registerLink('linkPartial');
-    Handlebars.registerPartial(name, template);
-}
+  registerLink("linkPartial");
+  Handlebars.registerPartial(name, template);
+};

@@ -1,14 +1,10 @@
-import pageErrorStyles from './page-error.scss';
-import template from './page-error.hbs';
-import Handlebars from 'handlebars';
-import {
-    registerLink
-} from '../link/link';
-
-
+import { registerLink } from "../link/link";
+import template from "./page-error.hbs";
+import pageErrorStyles from "./page-error.scss";
+import Handlebars from "handlebars";
 
 export const registerPageError = (name, options) => {
-    registerLink('linkPageError')
+  registerLink("linkPageError");
 
-    Handlebars.registerPartial(name, template(options))
-}
+  Handlebars.registerPartial(name, template(options));
+};

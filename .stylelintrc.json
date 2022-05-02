@@ -1,0 +1,12 @@
+{
+    "extends": ["stylelint-config-standard-scss", "stylelint-config-prettier"],
+    "plugins": [
+        "stylelint-scss"
+      ],
+    "rules": {
+        "color-hex-case": "lower"
+      },
+      "ignoreFiles": [
+        "build/*", "dist/*"
+      ]
+  }

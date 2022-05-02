@@ -1,0 +1,16 @@
+{
+  "include": ["src/**/*"],
+  "extends": "@tsconfig/recommended/tsconfig.json",
+
+  "compilerOptions": {
+    "outDir": "./build",
+    "module": "commonjs",
+    "target": "es2016",
+    "noImplicitAny": true,
+    "alwaysStrict": true,
+    "removeComments": true,
+    "preserveConstEnums": true,
+    "sourceMap": true
+  },
+  "exclude": ["node_modules", "dist", ".parcel-cache"]
+}

@@ -1,0 +1,17 @@
+<div class="profile">
+    <span class="profile__image"><img src="" alt=""></span>
+
+    <p class="profile__name"> Ivan</p>
+
+    <ul class="profile__list">
+        {{#each fields}}
+        <li class="profile__element">{{>profile-field this}}</li>
+        {{/each}}
+    </ul>
+
+    <ul class="profile__list">
+        {{#each linkElements}}
+        <li class="profile__element profile__element--link">{{>profile-link this}}</li>
+        {{/each}}
+    </ul>
+</div>

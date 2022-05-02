@@ -1,0 +1,33 @@
+{
+  "name": "messenger",
+  "version": "1.0.0",
+  "description": "---",
+  "browserslist": "> 0.5%, last 2 versions, not dead",
+  "source": "src/index.html",
+  "type": "module",
+  "scripts": {
+    "start": "parcel build && node server.js",
+    "start:parcel": "parcel -p 3000",
+    "build:parcel": "parcel build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/readOnlyMode/middle.messenger.praktikum.yandex.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/readOnlyMode/middle.messenger.praktikum.yandex/issues"
+  },
+  "homepage": "https://github.com/readOnlyMode/middle.messenger.praktikum.yandex#readme",
+  "devDependencies": {
+    "@parcel/transformer-sass": "2.5.0",
+    "parcel": "2.5.0",
+    "parcel-transformer-hbs": "1.0.4"
+  },
+  "dependencies": {
+    "express": "^4.17.3",
+    "handlebars": "^4.7.7"
+  }
+}

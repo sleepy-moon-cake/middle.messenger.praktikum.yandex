@@ -22,9 +22,9 @@
   },
   "homepage": "https://github.com/readOnlyMode/middle.messenger.praktikum.yandex#readme",
   "devDependencies": {
-    "@parcel/transformer-sass": "^2.5.0",
-    "parcel": "^2.5.0",
-    "parcel-transformer-hbs": "^1.0.4"
+    "@parcel/transformer-sass": "2.5.0",
+    "parcel": "2.5.0",
+    "parcel-transformer-hbs": "1.0.4"
   },
   "dependencies": {
     "express": "^4.17.3",

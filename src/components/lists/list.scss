@@ -1,0 +1,40 @@
+.list {
+  width: 100%;
+
+  &__element {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    position: relative;
+  }
+
+  &__element::after {
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    border-bottom: 1px solid #eaeaea;
+  }
+
+  &__element:last-child::after {
+    border-bottom: none;
+  }
+
+  &__key {
+    font-family: Inter, sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 13px;
+  }
+
+  &__value {
+    font-family: Inter, sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 13px;
+    color: #999999;
+  }
+}

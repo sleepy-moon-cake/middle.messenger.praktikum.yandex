@@ -4,4 +4,10 @@
   outline: none;
   caret-color: #3369f3;
   border-bottom: 1px solid #3369f3;
+
+  &--border-none {
+    border-bottom: none;
+    color: #999999;
+    text-align: right;
+  }
 }

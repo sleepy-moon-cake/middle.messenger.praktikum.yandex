@@ -1,7 +1,9 @@
 {
   "include": ["src/**/*"],
   "extends": "@tsconfig/recommended/tsconfig.json",
-
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
   "compilerOptions": {
     "outDir": "./build",
     "module": "commonjs",
@@ -10,7 +12,9 @@
     "alwaysStrict": true,
     "removeComments": true,
     "preserveConstEnums": true,
-    "sourceMap": true
+    "sourceMap": true,
+    "types": ["handlebars"],
+    "lib": ["ES2017", "dom"]
   },
   "exclude": ["node_modules", "dist", ".parcel-cache"]
 }

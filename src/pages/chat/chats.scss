@@ -1,0 +1,56 @@
+.chatter {
+  display: flex;
+  height: 100vh;
+
+  &__menu {
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid #eaeaea;
+  }
+
+  &__search {
+    height: 32px;
+    margin: 14px 10px;
+    background: #efefef;
+    border-radius: 5px;
+    border: none;
+  }
+
+  &__list {
+    width: 310px;
+    height: 100vh;
+  }
+
+  &__main {
+    position: relative;
+    flex-grow: 1;
+  }
+
+  &__message {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-family: Inter, sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    color: #999999;
+  }
+
+  &__element {
+    position: relative;
+  }
+
+  &__element::after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 100%;
+    border-bottom: 1px solid #eaeaea;
+  }
+
+  &__element:last-child::after {
+    border-bottom: none;
+  }
+}

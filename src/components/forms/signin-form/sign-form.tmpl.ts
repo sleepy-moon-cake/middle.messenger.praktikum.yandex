@@ -1,4 +1,3 @@
-import { Component } from "../../../core/component/component";
 import Handlebars from "handlebars";
 
 export const template = Handlebars.compile(
@@ -8,6 +7,7 @@ export const template = Handlebars.compile(
     <ul class="form__inputs">
         <li class="form__input">{{{mailInput}}}</li>
         <li class="form__input">{{{loginInput}}}</li>
+        <li class="form__input">{{{nameInput}}}</li>
         <li class="form__input">{{{surnameInput}}}</li>
         <li class="form__input">{{{phoneInput}}}</li>
         <li class="form__input">{{{passwordInput}}}</li>

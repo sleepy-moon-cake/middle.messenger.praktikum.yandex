@@ -9,7 +9,7 @@ export class Component {
   protected _id: string | null = null;
   private _element: HTMLElement;
   protected _props: Properties;
-  private _children: SimpleObject<Component>;
+  protected _children: SimpleObject<Component>;
   private _isDirty: boolean = false;
   protected eventBus: EventBus = new EventBus();
 
@@ -37,7 +37,7 @@ export class Component {
   }
 
   public setOptions(paramets: Options) {
-    const { children, props } = this._getChildrenAndProps(paramets);
+    const { props } = this._getChildrenAndProps(paramets);
 
     this._isDirty = false;
 
@@ -60,6 +60,14 @@ export class Component {
 
   public render(): any {
     // used in descendants
+  }
+
+  public show() {
+    this.getElement().style.display = "block";
+  }
+
+  public hide() {
+    this.getElement().style.display = "none";
   }
 
   protected compile(template: HandlebarsTemplateDelegate, props: SimpleObject) {
@@ -99,13 +107,10 @@ export class Component {
       },
 
       set: (target, property: Partial<string>, value, receiver): boolean => {
-        let targetValue = target[property];
-
         if (!this._isDirty) {
           this._valueChange(target[property], value);
         }
 
-        targetValue = value;
         return Reflect.set(target, property, value, receiver);
       },
     };
@@ -116,7 +121,6 @@ export class Component {
   private _getChildrenAndProps(options: Options) {
     const children: SimpleObject<Component> = {};
     const props: Properties = {};
-    const childrenArray = [];
 
     Object.entries(options).forEach(([key, value]) => {
       if (value instanceof Component) {

@@ -10,8 +10,11 @@
     "target": "es2016",
     "noImplicitAny": true,
     "alwaysStrict": true,
+    "noUnusedParameters": true,
+    "noUnusedLocals": true,
     "removeComments": true,
     "preserveConstEnums": true,
+    "strictNullChecks": true,
     "sourceMap": true,
     "types": ["handlebars"],
     "lib": ["ES2017", "dom"]

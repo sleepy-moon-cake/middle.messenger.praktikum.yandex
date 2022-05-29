@@ -1,7 +1,7 @@
 import { Component } from "./core/component/component";
 import { loginPage } from "./pages/authentication/login/login";
 import { signinPage } from "./pages/authentication/signin/signin";
-import { chartsPage } from "./pages/chat/chats";
+import { chartsPage } from "./pages/chats/chats";
 import { notFoundPage } from "./pages/codes/not-found/not-found";
 import { unavailablePage } from "./pages/codes/unavailable/unavailable";
 import { editPasswordPage } from "./pages/profile/edit-profile/edit-password/edit-password";

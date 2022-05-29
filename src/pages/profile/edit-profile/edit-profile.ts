@@ -47,7 +47,7 @@ const EditProfileOptions = {
   button: new Button({
     type: "submit",
     content: "Сохранить",
-    class: "profile__save-button"
+    class: "profile__save-button",
   }),
 };
 
@@ -58,3 +58,5 @@ export class EditProfile extends Component {
 }
 
 export const editProfilePage = new EditProfile(EditProfileOptions);
+
+// TODO: Refactor it by using field component or use label with input

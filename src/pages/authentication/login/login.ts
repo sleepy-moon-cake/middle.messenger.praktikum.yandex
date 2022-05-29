@@ -17,6 +17,7 @@ const authorizationForm = new Form({
       type: "text",
       class: "form__input",
       placeholder: "Логин",
+      label: "Логин",
       pattern: Patterns.LOGIN,
       errorMessage: loginErrorMessage,
       listeners: [
@@ -29,6 +30,7 @@ const authorizationForm = new Form({
       type: "password",
       class: "form__input",
       placeholder: "Пароль",
+      label: "Пароль",
       pattern: Patterns.PASSWORD,
       errorMessage: passwordErrorMessage,
       listeners: [

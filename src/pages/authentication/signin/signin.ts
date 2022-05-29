@@ -24,6 +24,7 @@ const registerationForm = new Form({
       type: "email",
       class: "form__input",
       placeholder: "Почта",
+      label: "Почта",
       pattern: Patterns.MAIL,
       errorMessage: mailErrorMessage,
       listeners: [
@@ -36,6 +37,7 @@ const registerationForm = new Form({
       type: "text",
       class: "form__input",
       placeholder: "Логин",
+      label: "Логин",
       pattern: Patterns.LOGIN,
       errorMessage: loginErrorMessage,
       listeners: [
@@ -48,6 +50,7 @@ const registerationForm = new Form({
       type: "text",
       class: "form__input",
       placeholder: "Фамилия",
+      label: "Фамилия",
       pattern: Patterns.NAME,
       errorMessage: surnameErrorMessage,
       listeners: [
@@ -60,6 +63,7 @@ const registerationForm = new Form({
       type: "text",
       class: "form__input",
       placeholder: "Имя",
+      label: "Имя",
       pattern: Patterns.NAME,
       errorMessage: nameErrorMessage,
       listeners: [
@@ -72,6 +76,7 @@ const registerationForm = new Form({
       type: "tel",
       class: "form__input",
       placeholder: "Телефон",
+      label: "Телефон",
       pattern: Patterns.PHONE,
       errorMessage: phoneErrorMessage,
       listeners: [
@@ -84,6 +89,7 @@ const registerationForm = new Form({
       type: "password",
       class: "form__input",
       placeholder: "Пароль",
+      label: "Пароль",
       pattern: Patterns.PASSWORD,
       errorMessage: passwordErrorMessage,
       listeners: [
@@ -96,6 +102,7 @@ const registerationForm = new Form({
       type: "password",
       class: "form__input",
       placeholder: "Пароль(еще раз)",
+      label: "Пароль(еще раз)",
       pattern: Patterns.PASSWORD,
       errorMessage: confirmPasswordErrorMessage,
       listeners: [

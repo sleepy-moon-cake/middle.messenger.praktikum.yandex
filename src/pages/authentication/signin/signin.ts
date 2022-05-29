@@ -1,6 +1,6 @@
 import { Button } from "../../../components/button/button";
 import { ErrorMessage } from "../../../components/error-message/error-message";
-import { SigninForm } from "../../../components/forms/signin-form/signin-form";
+import { Form } from "../../../components/forms/form";
 import { Input } from "../../../components/input/input";
 import { Link } from "../../../components/link/link";
 import { Patterns } from "../../../models/enums/patterns";
@@ -17,85 +17,94 @@ const confirmPasswordErrorMessage = new ErrorMessage({
   message: "Не корректное  пароль",
 });
 
-const registerationForm = new SigninForm({
+const registerationForm = new Form({
   description: "Регистрация",
-  mailInput: new Input({
-    type: "email",
-    placeholder: "Почта",
-    pattern: Patterns.MAIL,
-    errorMessage: mailErrorMessage,
-    listeners: [
-      {
-        blur: errorMessageHandler(mailErrorMessage),
-      },
-    ],
-  }),
-  loginInput: new Input({
-    type: "text",
-    placeholder: "Логин",
-    pattern: Patterns.LOGIN,
-    errorMessage: loginErrorMessage,
-    listeners: [
-      {
-        blur: errorMessageHandler(loginErrorMessage),
-      },
-    ],
-  }),
-  surnameInput: new Input({
-    type: "text",
-    placeholder: "Фамилия",
-    pattern: Patterns.NAME,
-    errorMessage: surnameErrorMessage,
-    listeners: [
-      {
-        blur: errorMessageHandler(surnameErrorMessage),
-      },
-    ],
-  }),
-  nameInput: new Input({
-    type: "text",
-    placeholder: "Имя",
-    pattern: Patterns.NAME,
-    errorMessage: nameErrorMessage,
-    listeners: [
-      {
-        blur: errorMessageHandler(nameErrorMessage),
-      },
-    ],
-  }),
-  phoneInput: new Input({
-    type: "tel",
-    placeholder: "Телефон",
-    pattern: Patterns.PHONE,
-    errorMessage: phoneErrorMessage,
-    listeners: [
-      {
-        blur: errorMessageHandler(phoneErrorMessage),
-      },
-    ],
-  }),
-  passwordInput: new Input({
-    type: "password",
-    placeholder: "Пароль",
-    pattern: Patterns.PASSWORD,
-    errorMessage: passwordErrorMessage,
-    listeners: [
-      {
-        blur: errorMessageHandler(passwordErrorMessage),
-      },
-    ],
-  }),
-  confirmPasswordInput: new Input({
-    type: "password",
-    placeholder: "Пароль(еще раз)",
-    pattern: Patterns.PASSWORD,
-    errorMessage: confirmPasswordErrorMessage,
-    listeners: [
-      {
-        blur: errorMessageHandler(confirmPasswordErrorMessage),
-      },
-    ],
-  }),
+  items: [
+    new Input({
+      type: "email",
+      class: "form__input",
+      placeholder: "Почта",
+      pattern: Patterns.MAIL,
+      errorMessage: mailErrorMessage,
+      listeners: [
+        {
+          blur: errorMessageHandler(mailErrorMessage),
+        },
+      ],
+    }),
+    new Input({
+      type: "text",
+      class: "form__input",
+      placeholder: "Логин",
+      pattern: Patterns.LOGIN,
+      errorMessage: loginErrorMessage,
+      listeners: [
+        {
+          blur: errorMessageHandler(loginErrorMessage),
+        },
+      ],
+    }),
+    new Input({
+      type: "text",
+      class: "form__input",
+      placeholder: "Фамилия",
+      pattern: Patterns.NAME,
+      errorMessage: surnameErrorMessage,
+      listeners: [
+        {
+          blur: errorMessageHandler(surnameErrorMessage),
+        },
+      ],
+    }),
+    new Input({
+      type: "text",
+      class: "form__input",
+      placeholder: "Имя",
+      pattern: Patterns.NAME,
+      errorMessage: nameErrorMessage,
+      listeners: [
+        {
+          blur: errorMessageHandler(nameErrorMessage),
+        },
+      ],
+    }),
+    new Input({
+      type: "tel",
+      class: "form__input",
+      placeholder: "Телефон",
+      pattern: Patterns.PHONE,
+      errorMessage: phoneErrorMessage,
+      listeners: [
+        {
+          blur: errorMessageHandler(phoneErrorMessage),
+        },
+      ],
+    }),
+    new Input({
+      type: "password",
+      class: "form__input",
+      placeholder: "Пароль",
+      pattern: Patterns.PASSWORD,
+      errorMessage: passwordErrorMessage,
+      listeners: [
+        {
+          blur: errorMessageHandler(passwordErrorMessage),
+        },
+      ],
+    }),
+    new Input({
+      type: "password",
+      class: "form__input",
+      placeholder: "Пароль(еще раз)",
+      pattern: Patterns.PASSWORD,
+      errorMessage: confirmPasswordErrorMessage,
+      listeners: [
+        {
+          blur: errorMessageHandler(confirmPasswordErrorMessage),
+        },
+      ],
+    }),
+  ],
   button: new Button({ content: "Авторизоваться" }),
   link: new Link({ content: "Войти?" }),
 });

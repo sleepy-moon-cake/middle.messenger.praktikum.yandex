@@ -1,11 +1,11 @@
 import { Component } from "../../core/component/component";
-import { template } from "./link.tmpl";
+import { template } from "./form.tmpl";
 
-export class Link extends Component {
-  render() {
+export class Form extends Component {
+  public render() {
     return this.compile(template, this._props);
   }
   public getEventTargetElement(): HTMLElement {
-    return this.getElement().querySelector("a")!;
+    return this.getElement().querySelector("form")!;
   }
 }

@@ -9,14 +9,12 @@ class Chats extends Component {
 }
 
 const chatList = {
-  chat1: new Chat({}),
-  chat2: new Chat({}),
-  chat3: new Chat({}),
-  chat4: new Chat({}),
-  chat5: new Chat({}),
-  chat6: new Chat({}),
-  chat7: new Chat({}),
-  chat8: new Chat({}),
+  items: [
+    new Chat({ class: "chatter__element" }),
+    new Chat({ class: "chatter__element" }),
+    new Chat({ class: "chatter__element" }),
+    new Chat({ class: "chatter__element" }),
+  ],
 };
 
 export const chartsPage = new Chats(chatList);

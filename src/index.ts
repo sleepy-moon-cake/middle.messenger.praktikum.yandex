@@ -1,3 +1,4 @@
+import { Component } from "./core/component/component";
 import { loginPage } from "./pages/authentication/login/login";
 import { signinPage } from "./pages/authentication/signin/signin";
 import { chartsPage } from "./pages/chat/chats";
@@ -7,7 +8,7 @@ import { editPasswordPage } from "./pages/profile/edit-profile/edit-password/edi
 import { editProfilePage } from "./pages/profile/edit-profile/edit-profile";
 import { profilePage } from "./pages/profile/profile";
 
-const routes = {
+const routes: Record<string, Component> = {
   "/": loginPage,
   "/login": loginPage,
   "/signin": signinPage,
@@ -22,7 +23,7 @@ const routes = {
 window.addEventListener("load", router);
 window.addEventListener("hashchange", router);
 
-function router(event: Event) {
+function router() {
   const pahtname: string = window.location.pathname;
   const page: any = routes[pahtname];
 

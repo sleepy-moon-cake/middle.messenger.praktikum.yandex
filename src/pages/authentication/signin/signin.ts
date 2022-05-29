@@ -24,7 +24,7 @@ const registerationForm = new SigninForm({
     errorMessage: mailErrorMessage,
     listeners: [
       {
-        input: errorMessageHandler(mailErrorMessage),
+        focus: errorMessageHandler(mailErrorMessage),
       },
     ],
   }),
@@ -35,7 +35,7 @@ const registerationForm = new SigninForm({
     errorMessage: loginErrorMessage,
     listeners: [
       {
-        input: errorMessageHandler(loginErrorMessage),
+        blur: errorMessageHandler(loginErrorMessage),
       },
     ],
   }),
@@ -46,7 +46,7 @@ const registerationForm = new SigninForm({
     errorMessage: surnameErrorMessage,
     listeners: [
       {
-        input: errorMessageHandler(surnameErrorMessage),
+        blur: errorMessageHandler(surnameErrorMessage),
       },
     ],
   }),
@@ -57,7 +57,7 @@ const registerationForm = new SigninForm({
     errorMessage: nameErrorMessage,
     listeners: [
       {
-        input: errorMessageHandler(nameErrorMessage),
+        blur: errorMessageHandler(nameErrorMessage),
       },
     ],
   }),
@@ -68,7 +68,7 @@ const registerationForm = new SigninForm({
     errorMessage: phoneErrorMessage,
     listeners: [
       {
-        input: errorMessageHandler(phoneErrorMessage),
+        blur: errorMessageHandler(phoneErrorMessage),
       },
     ],
   }),
@@ -79,7 +79,7 @@ const registerationForm = new SigninForm({
     errorMessage: passwordErrorMessage,
     listeners: [
       {
-        input: errorMessageHandler(passwordErrorMessage),
+        blur: errorMessageHandler(passwordErrorMessage),
       },
     ],
   }),
@@ -90,7 +90,7 @@ const registerationForm = new SigninForm({
     errorMessage: confirmPasswordErrorMessage,
     listeners: [
       {
-        input: errorMessageHandler(confirmPasswordErrorMessage),
+        blur: errorMessageHandler(confirmPasswordErrorMessage),
       },
     ],
   }),

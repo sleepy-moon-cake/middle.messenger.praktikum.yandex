@@ -9,7 +9,7 @@ export class Component {
   protected _id: string | null = null;
   private _element: HTMLElement;
   protected _props: Properties;
-  protected _children: SimpleObject<Component>;
+  protected _children: SimpleObject<Component | Component[]>;
   private _isDirty: boolean = false;
   protected eventBus: EventBus = new EventBus();
 
@@ -75,16 +75,31 @@ export class Component {
     const copyProps = { ...props };
 
     Object.entries(this._children).forEach(([key, child]) => {
-      copyProps[key] = `<div data-id="${child.getComponentId()}"></div>`;
+      if (this._isChildrenArray(child)) {
+        copyProps[key] = child
+          .map((childElement) => `<div data-id="${childElement.getComponentId()}"></div>`)
+          .join(" ");
+      } else {
+        copyProps[key] = `<div data-id="${child.getComponentId()}"></div>`;
+      }
     });
 
     templateElement.innerHTML = template(copyProps);
 
     Object.values(this._children).forEach((child) => {
-      const childElement = templateElement.content.querySelector(
-        `[data-id="${child.getComponentId()}"]`
-      );
-      childElement?.replaceWith(child.getElement());
+      if (this._isChildrenArray(child)) {
+        child.map((childElement) => {
+          const childElementTempalte = templateElement.content.querySelector(
+            `[data-id="${childElement.getComponentId()}"]`
+          );
+          childElementTempalte?.replaceWith(childElement.getElement());
+        });
+      } else {
+        const childTemplate = templateElement.content.querySelector(
+          `[data-id="${child.getComponentId()}"]`
+        );
+        childTemplate?.replaceWith(child.getElement());
+      }
     });
 
     return templateElement.content;
@@ -118,12 +133,19 @@ export class Component {
     return new Proxy(parametrs, handler);
   }
 
+  private _isChildrenArray(value: unknown): value is Array<Component> {
+    if (Array.isArray(value)) {
+      return value.every((item) => item instanceof Component);
+    }
+    return false;
+  }
+
   private _getChildrenAndProps(options: Options) {
-    const children: SimpleObject<Component> = {};
+    const children: SimpleObject<Component | Component[]> = {};
     const props: Properties = {};
 
     Object.entries(options).forEach(([key, value]) => {
-      if (value instanceof Component) {
+      if (value instanceof Component || this._isChildrenArray(value)) {
         children[key] = value;
       } else {
         props[key] = value;
@@ -156,7 +178,7 @@ export class Component {
 
   private _addListeners() {
     const { listeners } = this._props;
-
+    
     if (listeners?.length) {
       listeners.forEach((listener) => {
         Object.entries(listener).forEach(([event, callBack]) => {
@@ -182,7 +204,11 @@ export class Component {
     this.componentDidMount();
 
     Object.values(this._children).forEach((child) => {
-      child.dispatchComponentDidMount();
+      if (this._isChildrenArray(child)) {
+        child.forEach((item) => item.dispatchComponentDidMount());
+      } else {
+        child.dispatchComponentDidMount();
+      }
     });
   }
 }

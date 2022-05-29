@@ -5,4 +5,8 @@ export class Input extends Component {
   public render() {
     return this.compile(template, this._props);
   }
+
+  public getEventTargetElement(): HTMLElement {
+    return this.getElement().querySelector("input")!;
+  }
 }

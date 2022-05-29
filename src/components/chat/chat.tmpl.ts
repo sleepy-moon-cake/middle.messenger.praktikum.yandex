@@ -2,7 +2,7 @@ import Handlebars from "handlebars";
 
 export const template = Handlebars.compile(
   `
-<div class='chat'>
+<div class='chat {{class}}'>
     <div class='chat__avatar'>
     </div>
 

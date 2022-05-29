@@ -176,13 +176,19 @@ export class Component {
     this._addListeners();
   }
 
+  public getEventTargetElement() {
+    return this.getElement();
+  }
+
   private _addListeners() {
     const { listeners } = this._props;
-    
+
     if (listeners?.length) {
       listeners.forEach((listener) => {
         Object.entries(listener).forEach(([event, callBack]) => {
-          this.getElement().addEventListener(event, callBack);
+          const innerElement = this.getEventTargetElement();
+
+          innerElement.addEventListener(event, callBack);
         });
       });
     }
@@ -191,13 +197,19 @@ export class Component {
   private _removeLiseners() {
     const { listeners } = this._props;
 
-    if (listeners?.length) {
+    if (listeners?.length && !this._isElementEmpty) {
       listeners.forEach((listener) => {
         Object.entries(listener).forEach(([event, callBack]) => {
-          this.getElement().removeEventListener(event, callBack);
+          const innerElement = this.getEventTargetElement();
+
+          innerElement.removeEventListener(event, callBack);
         });
       });
     }
+  }
+
+  private _isElementEmpty(): boolean {
+    return Boolean(this.getElement().children ?? null);
   }
 
   public _componentDidMount(): void {

@@ -4,11 +4,11 @@ import { LoginForm } from "../../../components/forms/login-form/login-from";
 import { Input } from "../../../components/input/input";
 import { Link } from "../../../components/link/link";
 import { Patterns } from "../../../models/enums/patterns";
-import { errorMessageHandler } from "../../../utils/errorMessagehandler";
+import { errorMessageHandler } from "../../../utils/errorMessagehandler.util";
 import { Authentication } from "../authentication";
 
-const loginErrorMessage = new ErrorMessage({ message: "Введите коретный логин" });
-const passwordErrorMessage = new ErrorMessage({ message: "Введите коретный пароль" });
+const loginErrorMessage = new ErrorMessage({ message: "Введите корретный логин" });
+const passwordErrorMessage = new ErrorMessage({ message: "Введите корретный пароль" });
 
 const authorizationForm = new LoginForm({
   description: "Вход",
@@ -19,7 +19,7 @@ const authorizationForm = new LoginForm({
     errorMessage: loginErrorMessage,
     listeners: [
       {
-        input: errorMessageHandler(loginErrorMessage),
+        blur: errorMessageHandler(loginErrorMessage),
       },
     ],
   }),
@@ -30,7 +30,7 @@ const authorizationForm = new LoginForm({
     errorMessage: passwordErrorMessage,
     listeners: [
       {
-        input: errorMessageHandler(passwordErrorMessage),
+        blur: errorMessageHandler(passwordErrorMessage),
       },
     ],
   }),

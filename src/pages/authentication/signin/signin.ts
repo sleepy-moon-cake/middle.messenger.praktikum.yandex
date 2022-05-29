@@ -4,16 +4,18 @@ import { SigninForm } from "../../../components/forms/signin-form/signin-form";
 import { Input } from "../../../components/input/input";
 import { Link } from "../../../components/link/link";
 import { Patterns } from "../../../models/enums/patterns";
-import { errorMessageHandler } from "../../../utils/errorMessagehandler";
+import { errorMessageHandler } from "../../../utils/errorMessagehandler.util";
 import { Authentication } from "../authentication";
 
-const mailErrorMessage = new ErrorMessage({ message: "Не коректный  mail" });
-const loginErrorMessage = new ErrorMessage({ message: "Не коректный  логин" });
-const surnameErrorMessage = new ErrorMessage({ message: "Не коректная  фамилия" });
-const nameErrorMessage = new ErrorMessage({ message: "Не коректное  имя" });
-const phoneErrorMessage = new ErrorMessage({ message: "Не коректное  телефон" });
-const passwordErrorMessage = new ErrorMessage({ message: "Не коректное  пароль" });
-const confirmPasswordErrorMessage = new ErrorMessage({ message: "Не коректное  пароль" });
+const mailErrorMessage = new ErrorMessage({ message: "Не корректный  mail" });
+const loginErrorMessage = new ErrorMessage({ message: "Не корректный  логин" });
+const surnameErrorMessage = new ErrorMessage({ message: "Не корректная  фамилия" });
+const nameErrorMessage = new ErrorMessage({ message: "Не корректное  имя" });
+const phoneErrorMessage = new ErrorMessage({ message: "Не корректное  телефон" });
+const passwordErrorMessage = new ErrorMessage({ message: "Не корректное  пароль" });
+const confirmPasswordErrorMessage = new ErrorMessage({
+  message: "Не корректное  пароль",
+});
 
 const registerationForm = new SigninForm({
   description: "Регистрация",
@@ -24,7 +26,7 @@ const registerationForm = new SigninForm({
     errorMessage: mailErrorMessage,
     listeners: [
       {
-        focus: errorMessageHandler(mailErrorMessage),
+        blur: errorMessageHandler(mailErrorMessage),
       },
     ],
   }),

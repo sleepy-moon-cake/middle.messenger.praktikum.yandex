@@ -15,3 +15,5 @@
 - Страница [Редактирования пароля](https://sparkling-brioche-e51e28.netlify.app/edit-password),
 - Страница [500](https://sparkling-brioche-e51e28.netlify.app/500),
 - Страница [404](https://sparkling-brioche-e51e28.netlify.app/404),
+
+## Добавлены компонеты с использованием кастомного рендринга

@@ -65,7 +65,13 @@ const chatList = {
       ],
     }),
   ],
-  typing: new Input({ placeholder: "Введите сообщение" }),
+  typing: new Input(
+    {
+      placeholder: "Введите сообщение",
+      required: true,
+    },
+    "width-100"
+  ),
   sendMessage: new Button({ content: "&#10148", class: "chatter__send-button" }),
 };
 

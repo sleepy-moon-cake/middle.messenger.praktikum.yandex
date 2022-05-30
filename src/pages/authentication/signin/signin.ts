@@ -25,6 +25,7 @@ const registerationForm = new Form({
       class: "form__input",
       placeholder: "Почта",
       label: "Почта",
+      name: "email",
       pattern: Patterns.MAIL,
       errorMessage: mailErrorMessage,
       listeners: [
@@ -38,6 +39,7 @@ const registerationForm = new Form({
       class: "form__input",
       placeholder: "Логин",
       label: "Логин",
+      name: "login",
       pattern: Patterns.LOGIN,
       errorMessage: loginErrorMessage,
       listeners: [
@@ -51,6 +53,7 @@ const registerationForm = new Form({
       class: "form__input",
       placeholder: "Фамилия",
       label: "Фамилия",
+      name: "surname",
       pattern: Patterns.NAME,
       errorMessage: surnameErrorMessage,
       listeners: [
@@ -64,6 +67,7 @@ const registerationForm = new Form({
       class: "form__input",
       placeholder: "Имя",
       label: "Имя",
+      name: "name",
       pattern: Patterns.NAME,
       errorMessage: nameErrorMessage,
       listeners: [
@@ -76,6 +80,7 @@ const registerationForm = new Form({
       type: "tel",
       class: "form__input",
       placeholder: "Телефон",
+      name: "phone",
       label: "Телефон",
       pattern: Patterns.PHONE,
       errorMessage: phoneErrorMessage,
@@ -90,6 +95,7 @@ const registerationForm = new Form({
       class: "form__input",
       placeholder: "Пароль",
       label: "Пароль",
+      name: "password",
       pattern: Patterns.PASSWORD,
       errorMessage: passwordErrorMessage,
       listeners: [
@@ -103,6 +109,7 @@ const registerationForm = new Form({
       class: "form__input",
       placeholder: "Пароль(еще раз)",
       label: "Пароль(еще раз)",
+      name: "confirm_password",
       pattern: Patterns.PASSWORD,
       errorMessage: confirmPasswordErrorMessage,
       listeners: [
@@ -114,6 +121,21 @@ const registerationForm = new Form({
   ],
   button: new Button({ content: "Авторизоваться" }),
   link: new Link({ content: "Войти?" }),
+  listeners: [
+    {
+      submit: function (e: Event) {
+        e.preventDefault();
+        const form = e.target as HTMLFormElement;
+        const inputs = Array.from(form.querySelectorAll("input"));
+        const result = inputs.reduce((registry: Record<string, string>, input) => {
+          registry[input.name] = input.value;
+          return registry;
+        }, {});
+
+        console.log(result);
+      },
+    },
+  ],
 });
 
 export const signinPage = new Authentication({ form: registerationForm });

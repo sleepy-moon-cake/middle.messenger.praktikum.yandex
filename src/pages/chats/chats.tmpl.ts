@@ -14,7 +14,9 @@ export const template = Handlebars.compile(`
   
 
     <div class="chatter__main">
-        <div>message</div>
+        <div>
+         <div class="chatter__message">message</div>
+        </div>
         <div class="chatter__typing">
             {{{typing}}}
             {{{sendMessage}}}

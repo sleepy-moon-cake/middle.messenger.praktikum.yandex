@@ -13,12 +13,20 @@ export class Component {
   private _isDirty: boolean = false;
   protected eventBus: EventBus = new EventBus();
 
-  constructor(private options: Options, private tagName: string = "div") {
+  constructor(
+    private options: Options,
+    private rootClass?: string,
+    private tagName: string = "div"
+  ) {
     const { children = {}, props } = this._getChildrenAndProps(this.options);
     this._id = makeUUID();
     this._props = this._makeProxy(props);
     this._children = this._makeProxy(children);
     this._element = this._createElement(this.tagName);
+
+    if (this.rootClass) {
+      this._element.classList.add(this.rootClass);
+    }
 
     this._registerEvent();
     this.eventBus.emit(Events.INIT);

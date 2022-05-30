@@ -1,9 +1,4 @@
-import { Button } from "../../../components/button/button";
-import { ErrorMessage } from "../../../components/error-message/error-message";
-import { Form } from "../../../components/forms/form";
-import { Input } from "../../../components/input/input";
-import { Link } from "../../../components/link/link";
-import { EventBus } from "../../../core/event-bus/event-bus";
+import { Button, ErrorMessage, Form, Input, Link } from "../../../components";
 import { Patterns } from "../../../models/enums/patterns";
 import { errorMessageHandler } from "../../../utils/errorMessagehandler.util";
 import { Authentication } from "../authentication";

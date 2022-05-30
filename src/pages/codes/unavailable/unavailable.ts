@@ -1,5 +1,4 @@
-import { Link } from "../../../components/link/link";
-import { ResponseCode } from "../../../components/response-code/response-code";
+import { Link, ResponseCode } from "../../../components";
 import { Code } from "../code";
 
 const responseCode = new ResponseCode({

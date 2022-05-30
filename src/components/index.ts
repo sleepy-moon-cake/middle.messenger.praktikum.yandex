@@ -1,9 +1,13 @@
-// import { Button } from "./button/button";
-// import { Link } from "./link/link";
-
-// export { registerButton } from "./button/button";
-// export { registerForm } from "./forms/login-form/login-from";
-// export { registerInput } from "./input/input";
-// export { registerLink } from "./link/link";
-// export { registerPageError } from "./page-error/page-error";
-// export { registerField } from "./field/field"
+export * from "../pages/profile/edit-profile/edit-profile";
+export * from "./button/button";
+export * from "./chat/chat";
+export * from "./error-message/error-message";
+export * from "./forms/form";
+export * from "./images/avatar/avatar";
+export * from "./input/input";
+export * from "./link/link";
+export * from "./lists/edit-password-list/edit-profile-list";
+export * from "./lists/interactive-list/interactive-list";
+export * from "./lists/list/list";
+export * from "./response-code/response-code";
+export * from "./lists/edit-profile-list/edit-profile-list";

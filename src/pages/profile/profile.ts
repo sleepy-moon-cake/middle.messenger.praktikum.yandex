@@ -1,7 +1,4 @@
-import { Avatar } from "../../components/images/avatar/avatar";
-import { Link } from "../../components/link/link";
-import { InteractiveList } from "../../components/lists/interactive-list/interactive-list";
-import { List } from "../../components/lists/list/list";
+import { Avatar, Link, InteractiveList, List } from "../../components";
 import { Component } from "../../core/component/component";
 import { template } from "./profile.tmpl";
 

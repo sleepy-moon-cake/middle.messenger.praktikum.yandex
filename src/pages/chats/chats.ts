@@ -1,6 +1,4 @@
-import { Button } from "../../components/button/button";
-import { Chat } from "../../components/chat/chat";
-import { Input } from "../../components/input/input";
+import { Button, Chat, Input } from "../../components";
 import { Component } from "../../core/component/component";
 import { redirectTo } from "../../utils/redirect.util";
 import { template } from "./chats.tmpl";
@@ -10,13 +8,6 @@ class Chats extends Component {
     return this.compile(template, this._props);
   }
 }
-
-const chats = [
-  { userName: "Alex", id: 1, time: "10:30" },
-  { userName: "Jhon", id: 2, time: "10:30" },
-  { userName: "Miha", id: 3, time: "10:30" },
-  { userName: "Alexander", id: 4, time: "10:30" },
-];
 
 const chatList = {
   items: [

@@ -1,8 +1,10 @@
-import { Button } from "../../../../components/button/button";
-import { ErrorMessage } from "../../../../components/error-message/error-message";
-import { Avatar } from "../../../../components/images/avatar/avatar";
-import { Input } from "../../../../components/input/input";
-import { EditPasswordList } from "../../../../components/lists/edit-password-list/edit-profile-list";
+import {
+  Button,
+  ErrorMessage,
+  Avatar,
+  Input,
+  EditPasswordList,
+} from "../../../../components";
 import { Patterns } from "../../../../models/enums/patterns";
 import { errorMessageHandler } from "../../../../utils/errorMessagehandler.util";
 import { EditProfile } from "../edit-profile";

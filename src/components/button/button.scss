@@ -1,18 +1,17 @@
 .button {
-    background-color: #3369f3;
-    border: none;
-    border-radius: 8px;
-    width: 100%;
+  background-color: #3369f3;
+  border: none;
+  border-radius: 8px;
+  width: 100%;
+  text-align: center;
+  padding: 12px 70px;
+  color: #ffffff;
 
-    text-align: center;
-    padding: 12px 70px;
-    color: #ffffff;
+  &:hover {
+    background-color: #4b7dfa;
+  }
 
-    &:hover {
-        background-color: #4b7dfa;
-    }
-
-    &:active {
-        transform: scale(0.99);
-    }
+  &:active {
+    transform: scale(0.99);
+  }
 }

@@ -15,4 +15,5 @@
 - Страница [Редактирования пароля](https://sparkling-brioche-e51e28.netlify.app/edit-password),
 - Страница [500](https://sparkling-brioche-e51e28.netlify.app/500),
 - Страница [404](https://sparkling-brioche-e51e28.netlify.app/404),
-- # [Pull request - Sprint 2](https://github.com/readOnlyMode/middle.messenger.praktikum.yandex/pull/2)
+
+## Добавлены компонеты с использованием кастомного рендринга

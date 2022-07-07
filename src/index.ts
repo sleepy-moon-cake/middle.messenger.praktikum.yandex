@@ -1,4 +1,5 @@
-import { Component } from "./core/component/component";
+import { ComponentClass } from "./core/component/component";
+import { Router } from "./core/router/router";
 import { loginPage } from "./pages/authentication/login/login";
 import { signinPage } from "./pages/authentication/signin/signin";
 import { chartsPage } from "./pages/chats/chats";
@@ -8,37 +9,23 @@ import { editPasswordPage } from "./pages/profile/edit-profile/edit-password/edi
 import { editProfilePage } from "./pages/profile/edit-profile/edit-profile";
 import { profilePage } from "./pages/profile/profile";
 
-const routes: Record<string, Component> = {
-  "/": loginPage,
-  "/login": loginPage,
-  "/signin": signinPage,
-  "/chats": chartsPage,
-  "/404": notFoundPage,
-  "/500": unavailablePage,
-  "/profile": profilePage,
-  "/edit-profile": editProfilePage,
-  "/edit-password": editPasswordPage,
-};
+const routes: Array<{ pathname: string; page: InstanceType<ComponentClass> }> = [
+  { pathname: "/", page: loginPage },
+  { pathname: "/login", page: loginPage },
+  { pathname: "/signin", page: signinPage },
+  { pathname: "/chats", page: chartsPage },
+  { pathname: "/404", page: notFoundPage },
+  { pathname: "/500", page: unavailablePage },
+  { pathname: "/profile", page: profilePage },
+  { pathname: "/edit-profile", page: editProfilePage },
+  { pathname: "/edit-password", page: editPasswordPage },
+];
 
-window.addEventListener("load", router);
-window.addEventListener("hashchange", router);
+window.addEventListener("DOMContentLoaded", () => {
+  const router = new Router();
+  routes.forEach((route) => {
+    router.use(route.pathname, route.page);
+  });
 
-function router() {
-  const pahtname: string = window.location.pathname;
-  const page: any = routes[pahtname];
-
-  if (page) {
-    render(page);
-  } else {
-    render(routes["/404"]);
-  }
-}
-
-function render(block: any, query: any = "root") {
-  const root = document.getElementById(query);
-  root?.appendChild(block.getElement());
-
-  block.dispatchComponentDidMount();
-
-  return root;
-}
+  router.start();
+});

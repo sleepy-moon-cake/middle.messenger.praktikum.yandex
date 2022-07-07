@@ -1,9 +1,15 @@
 import { Events } from "../../models/enums/events";
 import { Options } from "../../models/types/options";
 import { Properties } from "../../models/types/properties";
-import { SimpleObject } from "../../models/types/simple-object";
+import { SimpleObject } from '../../models/types/simple-object';
 import { EventBus } from "../event-bus/event-bus";
 import { v4 as makeUUID } from "uuid";
+
+export interface ComponentClass extends Component {
+  new (props: Properties): Component;
+  componentName?: string;
+}
+
 
 export class Component {
   protected _id: string | null = null;

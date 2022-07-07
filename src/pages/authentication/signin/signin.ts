@@ -1,4 +1,5 @@
 import { Button, ErrorMessage, Form, Input, Link } from "../../../components";
+import { router } from "../../../core/router/router";
 import { Patterns } from "../../../models/enums/patterns";
 import { errorMessageHandler } from "../../../utils/errorMessagehandler.util";
 import { Authentication } from "../authentication";
@@ -134,4 +135,26 @@ const registerationForm = new Form({
   ],
 });
 
-export const signinPage = new Authentication({ form: registerationForm });
+export const signinPage = new Authentication({
+  form: registerationForm,
+  backButton: new Button({
+    content: "Back",
+    listeners: [
+      {
+        click: function () {
+          router.back();
+        },
+      },
+    ],
+  }),
+  forwardButton: new Button({
+    content: "Forward",
+    listeners: [
+      {
+        click: function () {
+          router.forward();
+        },
+      },
+    ],
+  }),
+});

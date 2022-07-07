@@ -1,5 +1,6 @@
 import { Button, Chat, Input } from "../../components";
 import { Component } from "../../core/component/component";
+import { router } from "../../core/router/router";
 import { redirectTo } from "../../utils/redirect.util";
 import { template } from "./chats.tmpl";
 
@@ -64,6 +65,26 @@ const chatList = {
     "width-100"
   ),
   sendMessage: new Button({ content: "&#10148", class: "chatter__send-button" }),
+  backButton: new Button({
+    content: "Back",
+    listeners: [
+      {
+        click: function () {
+          router.back();
+        },
+      },
+    ],
+  }),
+  forwardButton: new Button({
+    content: "Forward",
+    listeners: [
+      {
+        click: function () {
+          router.forward();
+        },
+      },
+    ],
+  }),
 };
 
 export const chartsPage = new Chats(chatList);

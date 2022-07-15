@@ -1,11 +1,10 @@
 import { Errors } from "../../models/enums/errors";
-import { Events } from "../../models/enums/events";
 import { NoopCallback } from "../../models/types/noop-callback";
 
 export class EventBus {
-  private listeners: Map<Events, NoopCallback<void>[]> = new Map();
+  private listeners: Map<string, NoopCallback<void>[]> = new Map();
 
-  public subscribe(event: Events, callback: NoopCallback<void>): void {
+  public subscribe(event: string, callback: NoopCallback<void>): void {
     const register = this.listeners.get(event);
 
     if (register) {
@@ -15,7 +14,7 @@ export class EventBus {
     this.listeners.set(event, [callback]);
   }
 
-  public unsubscribe(event: Events, callback: NoopCallback<void>): void | never {
+  public unsubscribe(event: string, callback: NoopCallback<void>): void | never {
     let register = this.listeners.get(event);
 
     if (register) {
@@ -25,7 +24,10 @@ export class EventBus {
     }
   }
 
-  public emit(event: Events, ...args: unknown[]) {
+  public emit(event: string, ...args: unknown[]) {
+    if (event == "changed") {
+      debugger;
+    }
     const register = this.listeners.get(event);
 
     if (register) {

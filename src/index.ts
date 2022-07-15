@@ -1,31 +1,28 @@
-import { ComponentClass } from "./core/component/component";
 import { Router } from "./core/router/router";
-import { loginPage } from "./pages/authentication/login/login";
-import { signinPage } from "./pages/authentication/signin/signin";
-import { chartsPage } from "./pages/chats/chats";
-import { notFoundPage } from "./pages/codes/not-found/not-found";
-import { unavailablePage } from "./pages/codes/unavailable/unavailable";
-import { editPasswordPage } from "./pages/profile/edit-profile/edit-password/edit-password";
-import { editProfilePage } from "./pages/profile/edit-profile/edit-profile";
-import { profilePage } from "./pages/profile/profile";
+import { Store } from "./core/store/store";
+import { initRouter } from "./router";
+import { initUser } from "./services/api/auth/auth-actions";
+import { AppState } from "./services/api/types";
 
-const routes: Array<{ pathname: string; page: InstanceType<ComponentClass> }> = [
-  { pathname: "/", page: loginPage },
-  { pathname: "/login", page: loginPage },
-  { pathname: "/signin", page: signinPage },
-  { pathname: "/chats", page: chartsPage },
-  { pathname: "/404", page: notFoundPage },
-  { pathname: "/500", page: unavailablePage },
-  { pathname: "/profile", page: profilePage },
-  { pathname: "/edit-profile", page: editProfilePage },
-  { pathname: "/edit-password", page: editPasswordPage },
-];
+declare global {
+  interface Window {
+    appStore: Store<AppState>;
+    router: Router;
+  }
+}
 
 window.addEventListener("DOMContentLoaded", () => {
-  const router = new Router();
-  routes.forEach((route) => {
-    router.use(route.pathname, route.page);
+  const router = Router.create();
+  const appStore = Store.create<AppState>();
+
+  window.router = router;
+  window.appStore = appStore;
+
+  appStore.subscribe("changed", (p, c) => {
+    debugger;
+    console.log(p, c);
   });
 
-  router.start();
+  initRouter(router);
+  appStore.dispatch(initUser);
 });

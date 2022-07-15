@@ -6,47 +6,45 @@ export class HTTPTransport {
     DELETE: "DELETE",
   };
 
+  static __instance: HTTPTransport | null = null;
+
+  constructor() {
+    if (HTTPTransport.__instance) {
+      return HTTPTransport.__instance;
+    }
+    HTTPTransport.__instance = this;
+  }
+
   get = (url: string, options = {}) => {
-    return this.request(
-      url,
-      { ...options, method: HTTPTransport.METHODS.GET },
-      options.timeout
-    );
+    return this.request(url, { ...options, method: HTTPTransport.METHODS.GET });
   };
 
   put = (url: string, options = {}) => {
-    return this.request(
-      url,
-      { ...options, method: HTTPTransport.METHODS.PUT },
-      options.timeout
-    );
+    return this.request(url, { ...options, method: HTTPTransport.METHODS.PUT });
   };
 
   post = (url: string, options = {}) => {
-    return this.request(
-      url,
-      { ...options, method: HTTPTransport.METHODS.POST },
-      options.timeout
-    );
+    return this.request(url, { ...options, method: HTTPTransport.METHODS.POST });
   };
 
   delete = (url: string, options = {}) => {
-    return this.request(
-      url,
-      { ...options, method: HTTPTransport.METHODS.DELETE },
-      options.timeout
-    );
+    return this.request(url, { ...options, method: HTTPTransport.METHODS.DELETE });
   };
 
-  request = (url: string, options: any, timeout = 5000) => {
-    const { headers, data, method } = options;
+  request(url: string, options: any, timeout = 5000): Promise<XMLHttpRequest> {
+    const { headers, data, method, credentials } = options;
     return new Promise((resolve, reject) => {
-      const xhr = new XMLHttpRequest();
+      const xhr: XMLHttpRequest = new XMLHttpRequest();
       xhr.open(method, url);
 
-      if (headers && headers.length) {
-        for (const [key, value] of Object.entries(headers)) {
-          xhr.setRequestHeader(key, value);
+      if (credentials) {
+        xhr.withCredentials = true;
+      }
+      xhr.responseType = "json";
+
+      if ((headers && headers.length) || headers?.size) {
+        for (const [key, value] of headers.entries()) {
+          xhr.setRequestHeader(key, value as string);
         }
       }
 
@@ -66,5 +64,5 @@ export class HTTPTransport {
         xhr.send(data);
       }
     });
-  };
+  }
 }

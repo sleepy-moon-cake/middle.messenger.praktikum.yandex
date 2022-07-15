@@ -1,36 +1,16 @@
 import { Button, ErrorMessage, Form, Input, Link } from "../../../components";
 import { router } from "../../../core/router/router";
 import { Patterns } from "../../../models/enums/patterns";
+import { signin } from "../../../services/api/auth/auth-actions";
 import { errorMessageHandler } from "../../../utils/errorMessagehandler.util";
 import { Authentication } from "../authentication";
 
-const mailErrorMessage = new ErrorMessage({ message: "Не корректный  mail" });
-const loginErrorMessage = new ErrorMessage({ message: "Не корректный  логин" });
-const surnameErrorMessage = new ErrorMessage({ message: "Не корректная  фамилия" });
-const nameErrorMessage = new ErrorMessage({ message: "Не корректное  имя" });
-const phoneErrorMessage = new ErrorMessage({ message: "Не корректное  телефон" });
-const passwordErrorMessage = new ErrorMessage({ message: "Не корректное  пароль" });
-const confirmPasswordErrorMessage = new ErrorMessage({
-  message: "Не корректное  пароль",
-});
+const loginErrorMessage = new ErrorMessage({ message: "Введите корретный логин" });
+const passwordErrorMessage = new ErrorMessage({ message: "Введите корретный пароль" });
 
-const registerationForm = new Form({
-  description: "Регистрация",
+const authorizationForm = new Form({
+  description: "Вход",
   items: [
-    new Input({
-      type: "email",
-      class: "form__input",
-      placeholder: "Почта",
-      label: "Почта",
-      name: "email",
-      pattern: Patterns.MAIL,
-      errorMessage: mailErrorMessage,
-      listeners: [
-        {
-          blur: errorMessageHandler(mailErrorMessage),
-        },
-      ],
-    }),
     new Input({
       type: "text",
       class: "form__input",
@@ -42,48 +22,6 @@ const registerationForm = new Form({
       listeners: [
         {
           blur: errorMessageHandler(loginErrorMessage),
-        },
-      ],
-    }),
-    new Input({
-      type: "text",
-      class: "form__input",
-      placeholder: "Фамилия",
-      label: "Фамилия",
-      name: "surname",
-      pattern: Patterns.NAME,
-      errorMessage: surnameErrorMessage,
-      listeners: [
-        {
-          blur: errorMessageHandler(surnameErrorMessage),
-        },
-      ],
-    }),
-    new Input({
-      type: "text",
-      class: "form__input",
-      placeholder: "Имя",
-      label: "Имя",
-      name: "name",
-      pattern: Patterns.NAME,
-      errorMessage: nameErrorMessage,
-      listeners: [
-        {
-          blur: errorMessageHandler(nameErrorMessage),
-        },
-      ],
-    }),
-    new Input({
-      type: "tel",
-      class: "form__input",
-      placeholder: "Телефон",
-      name: "phone",
-      label: "Телефон",
-      pattern: Patterns.PHONE,
-      errorMessage: phoneErrorMessage,
-      listeners: [
-        {
-          blur: errorMessageHandler(phoneErrorMessage),
         },
       ],
     }),
@@ -101,23 +39,9 @@ const registerationForm = new Form({
         },
       ],
     }),
-    new Input({
-      type: "password",
-      class: "form__input",
-      placeholder: "Пароль(еще раз)",
-      label: "Пароль(еще раз)",
-      name: "confirm_password",
-      pattern: Patterns.PASSWORD,
-      errorMessage: confirmPasswordErrorMessage,
-      listeners: [
-        {
-          blur: errorMessageHandler(confirmPasswordErrorMessage),
-        },
-      ],
-    }),
   ],
   button: new Button({ content: "Авторизоваться" }),
-  link: new Link({ content: "Войти?" }),
+  link: new Link({ content: "Нет аккаунта?2", href: "/signin" }),
   listeners: [
     {
       submit: function (e: Event) {
@@ -129,6 +53,8 @@ const registerationForm = new Form({
           return registry;
         }, {});
 
+        window.appStore.dispatch(signin, result);
+
         console.log(result);
       },
     },
@@ -136,7 +62,7 @@ const registerationForm = new Form({
 });
 
 export const signinPage = new Authentication({
-  form: registerationForm,
+  form: authorizationForm,
   backButton: new Button({
     content: "Back",
     listeners: [

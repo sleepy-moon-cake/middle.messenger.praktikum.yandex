@@ -1,4 +1,4 @@
-import { ComponentClass } from "../component/component";
+import { RouteDTO } from "../../models/types/route-dto";
 import { Route } from "./route/route";
 
 export class Router {
@@ -17,8 +17,16 @@ export class Router {
     Router.__instance = this;
   }
 
-  public use(path: string, component: InstanceType<ComponentClass>): Router {
-    const route = new Route(path, component);
+  public static create(): Router {
+    if (!Router.__instance) {
+      Router.__instance = new Router();
+    }
+
+    return Router.__instance;
+  }
+
+  public use({ path, page, resolver = () => true }: RouteDTO): Router {
+    const route = new Route(path, page, resolver);
 
     this.routes.push(route);
 
@@ -27,15 +35,15 @@ export class Router {
 
   public start(): void {
     window.onpopstate = (event: any) => {
-      this._onRoute(event?.currentTarget?.location.pathname);
+      this.__onRouteChange(event?.currentTarget?.location.pathname);
     };
 
-    this._onRoute(window.location.pathname);
+    this.__onRouteChange(window.location.pathname);
   }
 
   public go(pathname: string): void {
     this.history.pushState({}, "", pathname);
-    this._onRoute(pathname);
+    this.__onRouteChange(pathname);
   }
 
   public back(): void {
@@ -50,16 +58,18 @@ export class Router {
     return this.routes.find((route) => route.match(path));
   }
 
-  private _onRoute(pathname: string) {
+  private __onRouteChange(pathname: string) {
     const route = this.getRoute(pathname);
 
     if (!route) return;
 
-    this._currentRoute?.leave();
+    if (route.resolver()) {
+      this._currentRoute?.leave();
 
-    route.render();
+      route.render();
 
-    this._currentRoute = route;
+      this._currentRoute = route;
+    }
   }
 }
 

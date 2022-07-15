@@ -1,7 +1,7 @@
 import Handlebars from "handlebars";
 
 export const template = Handlebars.compile(`
-<div class="display-flex justify-content-space-between ">{{{backButton}}} {{{forwardButton}}}</div>
+<div class="display-flex justify-content-space-between ">{{{backButton}}} {{{forwardButton}}} {{{logoutButton}}}</div>
 <div class="chatter">
     <div class="chatter__menu">
         <input class="chatter__search  placeholder="search"/>

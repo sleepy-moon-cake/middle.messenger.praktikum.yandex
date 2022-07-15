@@ -16,7 +16,6 @@ export type AuthUserSucces = {
 };
 
 export function authUserTypeGuard(response: any): response is AuthUserSucces {
-  debugger;
   if (response && response.id) {
     return true;
   }

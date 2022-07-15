@@ -25,7 +25,7 @@ export class Router {
     return Router.__instance;
   }
 
-  public use({ path, page, resolver = () => true }: RouteDTO): Router {
+  public use({ path, page, resolver }: RouteDTO): Router {
     const route = new Route(path, page, resolver);
 
     this.routes.push(route);
@@ -46,6 +46,11 @@ export class Router {
     this.__onRouteChange(pathname);
   }
 
+  public replace(pathname: string) {
+    this.history.replaceState({}, "", pathname);
+    this.__onRouteChange(pathname);
+  }
+
   public back(): void {
     this.history.back();
   }
@@ -63,7 +68,7 @@ export class Router {
 
     if (!route) return;
 
-    if (route.resolver()) {
+    if (route.resolver && route.resolver()) {
       this._currentRoute?.leave();
 
       route.render();

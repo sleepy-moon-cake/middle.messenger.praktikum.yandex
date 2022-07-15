@@ -6,12 +6,12 @@ export class Route {
   private __pathname: string;
   private __view: InstanceType<ComponentClass>;
   private __block: InstanceType<ComponentClass> | null = null;
-  public resolver: NoopCallback<boolean>;
+  public resolver: NoopCallback<boolean> | undefined;
 
   constructor(
     pathname: string,
     view: InstanceType<ComponentClass>,
-    resolver: NoopCallback<boolean>
+    resolver?: NoopCallback<boolean> | undefined
   ) {
     this.__pathname = pathname;
     this.__view = view;

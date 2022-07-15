@@ -1,5 +1,3 @@
-import { ComponentClass } from "../../core/component/component";
-
 export type SignupPayload = {
   first_name: string;
   second_name: string;
@@ -19,6 +17,7 @@ export type SigninPayload = {
 };
 
 export type AppState = {
-  page: ComponentClass;
   user: any;
+  appIsInited: boolean;
+  isAuthenticated: boolean;
 };

@@ -4,7 +4,7 @@ import { NoopCallback } from "../../models/types/noop-callback";
 export class EventBus {
   private listeners: Map<string, NoopCallback<void>[]> = new Map();
 
-  public subscribe(event: string, callback: NoopCallback<void>): void {
+  public subscribe<T = unknown>(event: string, callback: NoopCallback<void, T>): void {
     const register = this.listeners.get(event);
 
     if (register) {
@@ -25,9 +25,6 @@ export class EventBus {
   }
 
   public emit(event: string, ...args: unknown[]) {
-    if (event == "changed") {
-      debugger;
-    }
     const register = this.listeners.get(event);
 
     if (register) {

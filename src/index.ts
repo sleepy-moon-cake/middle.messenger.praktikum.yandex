@@ -11,16 +11,21 @@ declare global {
   }
 }
 
-window.addEventListener("DOMContentLoaded", () => {
-  const router = Router.create();
-  const appStore = Store.create<AppState>();
+const router = Router.create();
+const appStore = Store.create<AppState>({
+  user: null,
+  isAuthenticated: false,
+  appIsInited: false,
+});
 
+window.addEventListener("DOMContentLoaded", () => {
   window.router = router;
   window.appStore = appStore;
 
-  appStore.subscribe("changed", (p, c) => {
-    debugger;
-    console.log(p, c);
+  appStore.subscribe("changed", (prevState: AppState, nextState: AppState) => {
+    if (!prevState.appIsInited && nextState.appIsInited) {
+      router.start();
+    }
   });
 
   initRouter(router);

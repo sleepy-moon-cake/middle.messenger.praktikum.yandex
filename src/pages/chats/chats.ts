@@ -1,6 +1,7 @@
 import { Button, Chat, Input } from "../../components";
 import { Component } from "../../core/component/component";
 import { router } from "../../core/router/router";
+import { logout } from "../../services/api/auth/auth-actions";
 import { redirectTo } from "../../utils/redirect.util";
 import { template } from "./chats.tmpl";
 
@@ -65,6 +66,16 @@ const chatList = {
     "width-100"
   ),
   sendMessage: new Button({ content: "&#10148", class: "chatter__send-button" }),
+  logoutButton: new Button({
+    content: "Logout",
+    listeners: [
+      {
+        click: function () {
+          window.appStore.dispatch(logout);
+        },
+      },
+    ],
+  }),
   backButton: new Button({
     content: "Back",
     listeners: [

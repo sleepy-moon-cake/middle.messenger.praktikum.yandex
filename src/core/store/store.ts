@@ -1,3 +1,4 @@
+import { getValueByPath } from "../../utils/get-value-by-path";
 import { EventBus } from "../event-bus/event-bus";
 
 export type Dispatch<State> = (
@@ -7,8 +8,8 @@ export type Dispatch<State> = (
 
 export type Action<State> = (
   dispatch: Dispatch<State>,
-  state: State,
-  payload: any
+  payload: any,
+  state: State
 ) => void;
 
 export class Store<State extends Record<string, any>> extends EventBus {
@@ -23,7 +24,11 @@ export class Store<State extends Record<string, any>> extends EventBus {
     return new Store(state ?? ({} as State));
   }
 
-  public getState() {
+  public getState(path?: string) {
+    if (path) {
+      return getValueByPath(this.state, path);
+    }
+
     return this.state;
   }
 
@@ -37,7 +42,7 @@ export class Store<State extends Record<string, any>> extends EventBus {
 
   dispatch(nextStateOrAction: Partial<State> | Action<State>, payload?: any) {
     if (typeof nextStateOrAction === "function") {
-      nextStateOrAction(this.dispatch.bind(this), this.state, payload);
+      nextStateOrAction(this.dispatch.bind(this), payload, this.state);
     } else {
       this.set({ ...this.state, ...nextStateOrAction });
     }

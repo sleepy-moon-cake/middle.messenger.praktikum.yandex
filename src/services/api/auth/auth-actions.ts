@@ -3,14 +3,15 @@ import { AppState, SigninPayload, SignupPayload } from "../types";
 import { auth } from "./auth";
 import { AuthUser, AuthFail, authUserTypeGuard } from "./auth-types";
 
-export const initUser: Action<AppState> = async function (dispatch: Dispatch<AppState>) {
+export const initUser: Action<AppState> = async function (
+  dispatch: Dispatch<Partial<AppState>>
+) {
   await auth
     .user()
     .then((response) => response.response)
     .then((response: AuthUser) => {
-      debugger;
       if (authUserTypeGuard(response)) {
-        dispatch({ user: response });
+        dispatch({ user: response, isAuthenticated: true });
       }
       const fail = response as AuthFail;
 
@@ -18,14 +19,11 @@ export const initUser: Action<AppState> = async function (dispatch: Dispatch<App
     })
     .catch((e) => {
       console.warn("Check initApp action and handle it", e);
-    });
+    })
+    .finally(() => dispatch({ appIsInited: true }));
 };
 
-export const signup: Action<any> = async function (
-  dispatch: Dispatch<any>,
-  {},
-  payload: SignupPayload
-) {
+export const signup: Action<any> = async function ({}, payload: SignupPayload) {
   await auth
     .signup(payload)
     .then((response) => response.response)
@@ -39,9 +37,8 @@ export const signup: Action<any> = async function (
     });
 };
 
-export const signin: Action<any> = async function (
-  dispatch: Dispatch<any>,
-  {},
+export const signin: Action<AppState> = async function (
+  dispatch: Dispatch<Partial<AppState>>,
   payload: SigninPayload
 ) {
   await auth
@@ -50,21 +47,20 @@ export const signin: Action<any> = async function (
       return { status: response.status, response: response.response };
     })
     .then((response) => {
-      debugger;
       if (response.status !== 200) {
         throw new Error(response.response?.reason);
       }
-      dispatch(initUser);
+      dispatch({ isAuthenticated: true });
+      window.router.go("/chats");
     })
     .catch((e) => {
       console.warn("Check signin action and handle it", e);
     });
 };
 
-export const logout: Action<any> = async function (
-  dispatch: Dispatch<any>,
-  {},
-  payload: SigninPayload
-) {
-  await auth.logout().then();
+export const logout: Action<AppState> = async function (dispatch: Dispatch<any>) {
+  await auth.logout().then(() => {
+    dispatch({ user: null, isAuthenticated: false });
+    window.router.go("/");
+  });
 };

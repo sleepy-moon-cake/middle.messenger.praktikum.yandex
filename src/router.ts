@@ -12,19 +12,56 @@ import {
 } from "./pages";
 
 const routes: RoutesDTO = [
-  { path: "/", page: signinPage },
-  { path: "/signin", page: signinPage },
+  {
+    path: "/",
+    page: signinPage,
+    resolver: function () {
+      const isAuthenticated = window.appStore.getState("isAuthenticated") as boolean;
+
+      if (isAuthenticated) {
+        window.router.go("/chats");
+      }
+      return !isAuthenticated;
+    },
+  },
+  {
+    path: "/signin",
+    page: signinPage,
+    resolver: function () {
+      const isAuthenticated = window.appStore.getState("isAuthenticated") as boolean;
+
+      if (isAuthenticated) {
+        window.router.go("/chats");
+      }
+      return !isAuthenticated;
+    },
+  },
   { path: "/signup", page: signupPage },
-  { path: "/chats", page: chartsPage, resolver: () => false },
+  {
+    path: "/chats",
+    page: chartsPage,
+    resolver: function () {
+      const isAuthenticated = window.appStore.getState("isAuthenticated") as boolean;
+
+      if (!isAuthenticated) {
+        window.router.go("/");
+      }
+      return isAuthenticated;
+    },
+  },
   { path: "/404", page: notFoundPage },
   { path: "/500", page: unavailablePage },
   { path: "/profile", page: profilePage },
-  { path: "/edit-profile", page: editProfilePage, resolver: () => false },
-  { path: "/edit-password", page: editPasswordPage, resolver: () => false },
+  {
+    path: "/edit-profile",
+    page: editProfilePage,
+  },
+  {
+    path: "/edit-password",
+    page: editPasswordPage,
+  },
 ];
 
 export function initRouter(router: Router) {
   routes.forEach((route) => router.use(route));
-
-  router.start();
 }

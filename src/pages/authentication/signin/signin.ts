@@ -41,7 +41,7 @@ const authorizationForm = new Form({
     }),
   ],
   button: new Button({ content: "Авторизоваться" }),
-  link: new Link({ content: "Нет аккаунта?2", href: "/signin" }),
+  link: new Link({ content: "Нет аккаунта?2e", href: "/signup" }),
   listeners: [
     {
       submit: function (e: Event) {

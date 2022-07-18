@@ -1,8 +1,17 @@
 import { Component } from "../../core/component/component";
-import { template } from "./button.tmpl";
+
+export type ButtonProps = {
+  type: string;
+  text: string;
+  onClick: () => void;
+};
 
 export class Button extends Component {
-  public render(): DocumentFragment {
-    return this.compile(template, this._props);
+  constructor({ text, type, onClick }: ButtonProps) {
+    super({ text, type, events: { click: onClick } });
+  }
+
+  public render(): string {
+    return '<button class="button" type="{{type}}">{{text}}</button>';
   }
 }

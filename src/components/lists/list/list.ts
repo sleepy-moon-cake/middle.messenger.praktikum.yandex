@@ -1,8 +1,14 @@
 import { Component } from "../../../core/component/component";
-import { template } from "./list.tmpl";
 
 export class List extends Component {
   public render() {
-    return this.compile(template, this._props);
+    return `<ul class="list {{class}}">
+    {{#each items}}
+        <li class="list__element">
+            <span class="list__key">{{key}}</span> 
+            <span class="list__value">{{value}}</span>
+        </li>
+    {{/each}}
+</ul>`;
   }
 }

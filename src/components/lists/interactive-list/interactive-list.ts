@@ -1,8 +1,21 @@
 import { Component } from "../../../core/component/component";
-import { template } from "./interactive-list.tmpl";
 
 export class InteractiveList extends Component {
   public render() {
-    return this.compile(template, this._props);
+    return `
+    <ul class="list {{class}}">
+        <li class="list__element">
+            {{{editData}}}
+        </li>
+
+        <li class="list__element">
+            {{{editPassword}}}
+        </li>
+
+        <li class="list__element">
+            {{{exit}}}
+        </li>
+    </ul>
+`;
   }
 }

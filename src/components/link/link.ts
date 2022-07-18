@@ -1,11 +1,13 @@
 import { Component } from "../../core/component/component";
-import { template } from "./link.tmpl";
 
-export class Link extends Component {
+export type LinkData = {
+  class: string;
+  href: string;
+  text: string;
+};
+
+export class Link extends Component<LinkData> {
   render() {
-    return this.compile(template, this._props);
-  }
-  public getEventTargetElement(): HTMLElement {
-    return this.getElement().querySelector("a")!;
+    return `<a class="link {{class}}" href="{{href}}">{{text}}</a>`;
   }
 }

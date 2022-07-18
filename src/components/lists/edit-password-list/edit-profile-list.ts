@@ -1,8 +1,24 @@
 import { Component } from "../../../core/component/component";
-import { template } from "./edit-profile-list.tmpl";
 
 export class EditPasswordList extends Component {
   public render() {
-    return this.compile(template, this._props);
+    return `
+    <ul class="list {{class}}">
+        <li class="list__element">
+            <span class="list__key">{{oldPasswordName}}</span> 
+            <span class="list__value">{{{oldPasswordInput}}}</span>
+        </li>
+
+        <li class="list__element">
+            <span class="list__key">{{newPasswordName}}</span> 
+            <span class="list__value">{{{newPasswordInput}}}</span>
+        </li>
+
+        <li class="list__element">
+            <span class="list__key">{{repeatPasswordName}}</span> 
+            <span class="list__value">{{{repeatPasswordInput}}}</span>
+        </li>
+    </ul>
+`;
   }
 }

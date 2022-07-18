@@ -1,8 +1,18 @@
 import { Component } from "../../core/component/component";
-import { template } from "./response-code.tmpl";
 
-export class ResponseCode extends Component {
+export type ResposeCodeData = {
+  code: string;
+  text: string;
+};
+
+export class ResponseCode extends Component<ResposeCodeData> {
   public render() {
-    return this.compile(template, this._props!);
+    return `<div class="error-page">
+      <h2 class="error-page__code">{{code}}</h2>
+    
+      <p class="error-page__text">{{text}}</p>
+    
+      {{{Link class="link" text="Назад к чатам" href='#'}}}
+      </div>`;
   }
 }

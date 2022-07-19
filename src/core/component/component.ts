@@ -88,6 +88,10 @@ export abstract class Component<P = any> {
     return this._element;
   }
 
+  getEventElement(): HTMLElement | null {
+    return null;
+  }
+
   _render() {
     const fragment = this._compile();
 
@@ -100,7 +104,7 @@ export abstract class Component<P = any> {
     this._addEvents();
   }
 
-  protected render(): string {
+  public render(): string {
     return "";
   }
 
@@ -147,6 +151,11 @@ export abstract class Component<P = any> {
     }
 
     Object.entries(events).forEach(([event, listener]) => {
+      const eventElement = this.getEventElement();
+
+      if (eventElement) {
+        eventElement.removeEventListener(event, listener);
+      }
       this._element!.removeEventListener(event, listener);
     });
   }
@@ -159,6 +168,12 @@ export abstract class Component<P = any> {
     }
 
     Object.entries(events).forEach(([event, listener]) => {
+      const eventElement = this.getEventElement();
+
+      if (eventElement) {
+        eventElement.addEventListener(event, listener);
+      }
+
       this._element!.addEventListener(event, listener);
     });
   }

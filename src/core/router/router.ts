@@ -68,7 +68,15 @@ export class Router {
 
     if (!route) return;
 
-    if (route.resolver && route.resolver()) {
+    if (route.resolver) {
+      if (route.resolver()) {
+        this._currentRoute?.leave();
+
+        route.render();
+
+        this._currentRoute = route;
+      }
+    } else {
       this._currentRoute?.leave();
 
       route.render();

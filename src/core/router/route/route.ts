@@ -1,16 +1,16 @@
 import { NoopCallback } from "../../../models/types/noop-callback";
 import { render } from "../../../utils/renderDOM.utils";
-import { ComponentClass } from "../../component/component";
+import { ComponentClass, Component } from "../../component/component";
 
 export class Route {
   private __pathname: string;
-  private __view: InstanceType<ComponentClass>;
-  private __block: InstanceType<ComponentClass> | null = null;
+  private __view: ComponentClass<any>;
+  private __block: Component | null = null;
   public resolver: NoopCallback<boolean> | undefined;
 
   constructor(
     pathname: string,
-    view: InstanceType<ComponentClass>,
+    view: ComponentClass<any>,
     resolver?: NoopCallback<boolean> | undefined
   ) {
     this.__pathname = pathname;
@@ -28,7 +28,7 @@ export class Route {
 
   public render() {
     if (!this.__block) {
-      this.__block = this.__view;
+      this.__block = new this.__view({});
       render(this.__block);
       return;
     }

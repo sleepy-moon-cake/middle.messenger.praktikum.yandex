@@ -1,3 +1,5 @@
+import * as Components from "./components";
+import { registerComponent } from "./core/component/registerComponent";
 import { Router } from "./core/router/router";
 import { Store } from "./core/store/store";
 import { initRouter } from "./router";
@@ -10,6 +12,10 @@ declare global {
     router: Router;
   }
 }
+
+Object.values(Components).forEach((Component: any) => {
+  registerComponent(Component);
+});
 
 const router = Router.create();
 const appStore = Store.create<AppState>({

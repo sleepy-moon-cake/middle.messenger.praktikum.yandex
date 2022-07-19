@@ -11,7 +11,7 @@ export type InpurProps = {
   placeholder: string;
   pattern: Patterns;
   required: boolean | null;
-  onChange?: () => void;
+  onChange?: (e: Event) => void;
 };
 
 export class Input extends Component {
@@ -20,7 +20,7 @@ export class Input extends Component {
     required = false,
     pattern,
     placeholder,
-    isValid = false,
+    isValid,
     name,
     value,
     type,
@@ -35,9 +35,14 @@ export class Input extends Component {
       required,
       pattern,
       placeholder,
-      events: { input: onChange },
+      events: { blur: onChange },
     });
   }
+
+  getEventElement() {
+    return this.element!.querySelector("input") ?? null;
+  }
+
   public render() {
     return `
     <label>

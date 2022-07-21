@@ -5,6 +5,8 @@ export class ChatsPage extends Component {
     return `
         <div class="chatter">
             <div class="chatter__menu">
+                {{{Link text="Профиль" rout="/profile"}}}
+
                 <input class="chatter__search  placeholder="search"/>
         
                 <ul class="chatter__list">

@@ -23,7 +23,7 @@ export const initUser: Action<AppState> = async function (
     .finally(() => dispatch({ appIsInited: true }));
 };
 
-export const signup: Action<any> = async function ({}, payload: SignupPayload) {
+export const signupAction: Action<any> = async function ({}, payload: SignupPayload) {
   await auth
     .signup(payload)
     .then((response) => response.response)
@@ -37,7 +37,7 @@ export const signup: Action<any> = async function ({}, payload: SignupPayload) {
     });
 };
 
-export const signin: Action<AppState> = async function (
+export const signinAction: Action<AppState> = async function (
   dispatch: Dispatch<Partial<AppState>>,
   payload: SigninPayload
 ) {
@@ -58,7 +58,7 @@ export const signin: Action<AppState> = async function (
     });
 };
 
-export const logout: Action<AppState> = async function (dispatch: Dispatch<any>) {
+export const signoutAction: Action<AppState> = async function (dispatch: Dispatch<any>) {
   await auth.logout().then(() => {
     dispatch({ user: null, isAuthenticated: false });
     window.router.go("/");

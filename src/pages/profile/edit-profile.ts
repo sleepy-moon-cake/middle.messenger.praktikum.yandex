@@ -54,8 +54,8 @@ export class EditProfilePage extends Component {
   public render() {
     return `
           <div class="profile">
-             
-      
+          {{#Button content=true}} {{{Avatar src=avatar}}} {{/Button}}
+      {{{Modal}}}
               <form>
                 <ul class="list">
                     <li class="list__element">

@@ -14,4 +14,17 @@
   &:active {
     transform: scale(0.99);
   }
+
+  &--with-content {
+    border: none;
+  }
+
+  &--with-content:active {
+    transform: scale(0.98);
+    outline: 1px solid #cdcdcd;
+  }
+
+  &--with-content:hover {
+    outline: 1px solid #cdcdcd;
+  }
 }

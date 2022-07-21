@@ -1,12 +1,12 @@
 import { Action, Dispatch } from "../../../core/store/store";
 import { AppState, SigninPayload, SignupPayload } from "../types";
-import { auth } from "./auth";
+import { authService } from "./auth";
 import { AuthUser, AuthFail, authUserTypeGuard } from "./auth-types";
 
 export const initUser: Action<AppState> = async function (
   dispatch: Dispatch<Partial<AppState>>
 ) {
-  await auth
+  await authService
     .user()
     .then((response) => response.response)
     .then((response: AuthUser) => {
@@ -24,7 +24,7 @@ export const initUser: Action<AppState> = async function (
 };
 
 export const signupAction: Action<any> = async function ({}, payload: SignupPayload) {
-  await auth
+  await authService
     .signup(payload)
     .then((response) => response.response)
     .then((response) => {
@@ -41,7 +41,7 @@ export const signinAction: Action<AppState> = async function (
   dispatch: Dispatch<Partial<AppState>>,
   payload: SigninPayload
 ) {
-  await auth
+  await authService
     .signin(payload)
     .then((response) => {
       return { status: response.status, response: response.response };
@@ -59,7 +59,7 @@ export const signinAction: Action<AppState> = async function (
 };
 
 export const signoutAction: Action<AppState> = async function (dispatch: Dispatch<any>) {
-  await auth.logout().then(() => {
+  await authService.logout().then(() => {
     dispatch({ user: null, isAuthenticated: false });
     window.router.go("/");
   });

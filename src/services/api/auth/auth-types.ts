@@ -1,10 +1,10 @@
-export type AuthUser = AuthUserSucces | AuthFail;
+export type AuthUser = User | AuthFail;
 
 export type AuthFail = {
   reason: string;
 };
 
-export type AuthUserSucces = {
+export type User = {
   id: number;
   first_name: string;
   second_name: string;
@@ -15,7 +15,7 @@ export type AuthUserSucces = {
   avatar: string;
 };
 
-export function authUserTypeGuard(response: any): response is AuthUserSucces {
+export function authUserTypeGuard(response: any): response is User {
   if (response && response.id) {
     return true;
   }

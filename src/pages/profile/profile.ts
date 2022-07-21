@@ -1,45 +1,63 @@
 import { Component } from "../../core/component/component";
+import { signoutAction } from "../../services/api/auth/auth-actions";
+import { User } from "../../services/api/auth/auth-types";
 
 export class ProfilePage extends Component {
-  protected getStateFromProps(props: any): void {
-    this.state = {
-      name: "Иван",
-      imagesrc: "/",
-      items: [
+  protected getStateFromProps(): void {
+    const user = (window.appStore.getState("user") as User) || null;
+    let display_name, imagesrc, items;
+
+    if (user) {
+      display_name = user.display_name;
+      imagesrc = user.avatar;
+      items = [
         {
           key: "Почта",
-          value: "@pochta.ru",
+          value: user.email,
         },
         {
           key: "Логин",
-          value: "ivanivanov",
+          value: user.login,
         },
         {
           key: "Имя",
-          value: "Иван",
+          value: user.first_name,
         },
         {
           key: "Фамилия",
-          value: "Иванов",
+          value: user.second_name,
         },
         {
           key: "Имя в чате",
-          value: "Иван",
+          value: user.display_name,
         },
         {
           key: "Телефон",
-          value: "+7 (909) 967 30 30",
+          value: user.phone,
         },
-      ],
+      ];
+    }
+
+    this.state = {
+      avatar: user.avatar
+        ? "https://ya-praktikum.tech/api/v2/resources" + user.avatar
+        : null,
+      onSignout: (e: Event) => {
+        e.preventDefault();
+        window.appStore.dispatch(signoutAction);
+      },
+      display_name,
+      imagesrc,
+      items,
     };
   }
 
   public render() {
     return `
         <div class="profile">
-            {{{Avatar src="/"}}}
+            {{{Avatar src=avatar}}}
         
-            <p class="profile__name">{{{name}}}</p>
+            <p class="profile__name">{{{display_name}}}</p>
     
             <ul class="list">
                 {{#each items}}
@@ -52,15 +70,15 @@ export class ProfilePage extends Component {
     
             <ul class="list">
                 <li class="list__element">
-                    {{{Link text="Изменить данные"}}}
+                    {{{Link text="Изменить данные" rout="/edit-profile"}}}
                 </li>
         
                 <li class="list__element">
-                    {{{Link text="Изменить пароль"}}}
+                    {{{Link text="Изменить пароль" rout="/edit-password"}}}
                 </li>
         
                 <li class="list__element list__element--exit">
-                    {{{Link text="Выйти"}}}
+                    {{{Button text="Выйти" onClick=onSignout}}}
                 </li>
              </ul>
        </div>`;

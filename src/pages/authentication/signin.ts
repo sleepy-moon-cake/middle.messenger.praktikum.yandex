@@ -1,9 +1,11 @@
 import { Component } from "../../core/component/component";
 import { Patterns } from "../../models/enums/patterns";
+import { signinAction } from "../../services/api/auth/auth-actions";
 
 export class SigninPage extends Component {
   protected getStateFromProps() {
     this.state = {
+      isDirty: false,
       values: {
         login: "",
         password: "",
@@ -19,12 +21,19 @@ export class SigninPage extends Component {
           values: { ...this.state.values, [input.name]: input.value },
           validity: { ...this.state.validity, [input.name]: input.validity.valid },
         };
-        debugger;
+        this.state.isDirty = true;
+
         this.setState(nextState);
       },
-      signin: (event: Event) => {
+
+      onSignin: (event: Event) => {
         event.preventDefault();
-        //TODO: Handle case
+        const { validity, values, isDirty } = this.state;
+        const isValid = Object.values(validity).every((value) => value === true);
+
+        if (isDirty && isValid) {
+          window.appStore.dispatch(signinAction, values);
+        }
       },
     };
   }
@@ -67,9 +76,9 @@ export class SigninPage extends Component {
           </ul>
       
           <div class="form__actions">
-              {{{Button text="Авторизоваться" type="submit" summ="sdas" onClick=signin }}}
+              {{{Button text="Авторизоваться" type="submit" onClick=onSignin }}}
       
-              {{{Link text="Нет аккаунта?" href="/signup"}}}
+              {{{Link text="Нет аккаунта?" rout="/signup"}}}
           </div>
         </form>
       </div>

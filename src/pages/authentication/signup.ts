@@ -1,9 +1,11 @@
 import { Component } from "../../core/component/component";
 import { Patterns } from "../../models/enums/patterns";
+import { signupAction } from "../../services/api/auth/auth-actions";
 
 export class SignupPage extends Component {
   protected getStateFromProps() {
     this.state = {
+      isDirty: false,
       values: {
         email: "",
         login: "",
@@ -22,17 +24,23 @@ export class SignupPage extends Component {
       },
       onChangeInput: (e: Event) => {
         const input = e.target as HTMLInputElement;
-
         const nextState = {
           values: { ...this.state.values, [input.name]: input.value },
           validity: { ...this.state.validity, [input.name]: input.validity.valid },
         };
 
+        this.state.isDirty = true;
+
         this.setState(nextState);
       },
       signin: (event: Event) => {
         event.preventDefault();
-        //TODO: Handle case
+        const { values, validity, isDirty } = this.state;
+        const isValid = Object.values(validity).every((value) => value === true);
+
+        if (isDirty && isValid) {
+          window.appStore.dispatch(signupAction, values);
+        }
       },
     };
   }
@@ -120,9 +128,9 @@ export class SignupPage extends Component {
           </ul>
       
           <div class="form__actions">
-              {{{Button text="Авторизоваться" type="submit" summ="sdas" onClick=signin }}}
+              {{{Button text="Авторизоваться" type="submit" onClick=signin }}}
       
-              {{{Link text="Нет аккаунта?" href="/signup"}}}
+              {{{Link text="Войти" rout="/signin"}}}
           </div>
         </form>
       </div>

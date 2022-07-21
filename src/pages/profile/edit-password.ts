@@ -1,22 +1,32 @@
 import { Component } from "../../core/component/component";
 import { Patterns } from "../../models/enums/patterns";
+import { editPasswordAction } from "../../services/api/user/user-actions";
 
 export class EditPassordPage extends Component {
   protected getStateFromProps(): void {
     this.state = {
-      imagesrc: "/",
+      isDirty: false,
+      values: { oldPassword: "", newPassword: "" },
+      validity: { oldPassword: true, newPassword: true },
+      onChangeInput: (e: Event) => {
+        const input = e.target as HTMLInputElement;
+        const nextState = {
+          values: { ...this.state.values, [input.name]: input.value },
+          validity: { ...this.state.validity, [input.name]: input.validity.valid },
+        };
 
-      submit: (e: Event) => {
-        debugger;
-        e.preventDefault();
-        const form = e.target as HTMLFormElement;
-        const inputs = Array.from(form.querySelectorAll("input"));
-        const result = inputs.reduce((registry: Record<string, string>, input) => {
-          registry[input.name] = input.value;
-          return registry;
-        }, {});
+        this.state.isDirty = true;
 
-        console.log(result);
+        this.setState(nextState);
+      },
+      onEditPassword: (event: Event) => {
+        event.preventDefault();
+        const { values, validity, isDirty } = this.state;
+        const isValid = Object.values(validity).every((value) => value === true);
+
+        if (isDirty && isValid) {
+          window.appStore.dispatch(editPasswordAction, values);
+        }
       },
     };
   }
@@ -30,25 +40,38 @@ export class EditPassordPage extends Component {
                   <ul class="list">
                     <li class="list__element">
                         <span class="list__key">Старый пароль</span> 
+                   
                         <span class="list__value">
-                        {{{Input value="123" type="password" pattern="${Patterns.PASSWORD}" errorMessage="Не --"}}}<
-                        /span>
+                          {{{Input type="password"
+                          value=values.oldPassword
+                          isValid=validity.oldPassword
+                          placeholder="Пароль" 
+                          errorMessage="Введи коретный пароль"
+                          name="oldPassword" 
+                          ref="oldPassword" 
+                          pattern="${Patterns.PASSWORD}" 
+                          onChange=onChangeInput}}} 
+                        </span>
                     </li>
+                    
                     <li class="list__element">
                         <span class="list__key">Новый пароль</span> 
+
                         <span class="list__value">
-                        {{{Input value="123" type="password"  pattern="${Patterns.PASSWORD}"  errorMessage="Не --"}}}<
-                        /span>
-                    </li>
-                    <li class="list__element">
-                        <span class="list__key">Повторите новый пароль</span> 
-                        <span class="list__value">
-                        {{{Input value="123" type="password"  pattern="${Patterns.PASSWORD}"  errorMessage="Не --"}}}<
-                        /span>
+                          {{{Input type="password"
+                          value=values.newPassword
+                          isValid=validity.newPassword
+                          placeholder="Пароль" 
+                          errorMessage="Введи коретный пароль"
+                          name="newPassword" 
+                          ref="newPassword" 
+                          pattern="${Patterns.PASSWORD}" 
+                        onChange=onChangeInput}}} 
+                        </span>
                     </li>
                   </ul>
           
-                  {{{Button text="Сохранить" type="submit" onClick=submit}}}
+                  {{{Button text="Сохранить" type="submit" onClick=onEditPassword}}}
                 </form>
            </div>`;
   }

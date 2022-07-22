@@ -32,8 +32,15 @@ export class UserService {
     });
   }
 
-  public async changeAvatar() {
-    // later
+  public async changeAvatar(payload: any) {
+    const url = this.host + this.userUrl + "/profile/avatar";
+    const data = new FormData();
+    data.append("avatar", payload);
+
+    return this.http.put(url, {
+      data,
+      credentials: true,
+    });
   }
 }
 

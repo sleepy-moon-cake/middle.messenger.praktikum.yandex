@@ -1,8 +1,8 @@
-import { Dispatch } from "../../../core/store/store";
+import { Action, Dispatch } from "../../../core/store/store";
 import { AppState } from "../types";
 import { userService } from "./user";
 
-export const editProfileAction = async function (
+export const editProfileAction: Action<AppState> = async function (
   dispatch: Dispatch<Partial<AppState>>,
   payload: any
 ) {
@@ -21,7 +21,7 @@ export const editProfileAction = async function (
     });
 };
 
-export const editPasswordAction = async function (
+export const editPasswordAction: Action<AppState> = async function (
   dispatch: Dispatch<Partial<AppState>>,
   payload: any
 ) {
@@ -36,4 +36,15 @@ export const editPasswordAction = async function (
     .catch((e) => {
       console.warn("Check changePassword action and handle it", e);
     });
+};
+
+export const changeAvatarAction: Action<AppState> = async function (
+  dispatch: Dispatch<Partial<AppState>>,
+  payload: any
+) {
+  userService.changeAvatar(payload).then((response) => {
+    if (response.status === 200) {
+      dispatch({ user: response.response });
+    }
+  });
 };

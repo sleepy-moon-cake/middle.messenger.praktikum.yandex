@@ -1,17 +1,29 @@
 import { Component } from "../../core/component/component";
 import { Patterns } from "../../models/enums/patterns";
 import { User } from "../../services/api/auth/auth-types";
-import { editProfileAction } from "../../services/api/user/user-actions";
+import {
+  changeAvatarAction,
+  editProfileAction,
+} from "../../services/api/user/user-actions";
 
 export class EditProfilePage extends Component {
   protected getStateFromProps(): void {
     const user = window.appStore.getState("user") as User;
+
+    window.appStore.subscribe("changed", () => {
+      const user = window.appStore.getState("user") as User;
+      this.setState({
+        ...this.state,
+        avatar: "https://ya-praktikum.tech/api/v2/resources" + user.avatar,
+      });
+    });
 
     this.state = {
       avatar: user.avatar
         ? "https://ya-praktikum.tech/api/v2/resources" + user.avatar
         : null,
       isDirty: false,
+      isOpenModal: false,
       values: {
         email: user.email,
         login: user.login,
@@ -48,14 +60,38 @@ export class EditProfilePage extends Component {
           window.appStore.dispatch(editProfileAction, values);
         }
       },
+
+      openModal: () => {
+        const nextState = {
+          ...this.state,
+          isOpenModal: true,
+        };
+
+        this.setState(nextState);
+      },
+
+      closeModal: (modalState: any) => {
+        const { file } = modalState;
+        const nextState = {
+          ...this.state,
+          isOpenModal: false,
+        };
+
+        if (file) {
+          window.appStore.dispatch(changeAvatarAction, file);
+        }
+
+        this.setState(nextState);
+      },
     };
   }
 
   public render() {
     return `
           <div class="profile">
-          {{#Button content=true}} {{{Avatar src=avatar}}} {{/Button}}
-      {{{Modal}}}
+          {{#Button content=true onClick=openModal}} {{{Avatar src=avatar}}} {{/Button}}
+
+      {{#if isOpenModal}}  {{{Modal onCloseModal=closeModal}}} {{/if}}
               <form>
                 <ul class="list">
                     <li class="list__element">

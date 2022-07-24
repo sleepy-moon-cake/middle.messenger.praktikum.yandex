@@ -5,6 +5,23 @@ export type ModalProps = {
 };
 
 export class Modal extends Component {
+  constructor({ onCloseModal }: ModalProps) {
+    super({
+      onCloseModal,
+      events: {
+        click: (e: Event) => {
+          const target = e.target as HTMLElement;
+          if (
+            (target && target.className === "modal__layout") ||
+            target.className === "modal__close"
+          ) {
+            this.props.onCloseModal({});
+          }
+        },
+      },
+    });
+  }
+
   protected getStateFromProps(): void {
     this.state = {
       file: null,
@@ -27,6 +44,7 @@ export class Modal extends Component {
     <div class="modal">
       <div class="modal__content">
       <h2 class="modal__title">Загрузите файл</h2>
+      <button class="modal__close">&#x2715</button>
 
       <span class="modal__input">
         <form>  

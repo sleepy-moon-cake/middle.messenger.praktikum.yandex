@@ -40,6 +40,7 @@ export class EditPassordPage extends Component {
   public render() {
     return `
             <div class="profile">
+            {{{HistorySwitcher}}}
                 {{{Avatar src=avatar}}}
         
                 <form>

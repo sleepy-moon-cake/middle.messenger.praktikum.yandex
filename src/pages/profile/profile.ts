@@ -55,6 +55,7 @@ export class ProfilePage extends Component {
   public render() {
     return `
         <div class="profile">
+        {{{HistorySwitcher}}}
             {{{Avatar src=avatar}}}
         
             <p class="profile__name">{{{display_name}}}</p>

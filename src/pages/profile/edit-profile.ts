@@ -89,6 +89,7 @@ export class EditProfilePage extends Component {
   public render() {
     return `
           <div class="profile">
+            {{{HistorySwitcher}}}
           {{#Button content=true onClick=openModal}} {{{Avatar src=avatar}}} {{/Button}}
 
       {{#if isOpenModal}}  {{{Modal onCloseModal=closeModal}}} {{/if}}

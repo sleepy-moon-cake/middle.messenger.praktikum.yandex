@@ -65,7 +65,7 @@ export abstract class Component<P = any> {
   }
 
   componentDidUpdate(oldProps: P, newProps: P) {
-    return true;
+    return JSON.stringify(oldProps) === JSON.stringify(newProps);
   }
 
   setProps = (nextProps: P) => {

@@ -8,7 +8,7 @@ export class EditPassordPage extends Component {
     const user = window.appStore.getState("user") as User;
 
     this.state = {
-      avatar: user.avatar
+      avatar: user?.avatar
         ? "https://ya-praktikum.tech/api/v2/resources" + user.avatar
         : null,
       isDirty: false,

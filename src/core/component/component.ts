@@ -187,7 +187,7 @@ export abstract class Component<P = any> {
       children: this.children,
       refs: this.refs,
     });
-
+    
     Object.entries(this.children).forEach(([id, component]) => {
       const stub = fragment.content.querySelector(`[data-id="${id}"]`);
 
@@ -214,7 +214,7 @@ export abstract class Component<P = any> {
   }
 
   show() {
-    this.getContent().style.display = "block";
+    this.getContent().style.display = "";
   }
 
   hide() {

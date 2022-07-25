@@ -3,6 +3,7 @@ export enum Routes {
   SIGNIN = "/signin",
   SIGNUP = "/signup",
   CHATS = "/chats",
+  CHATS_ID = "/chats/:id",
   NOT_FOUND = "/404",
   UNAVALIABLE = "/505",
   PROFILE = "/profile",

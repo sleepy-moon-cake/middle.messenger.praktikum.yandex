@@ -72,4 +72,28 @@
     display: flex;
     justify-content: space-between;
   }
+
+  &__typing button {
+    width: 200px;
+  }
+
+  &__input {
+    width: 100%;
+    line-height: 20px;
+  }
+
+  &__typing input {
+    width: 100%;
+    border: none;
+    background-color: antiquewhite;
+  }
+
+  &__profile a {
+    font-size: 16px;
+  }
+
+  &__profile {
+    text-align: center;
+    padding: 10px 5px;
+  }
 }

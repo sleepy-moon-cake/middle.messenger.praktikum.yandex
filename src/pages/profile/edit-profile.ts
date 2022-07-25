@@ -19,7 +19,7 @@ export class EditProfilePage extends Component {
     });
 
     this.state = {
-      avatar: user.avatar
+      avatar: user?.avatar
         ? "https://ya-praktikum.tech/api/v2/resources" + user.avatar
         : null,
       isDirty: false,
@@ -92,7 +92,7 @@ export class EditProfilePage extends Component {
             {{{HistorySwitcher}}}
           {{#Button content=true onClick=openModal}} {{{Avatar src=avatar}}} {{/Button}}
 
-      {{#if isOpenModal}}  {{{Modal onCloseModal=closeModal}}} {{/if}}
+      {{#if isOpenModal}}  {{{FileModal onCloseModal=closeModal}}} {{/if}}
               <form>
                 <ul class="list">
                     <li class="list__element">

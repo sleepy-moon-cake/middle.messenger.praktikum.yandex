@@ -39,7 +39,7 @@ export class ProfilePage extends Component {
     }
 
     this.state = {
-      avatar: user.avatar
+      avatar: user?.avatar
         ? "https://ya-praktikum.tech/api/v2/resources" + user.avatar
         : null,
       onSignout: (e: Event) => {

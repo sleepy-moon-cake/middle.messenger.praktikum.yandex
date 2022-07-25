@@ -8,7 +8,6 @@ export class HistorySwitcher extends Component {
     };
   }
   render() {
-    console.log(this);
     return `<div class="history-switcher">
             {{{Button text="Back" onClick=onBack}}}
             {{{Button text="Forward" onClick=onForward}}}

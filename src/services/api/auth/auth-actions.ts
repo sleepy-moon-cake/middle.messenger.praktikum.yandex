@@ -1,4 +1,5 @@
 import { Action, Dispatch } from "../../../core/store/store";
+import { defaultState } from "../../../index";
 import { AppState, SigninPayload, SignupPayload } from "../types";
 import { authService } from "./auth";
 import { AuthUser, AuthFail, authUserTypeGuard } from "./auth-types";
@@ -12,6 +13,7 @@ export const initUser: Action<AppState> = async function (
     .then((response: AuthUser) => {
       if (authUserTypeGuard(response)) {
         dispatch({ user: response, isAuthenticated: true });
+        window.router.go("/chats");
       }
       const fail = response as AuthFail;
 
@@ -50,8 +52,10 @@ export const signinAction: Action<AppState> = async function (
       if (response.status !== 200) {
         throw new Error(response.response?.reason);
       }
-      dispatch({ isAuthenticated: true });
-      window.router.go("/chats");
+
+      if (!window.appStore.getState("user")) {
+        window.appStore.dispatch(initUser);
+      }
     })
     .catch((e) => {
       console.warn("Check signin action and handle it", e);
@@ -60,7 +64,7 @@ export const signinAction: Action<AppState> = async function (
 
 export const signoutAction: Action<AppState> = async function (dispatch: Dispatch<any>) {
   await authService.logout().then(() => {
-    dispatch({ user: null, isAuthenticated: false });
+    dispatch(defaultState);
     window.router.go("/");
   });
 };

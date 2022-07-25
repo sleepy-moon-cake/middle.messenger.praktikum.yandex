@@ -1,13 +1,13 @@
 import { Component } from "../../core/component/component";
 
-export type FileModalProps = {
+export type ModalProps = {
   onCloseModal: () => any;
   title: string;
   button_text: string;
 };
 
 export class Modal extends Component {
-  constructor({ button_text, title, onCloseModal }: FileModalProps) {
+  constructor({ button_text, title, onCloseModal }: ModalProps) {
     super({
       button_text,
       title,

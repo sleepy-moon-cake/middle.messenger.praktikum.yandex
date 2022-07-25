@@ -2,10 +2,16 @@
   display: flex;
   padding: 10px 12px;
 
+  &__delete-btn {
+    order: 1;
+    margin-left: 10px;
+  }
+
   &__avatar {
     margin-right: 10px;
     width: 48px;
     height: 48px;
+    cursor: pointer;
     border-radius: 50%;
     background-color: #efefef;
   }

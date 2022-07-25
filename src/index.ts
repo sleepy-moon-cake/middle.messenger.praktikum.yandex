@@ -17,12 +17,16 @@ Object.values(Components).forEach((Component: any) => {
   registerComponent(Component);
 });
 
-const router = Router.create();
-const appStore = Store.create<AppState>({
+export const defaultState: AppState = {
   user: null,
   isAuthenticated: false,
   appIsInited: false,
-});
+  chats: [],
+  chat: {},
+};
+
+const router = Router.create();
+const appStore = Store.create<AppState>(defaultState);
 
 window.addEventListener("DOMContentLoaded", () => {
   window.router = router;

@@ -20,4 +20,6 @@ export type AppState = {
   user: any;
   appIsInited: boolean;
   isAuthenticated: boolean;
+  chats: [];
+  chat: any;
 };

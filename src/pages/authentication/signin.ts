@@ -3,6 +3,18 @@ import { Patterns } from "../../models/enums/patterns";
 import { signinAction } from "../../services/api/auth/auth-actions";
 
 export class SigninPage extends Component {
+  constructor(props) {
+    super(props);
+
+    this.setProps({
+      onSignin: (e: Event) => {
+        this.onSignin(e);
+      },
+      onChangeInput: (e: Event) => {
+        this.onChangeInput(e);
+      },
+    });
+  }
   protected getStateFromProps() {
     this.state = {
       isDirty: false,
@@ -14,28 +26,28 @@ export class SigninPage extends Component {
         login: true,
         password: true,
       },
-      onChangeInput: (e: Event) => {
-        const input = e.target as HTMLInputElement;
-
-        const nextState = {
-          values: { ...this.state.values, [input.name]: input.value },
-          validity: { ...this.state.validity, [input.name]: input.validity.valid },
-        };
-        this.state.isDirty = true;
-
-        this.setState(nextState);
-      },
-
-      onSignin: (event: Event) => {
-        event.preventDefault();
-        const { validity, values, isDirty } = this.state;
-        const isValid = Object.values(validity).every((value) => value === true);
-
-        if (isDirty && isValid) {
-          window.appStore.dispatch(signinAction, values);
-        }
-      },
     };
+  }
+
+  onSignin(event: Event) {
+    event.preventDefault();
+    const { validity, values, isDirty } = this.state;
+    const isValid = Object.values(validity).every((value) => value === true);
+
+    if (isDirty && isValid) {
+      window.appStore.dispatch(signinAction, values);
+    }
+  }
+
+  onChangeInput(e: Event) {
+    const input = e.target as HTMLInputElement;
+    const nextState = {
+      ...this.state,
+      values: { ...this.state.values, [input.name]: input.value },
+      validity: { ...this.state.validity, [input.name]: input.validity.valid },
+      isDirty: true,
+    };
+    this.setState(nextState);
   }
 
   public render() {
@@ -76,7 +88,7 @@ export class SigninPage extends Component {
           </ul>
       
           <div class="form__actions">
-              {{{Button text="Авторизоваться" type="submit" onClick=onSignin }}}
+              {{{Button text="Авторизоваться" type="button" onClick=onSignin }}}
       
               {{{Link text="Нет аккаунта?" rout="/signup"}}}
           </div>

@@ -1,64 +1,105 @@
 import { Router } from "./core/router/router";
+import { Routes } from "./models/enums/routes";
 import { RoutesDTO } from "./models/types/route-dto";
 import {
-  signinPage,
-  signupPage,
-  chartsPage,
-  notFoundPage,
-  unavailablePage,
-  profilePage,
-  editProfilePage,
-  editPasswordPage,
+  SigninPage,
+  SignupPage,
+  ChatsPage,
+  NotFoundPage,
+  UnavailablePage,
+  EditPassordPage,
+  EditProfilePage,
+  ProfilePage,
 } from "./pages";
 
 const routes: RoutesDTO = [
   {
-    path: "/",
-    page: signinPage,
+    path: Routes.ROOT,
+    page: SigninPage,
     resolver: function () {
       const isAuthenticated = window.appStore.getState("isAuthenticated") as boolean;
 
       if (isAuthenticated) {
-        window.router.go("/chats");
+        window.router.go(Routes.CHATS);
       }
       return !isAuthenticated;
     },
   },
   {
-    path: "/signin",
-    page: signinPage,
+    path: Routes.SIGNIN,
+    page: SigninPage,
     resolver: function () {
       const isAuthenticated = window.appStore.getState("isAuthenticated") as boolean;
 
       if (isAuthenticated) {
-        window.router.go("/chats");
+        window.router.go(Routes.CHATS);
       }
       return !isAuthenticated;
     },
   },
-  { path: "/signup", page: signupPage },
+  { path: Routes.SIGNUP, page: SignupPage },
   {
-    path: "/chats",
-    page: chartsPage,
+    path: Routes.CHATS,
+    page: ChatsPage,
     resolver: function () {
       const isAuthenticated = window.appStore.getState("isAuthenticated") as boolean;
 
       if (!isAuthenticated) {
-        window.router.go("/");
+        window.router.go(Routes.ROOT);
       }
       return isAuthenticated;
     },
   },
-  { path: "/404", page: notFoundPage },
-  { path: "/500", page: unavailablePage },
-  { path: "/profile", page: profilePage },
+
   {
-    path: "/edit-profile",
-    page: editProfilePage,
+    path: Routes.CHATS_ID,
+    page: ChatsPage,
+    resolver: function () {
+      const isAuthenticated = window.appStore.getState("isAuthenticated") as boolean;
+
+      if (!isAuthenticated) {
+        window.router.go(Routes.ROOT);
+      }
+      return isAuthenticated;
+    },
+  },
+  { path: Routes.NOT_FOUND, page: UnavailablePage },
+  { path: Routes.UNAVALIABLE, page: NotFoundPage },
+  {
+    path: Routes.PROFILE,
+    page: ProfilePage,
+    resolver: function () {
+      const isAuthenticated = window.appStore.getState("isAuthenticated") as boolean;
+
+      if (!isAuthenticated) {
+        window.router.go(Routes.ROOT);
+      }
+      return isAuthenticated;
+    },
   },
   {
-    path: "/edit-password",
-    page: editPasswordPage,
+    path: Routes.EDIT_PROFILE,
+    page: EditProfilePage,
+    resolver: function () {
+      const isAuthenticated = window.appStore.getState("isAuthenticated") as boolean;
+
+      if (!isAuthenticated) {
+        window.router.go(Routes.ROOT);
+      }
+      return isAuthenticated;
+    },
+  },
+  {
+    path: Routes.EDIT_PASSWORD,
+    page: EditPassordPage,
+    resolver: function () {
+      const isAuthenticated = window.appStore.getState("isAuthenticated") as boolean;
+
+      if (!isAuthenticated) {
+        window.router.go(Routes.ROOT);
+      }
+      return isAuthenticated;
+    },
   },
 ];
 

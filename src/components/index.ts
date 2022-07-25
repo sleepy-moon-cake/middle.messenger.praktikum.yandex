@@ -7,5 +7,6 @@ export * from "./input/input";
 export * from "./link/link";
 export * from "./list/list";
 export * from "./response-code/response-code";
-export * from "./modal/modal";
+export * from "./modals/file-modal";
 export * from "./history-switcher/history-switcher";
+export * from "./modals/modal";

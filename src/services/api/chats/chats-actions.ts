@@ -33,7 +33,7 @@ export const createChatAction: Action<AppState> = async function (
 };
 
 export const deleteChatAction: Action<AppState> = async function (
-  dispatch: Dispatch<Partial<AppState>>,
+  _dispatch: Dispatch<Partial<AppState>>,
   payload: any
 ) {
   await chatsService

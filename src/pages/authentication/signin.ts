@@ -3,7 +3,7 @@ import { Patterns } from "../../models/enums/patterns";
 import { signinAction } from "../../services/api/auth/auth-actions";
 
 export class SigninPage extends Component {
-  constructor(props) {
+  constructor(props: any) {
     super(props);
 
     this.setProps({
@@ -15,6 +15,7 @@ export class SigninPage extends Component {
       },
     });
   }
+
   protected getStateFromProps() {
     this.state = {
       isDirty: false,

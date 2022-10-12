@@ -18,7 +18,7 @@ export function debounce<DContext = unknown, TOptions = unknown>(
       result = value;
     }
 
-    timerId = setTimeout(() => callback.call(self, result), delay);
+    timerId = +setTimeout(() => callback.call(self, result), delay);
     return launch;
   };
 }

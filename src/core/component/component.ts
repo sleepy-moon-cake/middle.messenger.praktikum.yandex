@@ -11,16 +11,19 @@ export abstract class Component<P = any> {
   public id = makeUUID();
 
   protected _element: HTMLElement | null = null;
+
   protected readonly props: P;
+
   protected children: { [id: string]: Component } = {};
 
   eventBus: EventBus = new EventBus();
 
   protected state: any = {};
+
   protected refs: { [key: string]: HTMLElement } = {};
 
   public constructor(props?: P) {
-    this.getStateFromProps(props);
+    this.getStateFromProps();
 
     this.props = this._makePropsProxy(props || ({} as P));
     this.state = this._makePropsProxy(this.state);
@@ -41,7 +44,7 @@ export abstract class Component<P = any> {
     this._element = this._createDocumentElement("div");
   }
 
-  protected getStateFromProps(props: any): void {
+  protected getStateFromProps(): void {
     this.state = {};
   }
 
@@ -54,7 +57,9 @@ export abstract class Component<P = any> {
     this.componentDidMount(props);
   }
 
-  componentDidMount(props: P) {}
+  componentDidMount(props: P) {
+    console.log(props);
+  }
 
   _componentDidUpdate(oldProps: P, newProps: P) {
     const response = this.componentDidUpdate(oldProps, newProps);
@@ -187,7 +192,7 @@ export abstract class Component<P = any> {
       children: this.children,
       refs: this.refs,
     });
-    
+
     Object.entries(this.children).forEach(([id, component]) => {
       const stub = fragment.content.querySelector(`[data-id="${id}"]`);
 
@@ -202,7 +207,7 @@ export abstract class Component<P = any> {
       const content = component.getContent();
       stub.replaceWith(content);
 
-      const layoutContent = content.querySelector('[data-layout="1"]');
+      const layoutContent = content.querySelector("[data-layout='1']");
 
       if (layoutContent && stubChilds.length) {
         // changes

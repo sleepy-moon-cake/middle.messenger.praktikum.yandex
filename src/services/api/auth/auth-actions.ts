@@ -40,7 +40,7 @@ export const signupAction: Action<any> = async function ({}, payload: SignupPayl
 };
 
 export const signinAction: Action<AppState> = async function (
-  dispatch: Dispatch<Partial<AppState>>,
+  _dispatch: Dispatch<Partial<AppState>>,
   payload: SigninPayload
 ) {
   await authService

@@ -22,7 +22,7 @@ export const editProfileAction: Action<AppState> = async function (
 };
 
 export const editPasswordAction: Action<AppState> = async function (
-  dispatch: Dispatch<Partial<AppState>>,
+  _: Dispatch<Partial<AppState>>,
   payload: any
 ) {
   userService

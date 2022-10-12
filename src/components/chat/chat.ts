@@ -22,7 +22,7 @@ export class Chat extends Component {
     });
   }
 
-  protected getStateFromProps(props: any): void {
+  protected getStateFromProps(): void {
     this.state = {
       deleteChat: () => {
         window.appStore.dispatch(deleteChatAction, { chatId: this.props.chat.id });

@@ -3,7 +3,6 @@ import {
   GetUserInfoAPI,
   UserInfoResponse,
 } from "../../api/user-profile/get-user-info-api";
-import { Indexed } from "../../core/types";
 import { Options, ResponseType } from "../../services/http-service";
 
 export type UserIdAndAvatarRequest = {
@@ -16,11 +15,9 @@ const getUserInfoAPI = new GetUserInfoAPI();
 export class UserIdAndAvatarController {
   static async getIdAndAvatar(): Promise<UserIdAndAvatarRequest | void> {
     try {
-      // Запускаем крутилку
       return getUserInfoAPI
         .get(getOptions())
         .then((response: UserInfoResponse | ErrorResponse) => {
-          // Останавливаем крутилку
           if (isErrorResponse(response)) {
             throw new Error(response.reason);
           }
@@ -32,16 +29,14 @@ export class UserIdAndAvatarController {
         })
         .catch((error) => {
           throw new Error(error);
-          // Останавливаем крутилку
         });
     } catch (error) {
       console.error(error);
-      // Останавливаем крутилку
     }
   }
 }
 
-function isErrorResponse(response: Indexed): response is ErrorResponse {
+function isErrorResponse(response: any): response is ErrorResponse {
   return !!response?.reason;
 }
 

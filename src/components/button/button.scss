@@ -1,0 +1,29 @@
+@import "../../../static/styles/colors";
+@import "../../../static/styles/variables";
+
+.button {
+  max-width: 100%;
+  width: 348px;
+  height: 40px;
+  background-color: $green;
+  box-shadow: 0 3px 7px 1px rgba($black, 25%);
+  border-radius: 20px;
+  border: none;
+  font-size: 18px;
+  text-align: center;
+  color: voilet;
+
+  &:hover {
+    cursor: pointer;
+    background-color: rgba($green, 85%);
+  }
+
+  &:disabled {
+    background-color: $gray;
+    color: $light-gray;
+
+    &:hover {
+      cursor: default;
+    }
+  }
+}

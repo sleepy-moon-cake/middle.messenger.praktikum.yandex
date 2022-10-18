@@ -4,13 +4,7 @@ import { compileTemplateToElement } from "../../core/utils/compile-template";
 import { mapStateToPropsCallBack } from "../../store/utils";
 import templatePug from "./error-message.pug";
 import "./error-message.scss";
-
-export const ERROR_ACTIVE_CLASS = "error-text--display";
-
-export interface ErrorMessageProps extends Props {
-  textError?: string;
-  addClass?: string;
-}
+import { ErrorMessageProps } from "./types";
 
 export class ErrorMessage extends Block<ErrorMessageProps> {
   constructor(propsObj: ErrorMessageProps, eventName: string, events?: Events) {

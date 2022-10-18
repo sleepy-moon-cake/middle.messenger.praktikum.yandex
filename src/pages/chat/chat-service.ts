@@ -1,5 +1,5 @@
 import { UserInfoByIdResponse } from "../../api/user-profile/get-user-info-by-id-api";
-import { ChatCardProps } from "../../components/chat-card/chat-card";
+import { ChatCardProps } from "../../components/chat-card/types";
 import { FoundUserProps } from "../../components/found-user/types";
 import { MessageProps } from "../../components/message/message";
 import { TimeType } from "../../components/time/types";
@@ -96,7 +96,7 @@ class ChatHandleService extends ShowErrorService {
             (chat: ChatCardProps) => chat.id === Number(chatCardElement.id)
           );
 
-          GetChatTokenController.get(Number(chatCardElement.id)).then((token: string) => {
+          GetChatTokenController.get(Number(chatCardElement.id)).then((token: any) => {
             UserIdAndAvatarController.getIdAndAvatar()
               .then((user: UserIdAndAvatarRequest) => {
                 if (webSocketController.isStarted) {

@@ -1,5 +1,5 @@
+import { FormButtonProps } from "../../components/button/button";
 import { ErrorMessageProps } from "../../components/error-message/error-message";
-import { FormButtonProps } from "../../components/form-button/form-button";
 import { EmailInputProps } from "../../components/inputs/email/email-input";
 import { PasswordInputProps } from "../../components/inputs/password/password-input";
 import { PhoneInputProps } from "../../components/inputs/phone/phone-input";

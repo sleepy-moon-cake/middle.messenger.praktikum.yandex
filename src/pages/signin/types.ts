@@ -1,5 +1,5 @@
+import { FormButtonProps } from "../../components/button/button";
 import { ErrorMessageProps } from "../../components/error-message/error-message";
-import { FormButtonProps } from "../../components/form-button/form-button";
 import { PasswordInputProps } from "../../components/inputs/password/password-input";
 import { TextInputProps } from "../../components/inputs/text/text-input";
 import { Props } from "../../core/types";

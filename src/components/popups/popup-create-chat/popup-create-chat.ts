@@ -2,7 +2,7 @@ import { Block } from "../../../core/block";
 import { Events, Props } from "../../../core/types";
 import { compileTemplateToElement } from "../../../core/utils/compile-template";
 import { mapStateToPropsCallBack } from "../../../store/utils";
-import { FormButtonProps } from "../../form-button/form-button";
+import { FormButtonProps } from "../../button/button";
 import { TextInputProps } from "../../inputs/text/text-input";
 import templatePug from "./popup-create-chat.pug";
 import "./popup-create-chat.scss";

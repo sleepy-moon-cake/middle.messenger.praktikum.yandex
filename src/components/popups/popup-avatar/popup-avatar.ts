@@ -2,7 +2,7 @@ import { Block } from "../../../core/block";
 import { Events, Props } from "../../../core/types";
 import { compileTemplateToElement } from "../../../core/utils/compile-template";
 import { mapStateToPropsCallBack } from "../../../store/utils";
-import { FormButtonProps } from "../../form-button/form-button";
+import { FormButtonProps } from "../../button/button";
 import templatePug from "./popup-avatar.pug";
 import "./popup-avatar.scss";
 

@@ -1,8 +1,8 @@
 import { Avatar } from "../components/avatar/avatar";
+import { FormButton } from "../components/button/button";
 import { ChatCard } from "../components/chat-card/chat-card";
 import { ChatsList } from "../components/chat-list/chats-list";
 import { ErrorMessage } from "../components/error-message/error-message";
-import { FormButton } from "../components/form-button/form-button";
 import { FoundUser } from "../components/found-user/found-user";
 import { UsersList } from "../components/found-users/users-list";
 import { EmailInput } from "../components/inputs/email/email-input";

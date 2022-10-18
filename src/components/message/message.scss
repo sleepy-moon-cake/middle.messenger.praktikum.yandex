@@ -8,7 +8,7 @@
       flex-direction: row-reverse;
 
       .message__card {
-        background-color: $purple;
+        background-color: $green;
       }
 
       .message__avatar {
@@ -42,12 +42,12 @@
       font-size: 14px;
       line-height: 20px;
       letter-spacing: 0.5px;
-      color: $dark-gray;
+      color: $blue;
     }
 
     &__time {
       text-align: right;
-      color: $purple;
+      color: $green;
     }
   }
 }

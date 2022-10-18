@@ -14,11 +14,9 @@ const changeUserAvatarAPI = new ChangeUserAvatarAPI();
 export class ChangeUserAvatarController {
   static async change(formData: FormData): Promise<void> {
     try {
-      // Запускаем крутилку
       changeUserAvatarAPI
         .put(prepareDataToRequest(formData))
         .then((response: UserAvatarResponse | ErrorResponse) => {
-          // Останавливаем крутилку
           if (isErrorResponse(response)) {
             throw new Error(response.reason);
           }
@@ -31,16 +29,14 @@ export class ChangeUserAvatarController {
         })
         .catch((error) => {
           console.error(error);
-          // Останавливаем крутилку
         });
     } catch (error) {
       console.error(error);
-      // Останавливаем крутилку
     }
   }
 }
 
-function isErrorResponse(response: Indexed): response is ErrorResponse {
+function isErrorResponse(response: any): response is ErrorResponse {
   return !!response?.reason;
 }
 

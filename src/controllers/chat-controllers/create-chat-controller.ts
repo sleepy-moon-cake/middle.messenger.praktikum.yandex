@@ -1,6 +1,5 @@
 import { CreateChatAPI, CreateChatResponse } from "../../api/chat/create-chat-api";
 import { ErrorResponse } from "../../api/types";
-import { Indexed } from "../../core/types";
 import { Options, ResponseType } from "../../services/http-service";
 import { isArray } from "../../utils";
 import { GetChatsController } from "./get-chats-controller";
@@ -14,7 +13,6 @@ const createChatAPI = new CreateChatAPI();
 export class CreateChatController {
   static async create(data: CreateChatFormModel): Promise<void> {
     try {
-      // Запускаем крутилку
       createChatAPI
         .create(prepareDataToRequest(data))
         .then((response: CreateChatResponse | ErrorResponse | null) => {
@@ -26,22 +24,18 @@ export class CreateChatController {
         })
         .catch((error) => {
           console.error(error, data);
-          // Останавливаем крутилку
         });
     } catch (error) {
       console.error(error, data);
-      // Логика обработки ошибок
     }
   }
 }
 
-function isErrorResponse(
-  response: Indexed | Indexed[] | null
-): response is ErrorResponse {
+function isErrorResponse(response: any): response is ErrorResponse {
   return response !== null && isNotArray(response) && !!response.reason;
 }
 
-function isNotArray(response: Indexed | Indexed[]): response is Indexed {
+function isNotArray(response: any): any {
   return !isArray(response);
 }
 

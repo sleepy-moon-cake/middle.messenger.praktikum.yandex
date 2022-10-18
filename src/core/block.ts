@@ -7,7 +7,7 @@ import { Events, Props } from "./types";
 export class Block<T> {
   props: Props;
   protected eventBus: EventBus;
-  private _element: HTMLElement;
+  private _element!: HTMLElement;
   protected readonly _meta: Meta;
   private _storeEvents: StoreEvent[] = [];
 
@@ -39,9 +39,7 @@ export class Block<T> {
     this.eventBus.emit(EventsEnum.FLOW_CDM);
   }
 
-  componentDidMount(): void {
-    // Может переопределять пользователь, необязательно трогать
-  }
+  componentDidMount(): void {}
 
   componentDidUpdate(oldProps: Props, newProps: Props): boolean {
     return isDeepEqual(oldProps, newProps);

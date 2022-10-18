@@ -1,6 +1,6 @@
 import { AvatarProps } from "../../components/avatar/avatar";
-import { ChatCardProps } from "../../components/chat-card/chat-card";
 import { ChatsListProps } from "../../components/chat-list/chats-list";
+import { ChatCardProps } from "../../components/chat/chat-card/chat-card";
 import { ErrorMessageProps } from "../../components/error-message/error-message";
 import { SearchInputProps } from "../../components/inputs/search/search-input";
 import { EllipsisMenuProps } from "../../components/menus/ellipsis-menu/ellipsis-menu";

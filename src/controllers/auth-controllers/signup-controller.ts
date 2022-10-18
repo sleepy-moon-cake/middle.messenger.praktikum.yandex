@@ -1,6 +1,5 @@
 import { SignUpAPI, SignUpResponse } from "../../api/auth/signup-api";
 import { ErrorResponse } from "../../api/types";
-import { Indexed } from "../../core/types";
 import { router } from "../../index";
 import { Options, ResponseType } from "../../services/http-service";
 
@@ -25,9 +24,8 @@ type SignUpFormModel = {
 const signUpAPI = new SignUpAPI();
 
 export class UserSignUpController {
-  static async signUp(data: Indexed): Promise<void> {
+  static async signUp(data: any): Promise<void> {
     try {
-      // Запускаем крутилку
       const isValid = userLoginValidator(data);
 
       if (!isValid) {
@@ -39,7 +37,6 @@ export class UserSignUpController {
       signUpAPI
         .create(prepareDataToRequest(data))
         .then((response: SignUpResponse | ErrorResponse) => {
-          // Останавливаем крутилку
           if (isErrorResponse(response)) {
             throw new Error(response.reason);
           }
@@ -48,20 +45,18 @@ export class UserSignUpController {
         })
         .catch((error) => {
           console.error(error, data);
-          // Останавливаем крутилку
         });
     } catch (error) {
       console.error(error, data);
-      // Останавливаем крутилку
     }
   }
 }
 
-function isErrorResponse(response: Indexed): response is ErrorResponse {
+function isErrorResponse(response: any): response is ErrorResponse {
   return !!response?.reason;
 }
 
-function userLoginValidator(data: Indexed): data is SignUpFormModel {
+function userLoginValidator(data: any): data is SignUpFormModel {
   const keysArray = Object.keys(data);
 
   return validationKeys.every((key: string) => keysArray.includes(key));

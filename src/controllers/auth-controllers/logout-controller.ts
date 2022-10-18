@@ -9,11 +9,9 @@ const logOutAPI = new LogoutAPI();
 export class UserLogOutController {
   static async logOut(): Promise<void> {
     try {
-      // Запускаем крутилку
       logOutAPI
         .create(prepareDataToRequest())
         .then((response: ErrorResponse | null) => {
-          // Останавливаем крутилку
           if (response) {
             throw new Error(response.reason);
           }
@@ -22,12 +20,9 @@ export class UserLogOutController {
         })
         .catch((error) => {
           console.error(error);
-          // Останавливаем крутилку
-          // Логика обработки ошибок
         });
     } catch (error) {
       console.error(error);
-      // Логика обработки ошибок
     }
   }
 }

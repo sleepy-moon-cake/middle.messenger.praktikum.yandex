@@ -1,4 +1,4 @@
-import { ERROR_ACTIVE_CLASS } from "../components/error-message/error-message";
+import { DISPLAY_ERROR } from "../components/error-message/consts";
 import { getEventName } from "../core/utils/get-event-name";
 import { getPathFromArray } from "../core/utils/get-path-from-array";
 import store from "../store/store";
@@ -50,7 +50,7 @@ export abstract class ShowErrorService {
     const textError = error?.text ? LoginErrorText.text : LoginErrorText.length;
 
     const errorProps = {
-      addClass: ERROR_ACTIVE_CLASS,
+      addClass: DISPLAY_ERROR,
       textError: textError,
     };
 

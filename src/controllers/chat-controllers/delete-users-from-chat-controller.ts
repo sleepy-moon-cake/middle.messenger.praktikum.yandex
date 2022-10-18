@@ -18,11 +18,9 @@ const deleteUsersFromChatAPI = new DeleteUsersFromChatAPI();
 export class DeleteUsersFromChatController {
   static async delete(data: DeleteUsersFromChatFormModel): Promise<void> {
     try {
-      // Запускаем крутилку
       deleteUsersFromChatAPI
         .delete(prepareDataToRequest(data))
         .then((response: ErrorResponse | null) => {
-          // Останавливаем крутилку
           if (response) {
             throw new Error(response.reason);
           }
@@ -35,11 +33,9 @@ export class DeleteUsersFromChatController {
         })
         .catch((error) => {
           console.error(error, data);
-          // Останавливаем крутилку
         });
     } catch (error) {
       console.error(error, data);
-      // Логика обработки ошибок
     }
   }
 }

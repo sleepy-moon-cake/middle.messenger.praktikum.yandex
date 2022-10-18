@@ -1,9 +1,8 @@
 // import { getPathFromArray } from "..../../pages/chat/eventsrom-array";
 import { ChatsResponse, GetChatsAPI } from "../../api/chat/get-chats-api";
 import { ErrorResponse } from "../../api/types";
-import { ChatsListProps } from "../../components/chat-list/chats-list";
+import { ChatsListProps } from "../../components/chat-card/types";
 import { TimeProps, TimeType } from "../../components/time/types";
-import { Indexed } from "../../core/types";
 import { getEventName } from "../../core/utils/get-event-name";
 import { getPathFromArray } from "../../core/utils/get-path-from-array";
 import { CHAT_PAGE_EVENT_NAME } from "../../pages/chat/events";
@@ -16,11 +15,9 @@ const getChatsAPI = new GetChatsAPI();
 export class GetChatsController {
   static async get(): Promise<void> {
     try {
-      // Запускаем крутилку
       getChatsAPI
         .get(getOptions())
         .then((response: ChatsResponse | ErrorResponse) => {
-          // Останавливаем крутилку
           if (isErrorResponse(response)) {
             throw new Error(response.reason);
           }
@@ -42,20 +39,18 @@ export class GetChatsController {
         })
         .catch((error) => {
           console.error(error);
-          // Останавливаем крутилку
         });
     } catch (error) {
       console.error(error);
-      // Логика обработки ошибок
     }
   }
 }
 
-function isErrorResponse(response: Indexed | Indexed[]): response is ErrorResponse {
+function isErrorResponse(response: any): response is ErrorResponse {
   return isNotArray(response) && !!response.reason;
 }
 
-function isNotArray(response: Indexed | Indexed[]): response is Indexed {
+function isNotArray(response: any) {
   return !isArray(response);
 }
 

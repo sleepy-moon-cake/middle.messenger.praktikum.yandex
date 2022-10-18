@@ -8,26 +8,21 @@ type UserPasswordFormModel = {
 };
 
 const changeUserPasswordAPI = new ChangeUserPasswordAPI();
-
 export class ChangeUserPasswordController {
   static async change(data: UserPasswordFormModel): Promise<void> {
     try {
       changeUserPasswordAPI
         .put(prepareDataToRequest(data))
         .then((response: ErrorResponse | null) => {
-          // Останавливаем крутилку
           if (response) {
             throw new Error(response.reason);
           }
-          // notify user that the password has been changed successfully
         })
         .catch((error) => {
           console.error(error, data);
-          // Останавливаем крутилку
         });
     } catch (error) {
       console.error(error, data);
-      // Останавливаем крутилку
     }
   }
 }

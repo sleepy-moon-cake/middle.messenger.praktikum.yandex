@@ -24,11 +24,11 @@
       padding: 0;
       border: none;
       background-color: transparent;
-      color: $purple;
+      color: $green;
 
       &:hover {
         cursor: pointer;
-        color: rgba($purple, 85%);
+        color: rgba($green, 85%);
       }
 
       &:disabled {

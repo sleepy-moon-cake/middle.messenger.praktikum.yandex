@@ -3,7 +3,6 @@ import {
   ChangeUserProfileAPI,
   UserProfileResponse,
 } from "../../api/user-profile/change-user-profile-api";
-import { Indexed } from "../../core/types";
 import { UPDATE_USER_PROFILE_EVENT_NAME } from "../../pages/settings/events";
 import { SettingsPageProps } from "../../pages/settings/types";
 import { Options, ResponseType } from "../../services/http-service";
@@ -30,9 +29,8 @@ type UserProfileFormModel = {
 const changeUserProfileAPI = new ChangeUserProfileAPI();
 
 export class ChangeUserProfileController {
-  static async changeData(data: Indexed): Promise<void> {
+  static async changeData(data: any): Promise<void> {
     try {
-      // Запускаем крутилку
       const isValid = userProfileValidator(data);
 
       if (!isValid) {
@@ -44,7 +42,6 @@ export class ChangeUserProfileController {
       changeUserProfileAPI
         .put(prepareDataToRequest(data))
         .then((response: UserProfileResponse | ErrorResponse) => {
-          // Останавливаем крутилку
           if (isErrorResponse(response)) {
             throw new Error(response.reason);
           }
@@ -57,20 +54,18 @@ export class ChangeUserProfileController {
         })
         .catch((error) => {
           console.error(error, data);
-          // Останавливаем крутилку
         });
     } catch (error) {
       console.error(error, data);
-      // Останавливаем крутилку
     }
   }
 }
 
-function isErrorResponse(response: Indexed): response is ErrorResponse {
+function isErrorResponse(response: any): response is ErrorResponse {
   return !!response?.reason;
 }
 
-function userProfileValidator(data: Indexed): data is UserProfileFormModel {
+function userProfileValidator(data: any): data is UserProfileFormModel {
   const keysArray = Object.keys(data);
 
   return validationKeys.every((key: string) => keysArray.includes(key));

@@ -1,10 +1,5 @@
 section.sidebar
-    button(type="button" id="openCreateChatPopup" class="sidebar__create-button")
-      include ../../../static/assets/icons/create-chat.svg
-    div.search-container
-        a(href="#" id="goToSettings" class="settings-icon")
-            include ../../../static/assets/icons/settings.svg
-        SearchInputComponent(data="search" class="search-container__search")
+    button(type="button" id="openCreateChatPopup" class="button")="Create chat"
     div(id="chatCards" class="sidebar__chats")
       ChatsListComponent(data="chatsList")
 section.main

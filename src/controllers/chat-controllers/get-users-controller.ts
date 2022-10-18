@@ -2,7 +2,6 @@ import { GetUsersAPI, UsersResponse } from "../../api/chat/get-user-api";
 import { ErrorResponse } from "../../api/types";
 import { UserActionIcon } from "../../components/found-user/types";
 import { UsersListProps } from "../../components/found-users/users-list";
-import { Indexed } from "../../core/types";
 import { getEventName } from "../../core/utils/get-event-name";
 import { getPathFromArray } from "../../core/utils/get-path-from-array";
 import { Options, ResponseType } from "../../services/http-service";
@@ -18,11 +17,9 @@ const getUsersAPI = new GetUsersAPI();
 export class GetUsersController {
   static async get(data: UserLoginFormModel): Promise<void> {
     try {
-      // Запускаем крутилку
       getUsersAPI
         .get(prepareDataToRequest(data))
         .then((response: UsersResponse | ErrorResponse) => {
-          // Останавливаем крутилку
           if (isErrorResponse(response)) {
             throw new Error(response.reason);
           }
@@ -35,20 +32,18 @@ export class GetUsersController {
         })
         .catch((error) => {
           console.error(error);
-          // Останавливаем крутилку
         });
     } catch (error) {
       console.error(error);
-      // Логика обработки ошибок
     }
   }
 }
 
-function isErrorResponse(response: Indexed | Indexed[]): response is ErrorResponse {
+function isErrorResponse(response: any): response is ErrorResponse {
   return isNotArray(response) && !!response.reason;
 }
 
-function isNotArray(response: Indexed | Indexed[]): response is Indexed {
+function isNotArray(response: any) {
   return !isArray(response);
 }
 

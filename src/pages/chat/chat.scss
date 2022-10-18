@@ -18,7 +18,7 @@
       border: none;
       padding: 0;
       background: transparent;
-      color: $purple;
+      color: $green;
 
       svg {
         fill: currentColor;
@@ -26,7 +26,7 @@
 
       &:hover {
         cursor: pointer;
-        color: rgba($purple, 0.85);
+        color: rgba($green, 0.85);
       }
     }
 
@@ -51,7 +51,7 @@
       font-size: 12px;
       line-height: 12px;
       text-align: center;
-      color: $dark-gray;
+      color: $blue;
     }
 
     &__error {
@@ -65,7 +65,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 20px 16px;
-    background-color: $purple;
+    background-color: $green;
 
     &__search {
       width: 100%;
@@ -142,7 +142,7 @@
       height: 50px;
       border: none;
       border-radius: 50%;
-      background: $purple;
+      background: $green;
       box-shadow: 0 4px 4px rgba($black, 25%);
 
       &:hover {
@@ -167,7 +167,7 @@
       color: white;
       border-radius: 20px;
       border: none;
-      background: $purple;
+      background: $green;
 
       &.invalid {
         color: $error-color;
@@ -180,12 +180,12 @@
       &:focus,
       &:focus-visible {
         outline: none;
-        box-shadow: 0 0 1px 1px $purple inset;
+        box-shadow: 0 0 1px 1px $green inset;
         background: $white;
         color: $black;
 
         &::placeholder {
-          color: $purple;
+          color: $green;
         }
       }
     }

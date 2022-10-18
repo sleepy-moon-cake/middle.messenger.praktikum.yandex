@@ -15,11 +15,9 @@ const getUserInfoAPI = new GetUserInfoAPI();
 export class UserInfoController {
   static async getInfo(): Promise<void> {
     try {
-      // Запускаем крутилку
       getUserInfoAPI
         .get(getOptions())
         .then((response: UserInfoResponse | ErrorResponse) => {
-          // Останавливаем крутилку
           if (isErrorResponse(response)) {
             throw new Error(response.reason);
           }
@@ -32,11 +30,9 @@ export class UserInfoController {
         })
         .catch((error) => {
           console.error(error);
-          // Останавливаем крутилку
         });
     } catch (error) {
       console.error(error);
-      // Останавливаем крутилку
     }
   }
 }

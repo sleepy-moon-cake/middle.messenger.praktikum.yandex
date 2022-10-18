@@ -16,11 +16,9 @@ const addUsersToChatAPI = new AddUsersToChatAPI();
 export class AddUsersToChatController {
   static async add(data: AddUsersToChatFormModel): Promise<void> {
     try {
-      // Запускаем крутилку
       addUsersToChatAPI
         .add(prepareDataToRequest(data))
         .then((response: ErrorResponse | null) => {
-          // Останавливаем крутилку
           if (response) {
             throw new Error(response.reason);
           }
@@ -33,11 +31,9 @@ export class AddUsersToChatController {
         })
         .catch((error) => {
           console.error(error, data);
-          // Останавливаем крутилку
         });
     } catch (error) {
       console.error(error, data);
-      // Логика обработки ошибок
     }
   }
 }

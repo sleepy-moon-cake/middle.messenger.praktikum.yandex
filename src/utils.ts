@@ -1,7 +1,6 @@
 import { HOST } from "./constants";
-import { Indexed } from "./core/types";
 
-export function isObject(value: unknown): value is Indexed {
+export function isObject(value: unknown): value is Record<any,any> {
   return Object.prototype.toString.call(value) === "[object Object]";
 }
 
@@ -9,7 +8,7 @@ export function isArray(value: unknown): value is [] {
   return Array.isArray(value);
 }
 
-function getParams(data: Indexed | [], parentKey: string = "") {
+function getParams(data:  Record<any,any> | [], parentKey: string = "") {
   const result: [string, string][] = [];
 
   for (const [key, value] of Object.entries(data)) {
@@ -29,7 +28,7 @@ function getParams(data: Indexed | [], parentKey: string = "") {
  * На выходе: строка.
  * Пример: '?key=1&key2=test&key3=false&key4=true&key5[0]=1&key5[1]=2&key5[2]=3&key6[a]=1&key7[b][d]=2'
  */
-export function queryStringify(data: Indexed | undefined): string {
+export function queryStringify(data:  Record<any,any> | undefined): string {
   if (!isObject(data)) {
     throw new Error("input must be an object");
   }
@@ -42,7 +41,7 @@ export function queryStringify(data: Indexed | undefined): string {
   );
 }
 
-export function isDeepEqual(a: Indexed, b: Indexed): boolean {
+export function isDeepEqual(a:  Record<any,any>, b:  Record<any,any>): boolean {
   const aKeys = Object.keys(a);
   const bKeys = Object.keys(b);
 
@@ -53,7 +52,7 @@ export function isDeepEqual(a: Indexed, b: Indexed): boolean {
   return aKeys.every((key: string) => {
     if (isObject(a[key]) || isArray(a[key])) {
       if (isObject(b[key]) || isArray(b[key])) {
-        return isDeepEqual(a[key] as Indexed, b[key] as Indexed);
+        return isDeepEqual(a[key] as  Record<any,any>, b[key] as  Record<any,any>);
       }
       return false;
     } else {
@@ -101,7 +100,7 @@ export function cloneDeep<T extends object = object>(obj: T) {
     if (item instanceof Object) {
       let copy: object = {};
 
-      Object.getOwnPropertySymbols(item).forEach((s) => (copy[s] = _cloneDeep(item[s])));
+      Object.getOwnPropertySymbols(item).forEach((s: any) => (copy[s] = _cloneDeep(item[s])));
 
       Object.keys(item).forEach((k) => (copy[k] = _cloneDeep(item[k])));
 

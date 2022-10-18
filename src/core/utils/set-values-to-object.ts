@@ -1,18 +1,17 @@
 import { isObject } from "../../utils";
-import { Indexed } from "../types";
 
 export function set(
-  object: Indexed | unknown,
+  object: Record<any, any> | unknown,
   path: string,
   value: unknown
-): Indexed | unknown {
+): Record<any, any> | unknown {
   if (!isObject(object)) {
     return object;
   }
 
   const pathArray = path.split(".");
 
-  pathArray.reduce((acc: Indexed, key: string, idx: number) => {
+  pathArray.reduce((acc: Record<any, any>, key: string, idx: number) => {
     if (idx === pathArray.length - 1) {
       acc[key] = value;
     }
@@ -21,8 +20,8 @@ export function set(
       acc[key] = {};
     }
 
-    return acc[key] as Indexed;
-  }, object as Indexed);
+    return acc[key] as Record<any, any>;
+  }, object as Record<any, any>);
 
   return object;
 }

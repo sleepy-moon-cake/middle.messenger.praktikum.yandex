@@ -136,7 +136,7 @@ describe("Block", () => {
           return fragment;
         }
         componentDidMount() {
-          const root = document.getElementById(this._meta.rootId);
+          const root = document.getElementById(this._meta.rootId || "");
           root?.appendChild(this.getContent());
         }
       }

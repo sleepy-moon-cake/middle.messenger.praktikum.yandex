@@ -1,43 +1,18 @@
-import * as Components from "./components";
-import { registerComponent } from "./core/component/registerComponent";
-import { Router } from "./core/router/router";
-import { Store } from "./core/store/store";
-import { initRouter } from "./router";
-import { initUser } from "./services/api/auth/auth-actions";
-import { AppState } from "./services/api/types";
+import { Router } from "./core/routing/router";
+import { Page404 } from "./pages/404/404";
+import { Page500 } from "./pages/500/500";
+import { ChatPage } from "./pages/chat/chat";
+import { SettingsPage } from "./pages/settings/settings";
+import { SignInPage } from "./pages/signin/signin";
+import { SignUpPage } from "./pages/signup/signup";
 
-declare global {
-  interface Window {
-    appStore: Store<AppState>;
-    router: Router;
-  }
-}
+export const router = new Router("app");
 
-Object.values(Components).forEach((Component: any) => {
-  registerComponent(Component);
-});
-
-export const defaultState: AppState = {
-  user: null,
-  isAuthenticated: false,
-  appIsInited: false,
-  chats: [],
-  chat: {},
-};
-
-const router = Router.create();
-const appStore = Store.create<AppState>(defaultState);
-
-window.addEventListener("DOMContentLoaded", () => {
-  window.router = router;
-  window.appStore = appStore;
-
-  appStore.subscribe("changed", (prevState: AppState, nextState: AppState) => {
-    if (!prevState.appIsInited && nextState.appIsInited) {
-      router.start();
-    }
-  });
-
-  initRouter(router);
-  appStore.dispatch(initUser);
-});
+router
+  .use("/", SignInPage)
+  .use("/sign-up", SignUpPage)
+  .use("/settings", SettingsPage)
+  .use("/messenger", ChatPage)
+  .use("/500", Page500)
+  .setFallBack("/404", Page404)
+  .start();

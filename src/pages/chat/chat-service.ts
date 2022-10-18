@@ -1,8 +1,5 @@
 import { UserInfoByIdResponse } from "../../api/user-profile/get-user-info-by-id-api";
-import { ChatCardProps } from "../../components/chat-card/types";
-import { FoundUserProps } from "../../components/found-user/types";
-import { MessageProps } from "../../components/message/message";
-import { TimeType } from "../../components/time/types";
+import { MessageProps, ChatCardProps, FoundUserProps, TimeType } from "../../components";
 import { AddUsersToChatController } from "../../controllers/chat-controllers/add-users-to-chat-controller";
 import { CreateChatController } from "../../controllers/chat-controllers/create-chat-controller";
 import { DeleteUsersFromChatController } from "../../controllers/chat-controllers/delete-users-from-chat-controller";

@@ -1,14 +1,10 @@
 import { Block } from "../../core/block";
-import { Events, Props } from "../../core/types";
+import { Events } from "../../core/types";
 import { compileTemplateToElement } from "../../core/utils/compile-template";
 import { mapStateToPropsCallBack } from "../../store/utils";
-import { MessageProps } from "../message/message";
+import { MessagesListProps } from "../message/types";
 import templatePug from "./messages-list.pug";
 import "./messages-list.scss";
-
-export interface MessagesListProps extends Props {
-  messages: MessageProps[] | [];
-}
 
 export class MessagesList extends Block<MessagesListProps> {
   constructor(propsObj: MessagesListProps, eventName: string, events?: Events) {

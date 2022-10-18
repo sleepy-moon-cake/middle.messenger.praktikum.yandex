@@ -4,10 +4,10 @@ import { compileTemplateToElement } from "../../core/utils/compile-template";
 import { mapStateToPropsCallBack } from "../../store/utils";
 import templatePug from "./button.pug";
 import "./button.scss";
-import { FormButtonProps } from "./types";
+import { ButtonProps } from "./types";
 
-export class FormButton extends Block<FormButtonProps> {
-  constructor(props: FormButtonProps, eventName: string, events?: Events) {
+export class FormButton extends Block<ButtonProps> {
+  constructor(props: ButtonProps, eventName: string, events?: Events) {
     super("div", "button-container", props, events);
 
     this.subscribeToStoreEvent(eventName, mapStateToPropsCallBack);

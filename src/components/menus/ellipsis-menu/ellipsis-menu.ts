@@ -4,10 +4,7 @@ import { compileTemplateToElement } from "../../../core/utils/compile-template";
 import { mapStateToPropsCallBack } from "../../../store/utils";
 import templatePug from "./ellipsis-menu.pug";
 import "./ellipsis-menu.scss";
-
-export interface EllipsisMenuProps extends Props {
-  isOpened: boolean;
-}
+import { EllipsisMenuProps } from "./types";
 
 export class EllipsisMenu extends Block<EllipsisMenuProps> {
   constructor(propsObj: EllipsisMenuProps, eventName: string, events?: Events) {

@@ -1,44 +1,18 @@
-import { Component } from "./core/component/component";
-import { loginPage } from "./pages/authentication/login/login";
-import { signinPage } from "./pages/authentication/signin/signin";
-import { chartsPage } from "./pages/chats/chats";
-import { notFoundPage } from "./pages/codes/not-found/not-found";
-import { unavailablePage } from "./pages/codes/unavailable/unavailable";
-import { editPasswordPage } from "./pages/profile/edit-profile/edit-password/edit-password";
-import { editProfilePage } from "./pages/profile/edit-profile/edit-profile";
-import { profilePage } from "./pages/profile/profile";
+import { Router } from "./core/routing/router";
+import { Page404 } from "./pages/404/404";
+import { Page500 } from "./pages/500/500";
+import { ChatPage } from "./pages/chat/chat";
+import { SettingsPage } from "./pages/settings/settings";
+import { SignInPage } from "./pages/signin/signin";
+import { SignUpPage } from "./pages/signup/signup";
 
-const routes: Record<string, Component> = {
-  "/": loginPage,
-  "/login": loginPage,
-  "/signin": signinPage,
-  "/chats": chartsPage,
-  "/404": notFoundPage,
-  "/500": unavailablePage,
-  "/profile": profilePage,
-  "/edit-profile": editProfilePage,
-  "/edit-password": editPasswordPage,
-};
+export const router = new Router("app");
 
-window.addEventListener("load", router);
-window.addEventListener("hashchange", router);
-
-function router() {
-  const pahtname: string = window.location.pathname;
-  const page: any = routes[pahtname];
-
-  if (page) {
-    render(page);
-  } else {
-    render(routes["/404"]);
-  }
-}
-
-function render(block: any, query: any = "root") {
-  const root = document.getElementById(query);
-  root?.appendChild(block.getElement());
-
-  block.dispatchComponentDidMount();
-
-  return root;
-}
+router
+  .use("/", SignInPage)
+  .use("/sign-up", SignUpPage)
+  .use("/settings", SettingsPage)
+  .use("/messenger", ChatPage)
+  .use("/500", Page500)
+  .setFallBack("/404", Page404)
+  .start();

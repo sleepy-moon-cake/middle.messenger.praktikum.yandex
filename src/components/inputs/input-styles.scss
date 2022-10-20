@@ -1,0 +1,28 @@
+@import "../../../static/styles/colors";
+@import "../../../static/styles/variables";
+
+.input {
+  &__field {
+    height: 33px;
+    width: 100%;
+    border: 0.5px solid $gray;
+    border-radius: 4px;
+    padding: 0 15px;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+    color: $black;
+
+    &.invalid {
+      color: $error-color;
+      border: 0.5px solid $error-color;
+    }
+  }
+
+  &__label {
+    font-weight: 300;
+    font-size: 15px;
+    line-height: 20px;
+    color: $blue;
+  }
+}

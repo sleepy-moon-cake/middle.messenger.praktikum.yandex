@@ -16,7 +16,7 @@
     "preserveConstEnums": true,
     "strictNullChecks": true,
     "sourceMap": true,
-    "types": ["handlebars"],
+    "types": ["node", "pug", "mocha", "sinon", "jsdom" ],
     "lib": ["ES2017", "dom"]
   },
   "exclude": ["node_modules", "dist", ".parcel-cache"]

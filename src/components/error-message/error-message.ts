@@ -1,11 +1,19 @@
-import { Component } from "../../core/component/component";
-import { template } from "./error-message.tmpl";
+import { Block } from "../../core/block";
+import { Events, Props } from "../../core/types";
+import { compileTemplateToElement } from "../../core/utils/compile-template";
+import { mapStateToPropsCallBack } from "../../store/utils";
+import templatePug from "./error-message.pug";
+import "./error-message.scss";
+import { ErrorMessageProps } from "./types";
 
-export class ErrorMessage extends Component {
-  public render() {
-    return this.compile(template, this._props);
+export class ErrorMessage extends Block<ErrorMessageProps> {
+  constructor(propsObj: ErrorMessageProps, eventName: string, events?: Events) {
+    super("div", "error-message-block", propsObj, events);
+
+    this.subscribeToStoreEvent(eventName, mapStateToPropsCallBack);
   }
-  public componentDidMount(): void {
-    this.hide();
+
+  render() {
+    return compileTemplateToElement(templatePug, this.props, "", this._meta.events);
   }
 }

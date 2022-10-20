@@ -1,17 +1,29 @@
+@import "../../../static/styles/colors";
+@import "../../../static/styles/variables";
+
 .button {
-  background-color: #3369f3;
+  max-width: 100%;
+  width: 348px;
+  height: 40px;
+  background-color: $green;
+  box-shadow: 0 3px 7px 1px rgba($black, 25%);
+  border-radius: 20px;
   border: none;
-  border-radius: 8px;
-  width: 100%;
+  font-size: 18px;
   text-align: center;
-  padding: 12px 70px;
-  color: #ffffff;
+  color: voilet;
 
   &:hover {
-    background-color: #4b7dfa;
+    cursor: pointer;
+    background-color: rgba($green, 85%);
   }
 
-  &:active {
-    transform: scale(0.99);
+  &:disabled {
+    background-color: $gray;
+    color: $light-gray;
+
+    &:hover {
+      cursor: default;
+    }
   }
 }

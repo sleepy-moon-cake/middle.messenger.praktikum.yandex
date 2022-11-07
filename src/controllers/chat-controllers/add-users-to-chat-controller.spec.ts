@@ -1,9 +1,9 @@
 import { AddUsersToChatAPI } from "../../api/chat/add-users-api";
-import { CHAT_PAGE_EVENT_NAME } from "../../screens/chat/events";
+import { CHAT_PAGE_EVENT_NAME } from "../../pages/chat/events";
 import store from "../../store/store";
 import {
   AddUsersToChatController,
-  AddUsersToChatFormModel,../../pages/chat/events
+  AddUsersToChatFormModel,
 } from "./add-users-to-chat-controller";
 import { expect } from "chai";
 import * as sinon from "sinon";

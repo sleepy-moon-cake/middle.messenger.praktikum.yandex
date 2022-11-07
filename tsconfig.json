@@ -16,7 +16,7 @@
     "preserveConstEnums": true,
     "strictNullChecks": true,
     "sourceMap": true,
-    "types": ["node", "pug", "mocha", "sinon", "jsdom" ],
+    "types": ["node", "pug", "jest", "sinon", "jsdom" ],
     "lib": ["ES2017", "dom"]
   },
   "exclude": ["node_modules", "dist", ".parcel-cache"]

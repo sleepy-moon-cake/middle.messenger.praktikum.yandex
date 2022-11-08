@@ -1,5 +1,5 @@
 import avatarImg from "../../../static/assets/icons/avatar.svg";
-import { SettingsPageProps } from "../../pages/settings/typeses";
+import { SettingsPageProps } from "../../pages/settings/types";
 import { FieldName } from "../../services/form-services/form-validation-service";
 
 export const SETTINGS_INITIAL_STATE: SettingsPageProps = {

@@ -1,5 +1,4 @@
 import { Route } from "./route";
-import { BlockInheritor } from "./types";
 
 export class Router {
   private static __instance: Router;
@@ -23,20 +22,20 @@ export class Router {
     Router.__instance = this;
   }
 
-  use(pathname: string, block: BlockInheritor) {
+  use(pathname: string, block: any) {
     const route = new Route(pathname, block, { rootQuery: this._rootQuery });
     this._routes.push(route);
     return this;
   }
 
-  setFallBack(pathname: string, block: BlockInheritor) {
+  setFallBack(pathname: string, block: any) {
     this.use(pathname, block);
     this._fallBackPathName = pathname;
     return this;
   }
 
   start() {
-    window.onpopstate = (event) => {
+    window.onpopstate = (event: any) => {
       this._onRoute(event.currentTarget.location.pathname);
     };
 

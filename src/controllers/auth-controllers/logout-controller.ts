@@ -1,4 +1,3 @@
-// import { router } from ".../../api/auth/logout-api
 import { router } from "../..";
 import { LogoutAPI } from "../../api/auth/logout-api";
 import { ErrorResponse } from "../../api/types";

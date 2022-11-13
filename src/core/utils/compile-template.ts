@@ -1,6 +1,6 @@
 import { isArray } from "../../utils";
 import { Block } from "../block";
-import { componentsState, ComponentState } from "../components-state";
+import { componentsState } from "../components-state";
 import { REGISTERED_COMPONENTS } from "../registered-components";
 import { Events, Props } from "../types";
 import { getEventName } from "./get-event-name";
@@ -151,11 +151,8 @@ function getComponent(
   );
 }
 
-function getValueFromObjectByPath(
-  state: ComponentState,
-  path: string
-): InstanceType<typeof Block> | undefined {
+function getValueFromObjectByPath(state: any, path: string): any {
   const pathArray = path.split(".");
 
-  return pathArray.reduce((acc: ComponentState, key: string) => acc && acc[key], state);
+  return pathArray.reduce((acc: any, key: string) => acc && acc[key], state);
 }

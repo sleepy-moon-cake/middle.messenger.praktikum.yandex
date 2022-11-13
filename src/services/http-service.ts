@@ -1,4 +1,3 @@
-import { Indexed } from "../core/types";
 import { queryStringify } from "../utils";
 
 export enum Methods {
@@ -18,7 +17,7 @@ export enum ResponseType {
 }
 
 export type Options = {
-  data?: Indexed | FormData;
+  data?: any | FormData;
   headers?: Record<string, string>;
   timeout?: number;
   withCredentials?: boolean;
@@ -33,7 +32,7 @@ export class Http {
   }
 
   get<T>(url: string, options: Options = {} as Options): Promise<T> {
-    const stringData = options.data ? queryStringify(options.data as Indexed) : null;
+    const stringData = options.data ? queryStringify(options.data as any) : null;
     const processedUrl = stringData ? url + stringData : url;
 
     return this.request<T>(

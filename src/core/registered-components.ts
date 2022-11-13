@@ -19,7 +19,7 @@ import { PopupCreateChat } from "../components/popups/popup-create-chat/popup-cr
 import { PopupDeleteUser } from "../components/popups/popup-delete-user/popup-delete-user";
 import { Time } from "../components/time/time";
 
-export const REGISTERED_COMPONENTS = {
+export const REGISTERED_COMPONENTS: Record<string, any> = {
   TextInputComponent: TextInput,
   EmailInputComponent: EmailInput,
   PasswordInputComponent: PasswordInput,

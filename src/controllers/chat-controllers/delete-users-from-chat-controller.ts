@@ -1,7 +1,7 @@
 import { DeleteUsersFromChatAPI } from "../../api/chat/delete-users-api";
 import { ErrorResponse } from "../../api/types";
+import { UsersListProps } from "../../components";
 import { FoundUserProps } from "../../components/found-user/types";
-import { UsersListProps } from "../../components/found-users/users-list";
 import { getEventName } from "../../core/utils/get-event-name";
 import { getPathFromArray } from "../../core/utils/get-path-from-array";
 import { Options, ResponseType } from "../../services/http-service";

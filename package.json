@@ -21,6 +21,12 @@
     "url": "https://github.com/readOnlyMode/middle.messenger.praktikum.yandex/issues"
   },
   "homepage": "https://github.com/readOnlyMode/middle.messenger.praktikum.yandex#readme",
+  "jest": {
+    "testEnvironment": "jest-environment-jsdom-global",
+    "moduleNameMapper": {
+      ".+\\.(css|styl|less|sass|scss|png|svg|jpg|ttf|woff|woff2)$": "<rootDir>/mocks/fileMock.ts"
+    }
+  },
   "devDependencies": {
     "@babel/core": "^7.20.2",
     "@babel/preset-env": "^7.20.2",
@@ -44,7 +50,9 @@
     "eslint-config-airbnb-typescript": "17.0.0",
     "eslint-config-prettier": "8.5.0",
     "jest": "^27.5.1",
-    "jsdom": "^19.0.0",
+    "jest-environment-jsdom": "^27.5.1",
+    "jest-environment-jsdom-global": "^4.0.0",
+    "jest-transform-stub": "^2.0.0",
     "parcel": "^2.0.0-rc.0",
     "parcel-plugin-static-files-copy": "2.6.0",
     "parcel-transformer-pug-precompile": "1.0.6",

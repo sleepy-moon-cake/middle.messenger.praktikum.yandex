@@ -3,7 +3,7 @@ import { ErrorResponse } from "../../api/types";
 import { UsersListProps } from "../../components";
 import { getEventName } from "../../core/utils/get-event-name";
 import { getPathFromArray } from "../../core/utils/get-path-from-array";
-import { Options, ResponseType } from "../../services/http-service";
+import { Options, ResponseTypes } from "../../services/http-service";
 import store from "../../store/store";
 
 export type AddUsersToChatFormModel = {
@@ -41,7 +41,7 @@ export class AddUsersToChatController {
 function prepareDataToRequest(data: AddUsersToChatFormModel): Options {
   return {
     withCredentials: true,
-    responseType: ResponseType.json,
+    responseType: ResponseTypes.json,
     headers: {
       "content-type": "application/json",
     },

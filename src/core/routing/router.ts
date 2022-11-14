@@ -2,11 +2,15 @@ import { Route } from "./route";
 
 export class Router {
   private static __instance: Router;
+
   private _currentRoute!: Route | null;
+
   private _rootQuery!: string;
+
   private _fallBackPathName!: string;
 
   private _routes!: Route[];
+  
   private _history!: History;
 
   constructor(rootQuery: string) {

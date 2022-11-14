@@ -11,8 +11,11 @@ type ReturnedThenFunction = {
 
 class WebsocketController {
   private _socketApi!: WebsocketApi;
+  
   private _url!: string;
+
   private _startCallBack!: (isOpened: boolean) => void;
+
   public isStarted = false;
 
   public start(userId: number, chatId: number, token: string): ReturnedThenFunction {

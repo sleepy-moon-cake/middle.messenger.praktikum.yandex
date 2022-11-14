@@ -3,7 +3,7 @@ import {
   GetUserInfoByIdAPI,
   UserInfoByIdResponse,
 } from "../../api/user-profile/get-user-info-by-id-api";
-import { ResponseType } from "../../services/http-service";
+import { ResponseTypes } from "../../services/http-service";
 import { Options } from "../../services/http-service";
 
 const getUserInfoByIdAPI = new GetUserInfoByIdAPI();
@@ -36,6 +36,6 @@ function isErrorResponse(response: any): response is ErrorResponse {
 function getOptions(): Options {
   return {
     withCredentials: true,
-    responseType: ResponseType.json,
+    responseType: ResponseTypes.json,
   };
 }

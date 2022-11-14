@@ -1,6 +1,6 @@
 import { CreateChatAPI, CreateChatResponse } from "../../api/chat/create-chat-api";
 import { ErrorResponse } from "../../api/types";
-import { Options, ResponseType } from "../../services/http-service";
+import { Options, ResponseTypes } from "../../services/http-service";
 import { isArray } from "../../utils";
 import { GetChatsController } from "./get-chats-controller";
 
@@ -42,7 +42,7 @@ function isNotArray(response: any): any {
 function prepareDataToRequest(data: CreateChatFormModel): Options {
   return {
     withCredentials: true,
-    responseType: ResponseType.json,
+    responseType: ResponseTypes.json,
     headers: {
       "content-type": "application/json",
     },

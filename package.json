@@ -9,7 +9,8 @@
     "start": "webpack serve --open",
     "build": "webpack",
     "test": "jest",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "lint": "eslint src/**"
   },
   "repository": {
     "type": "git",

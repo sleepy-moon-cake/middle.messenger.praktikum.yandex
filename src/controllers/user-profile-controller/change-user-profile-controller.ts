@@ -5,7 +5,7 @@ import {
 } from "../../api/user-profile/change-user-profile-api";
 import { UPDATE_USER_PROFILE_EVENT_NAME } from "../../pages/settings/events";
 import { SettingsPageProps } from "../../pages/settings/types";
-import { Options, ResponseType } from "../../services/http-service";
+import { Options, ResponseTypes } from "../../services/http-service";
 import store from "../../store/store";
 
 const validationKeys = [
@@ -74,7 +74,7 @@ function userProfileValidator(data: any): data is UserProfileFormModel {
 function prepareDataToRequest(data: UserProfileFormModel): Options {
   return {
     withCredentials: true,
-    responseType: ResponseType.json,
+    responseType: ResponseTypes.json,
     headers: {
       "content-type": "application/json",
     },

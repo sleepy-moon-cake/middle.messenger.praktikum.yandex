@@ -6,7 +6,7 @@ import { TimeProps, TimeType } from "../../components/time/types";
 import { getEventName } from "../../core/utils/get-event-name";
 import { getPathFromArray } from "../../core/utils/get-path-from-array";
 import { CHAT_PAGE_EVENT_NAME } from "../../pages/chat/events";
-import { Options, ResponseType } from "../../services/http-service";
+import { Options, ResponseTypes } from "../../services/http-service";
 import store from "../../store/store";
 import { getAvatarLink, isArray } from "../../utils";
 
@@ -57,7 +57,7 @@ function isNotArray(response: any) {
 function getOptions(): Options {
   return {
     withCredentials: true,
-    responseType: ResponseType.json,
+    responseType: ResponseTypes.json,
   };
 }
 

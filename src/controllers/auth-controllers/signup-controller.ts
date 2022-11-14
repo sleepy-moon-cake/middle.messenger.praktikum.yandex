@@ -1,7 +1,7 @@
 import { SignUpAPI, SignUpResponse } from "../../api/auth/signup-api";
 import { ErrorResponse } from "../../api/types";
 import { router } from "../../index";
-import { Options, ResponseType } from "../../services/http-service";
+import { Options, ResponseTypes } from "../../services/http-service";
 
 const validationKeys = [
   "first_name",
@@ -65,7 +65,7 @@ function userLoginValidator(data: any): data is SignUpFormModel {
 function prepareDataToRequest(data: SignUpFormModel): Options {
   return {
     withCredentials: true,
-    responseType: ResponseType.json,
+    responseType: ResponseTypes.json,
     headers: {
       "content-type": "application/json",
     },

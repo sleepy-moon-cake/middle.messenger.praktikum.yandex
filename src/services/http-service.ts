@@ -7,7 +7,7 @@ export enum Methods {
   DELETE = "DELETE",
 }
 
-export enum ResponseType {
+export enum ResponseTypes {
   default = "",
   text = "text",
   arraybuffer = "arraybuffer",
@@ -21,7 +21,7 @@ export type Options = {
   headers?: Record<string, string>;
   timeout?: number;
   withCredentials?: boolean;
-  responseType?: ResponseType;
+  responseType?: ResponseTypes;
 };
 
 export class Http {
@@ -61,7 +61,7 @@ export class Http {
       headers = {},
       method,
       withCredentials,
-      responseType = ResponseType.default,
+      responseType = ResponseTypes.default,
     }: Options & { method: typeof Methods[keyof typeof Methods] },
     timeout = 5000
   ): Promise<T> {

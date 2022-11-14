@@ -62,7 +62,7 @@ export function isDeepEqual(a: Record<any, any>, b: Record<any, any>): boolean {
 }
 
 export function cloneDeep<T extends object = object>(obj: T) {
-  return (function _cloneDeep(
+  return (function cloneDeep$(
     item: T
   ): T | Date | Set<unknown> | Map<unknown, unknown> | object | T[] {
     if (item === null || typeof item !== "object") {
@@ -76,7 +76,7 @@ export function cloneDeep<T extends object = object>(obj: T) {
     if (item instanceof Array) {
       let copy = [] as unknown[];
 
-      item.forEach((_, i) => (copy[i] = _cloneDeep(item[i])));
+      item.forEach((_, i) => (copy[i] = cloneDeep$(item[i])));
 
       return copy;
     }
@@ -84,7 +84,7 @@ export function cloneDeep<T extends object = object>(obj: T) {
     if (item instanceof Set) {
       let copy = new Set();
 
-      item.forEach((v) => copy.add(_cloneDeep(v)));
+      item.forEach((v) => copy.add(cloneDeep$(v)));
 
       return copy;
     }
@@ -92,7 +92,7 @@ export function cloneDeep<T extends object = object>(obj: T) {
     if (item instanceof Map) {
       let copy = new Map();
 
-      item.forEach((v, k) => copy.set(k, _cloneDeep(v)));
+      item.forEach((v, k) => copy.set(k, cloneDeep$(v)));
 
       return copy;
     }
@@ -101,10 +101,10 @@ export function cloneDeep<T extends object = object>(obj: T) {
       let copy: object = {};
       Object.getOwnPropertySymbols(item).forEach(
         // @ts-ignore
-        (s: any) => (copy[s] = _cloneDeep(item[s]))
+        (s: any) => (copy[s] = cloneDeep$(item[s]))
       );
       // @ts-ignore
-      Object.keys(item).forEach((k) => (copy[k] = _cloneDeep(item[k])));
+      Object.keys(item).forEach((k) => (copy[k] = cloneDeep$(item[k])));
 
       return copy;
     }

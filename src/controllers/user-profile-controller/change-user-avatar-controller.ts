@@ -5,7 +5,7 @@ import {
 } from "../../api/user-profile/change-user-avatar-api";
 import { SETTINGS_PAGE_EVENT_NAME } from "../../pages/settings/events";
 import { SettingsPageProps } from "../../pages/settings/types";
-import { Options, ResponseType } from "../../services/http-service";
+import { Options, ResponseTypes } from "../../services/http-service";
 import store from "../../store/store";
 import { getAvatarLink } from "../../utils";
 
@@ -43,7 +43,7 @@ function isErrorResponse(response: any): response is ErrorResponse {
 function prepareDataToRequest(formData: FormData): Options {
   return {
     withCredentials: true,
-    responseType: ResponseType.json,
+    responseType: ResponseTypes.json,
     data: formData,
   };
 }

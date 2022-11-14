@@ -10,7 +10,7 @@ describe("Router test", () => {
     // @ts-ignore: it is necessary to remove instance to apply on next
     Router.__instance = null;
     router = routerFactory();
-    document.body.innerHTML = `<div id="app">2</div>`;
+    document.body.innerHTML = "<div id='app'>2</div";
   });
   afterEach(() => () => {
     document.body.innerHTML = "";
@@ -54,6 +54,7 @@ describe("Router test", () => {
 
     test("it should change url by using history api", () => {
       const blockFake = jest.fn();
+
       const router = new Router("app");
       const pathName = "/start";
       const spyFn = jest.spyOn(global.history, "pushState");

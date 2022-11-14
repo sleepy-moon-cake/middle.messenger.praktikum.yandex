@@ -6,9 +6,13 @@ import { Events, Props } from "./types";
 
 export class Block<T> {
   props: Props;
+
   protected eventBus: EventBus;
+
   private _element!: HTMLElement;
+
   protected readonly _meta: Meta;
+
   private _storeEvents: StoreEvent[] = [];
 
   constructor(

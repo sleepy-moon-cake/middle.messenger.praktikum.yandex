@@ -1,7 +1,7 @@
 import { SignInAPI } from "../../api/auth/signin-api";
 import { ErrorResponse } from "../../api/types";
 import { router } from "../../index";
-import { Options, ResponseType } from "../../services/http-service";
+import { Options, ResponseTypes } from "../../services/http-service";
 
 const validationKeys = ["login", "password"];
 
@@ -50,7 +50,7 @@ function userSignInValidator(data: Record<string, unknown>): data is SignInFormM
 function prepareDataToRequest(data: SignInFormModel): Options {
   return {
     withCredentials: true,
-    responseType: ResponseType.json,
+    responseType: ResponseTypes.json,
     headers: {
       "content-type": "application/json",
     },

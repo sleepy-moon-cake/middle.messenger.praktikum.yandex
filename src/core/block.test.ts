@@ -2,7 +2,7 @@ import { Block } from "./block";
 import { Events } from "./types";
 
 describe("Test Block class", () => {
-  document.body.innerHTML = "<div id='app'>Text</div>";
+  document.body.innerHTML = `<div id="app">Text</div>`;
 
   class DummyBlock<T> extends Block<T> {
     render(): DocumentFragment {
@@ -77,7 +77,7 @@ describe("Test Block class", () => {
     );
     instance.destroy();
 
-    expect(document.body.innerHTML).toBe("<div id='app'></div>");
+    expect(document.body.innerHTML).toBe(`<div id="app"></div>`);
   });
 
   test("check event", () => {

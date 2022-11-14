@@ -1,5 +1,4 @@
 import { AddUsersToChatAPI } from "../../api/chat/add-users-api";
-import { CHAT_PAGE_EVENT_NAME } from "../../pages/chat/events";
 import store from "../../store/store";
 import {
   AddUsersToChatController,

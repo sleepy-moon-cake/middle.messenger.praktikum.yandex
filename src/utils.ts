@@ -113,10 +113,7 @@ export function cloneDeep<T extends object = object>(obj: T) {
   })(obj);
 }
 
-export function debounce(
-  fn: (...args: unknown[]) => void,
-  ms: number
-): (...args: unknown[]) => void {
+export function debounce(fn: any, ms: number): (...args: unknown[]) => void {
   let timeout: NodeJS.Timeout;
 
   return function (...args: unknown[]): void {

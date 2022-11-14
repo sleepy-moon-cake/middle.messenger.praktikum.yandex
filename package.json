@@ -6,9 +6,8 @@
   "source": "./index.html",
   "type": "module",
   "scripts": {
-    "start": "parcel build && node server.js",
-    "start:parcel": "parcel -p 3000",
-    "build:parcel": "parcel build",
+    "start": "webpack serve --open",
+    "build": "webpack",
     "test": "jest"
   },
   "repository": {
@@ -37,6 +36,7 @@
     "@parcel/transformer-sass": "^2.0.0-rc.0",
     "@trivago/prettier-plugin-sort-imports": "3.2.0",
     "@tsconfig/recommended": "1.0.1",
+    "@types/html-webpack-plugin": "^3.2.6",
     "@types/jest": "^27.5.2",
     "@types/jsdom": "^20.0.0",
     "@types/node": "^17.0.45",
@@ -45,29 +45,40 @@
     "@types/uuid": "^8.3.4",
     "@typescript-eslint/eslint-plugin": "5.21.0",
     "@typescript-eslint/parser": "5.21.0",
+    "css-loader": "^6.7.2",
     "eslint": "8.14.0",
     "eslint-config-airbnb": "19.0.4",
     "eslint-config-airbnb-typescript": "17.0.0",
     "eslint-config-prettier": "8.5.0",
+    "file-loader": "^6.2.0",
+    "html-webpack-plugin": "^5.5.0",
     "jest": "^27.5.1",
     "jest-environment-jsdom": "^27.5.1",
     "jest-environment-jsdom-global": "^4.0.0",
     "jest-transform-stub": "^2.0.0",
+    "node-sass": "^8.0.0",
     "parcel": "^2.0.0-rc.0",
     "parcel-plugin-static-files-copy": "2.6.0",
     "parcel-transformer-pug-precompile": "1.0.6",
     "prettier": "2.6.2",
+    "pug-loader": "^2.4.0",
+    "sass-loader": "^13.2.0",
     "sinon": "^12.0.1",
+    "style-loader": "^3.3.1",
     "stylelint": "14.8.1",
     "stylelint-config-prettier": "9.0.3",
     "stylelint-config-standard": "25.0.0",
     "stylelint-config-standard-scss": "3.0.0",
     "stylelint-scss": "4.2.0",
     "ts-node": "^10.4.0",
-    "typescript": "4.6.4"
+    "typescript": "4.6.4",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^4.10.0",
+    "webpack-dev-server": "^4.11.1"
   },
   "dependencies": {
     "express": "4.17.3",
+    "ts-loader": "^9.2.6",
     "uuid": "8.3.2"
   }
 }

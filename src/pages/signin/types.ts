@@ -1,7 +1,9 @@
-import { FormButtonProps } from "../../components/button/button";
-import { ErrorMessageProps } from "../../components/error-message/error-message";
-import { PasswordInputProps } from "../../components/inputs/password/password-input";
-import { TextInputProps } from "../../components/inputs/text/text-input";
+import {
+  TextInputProps,
+  ButtonProps,
+  ErrorMessageProps,
+  PasswordInputProps,
+} from "../../components";
 import { Props } from "../../core/types";
 
 export interface SignInPageProps extends Props {
@@ -10,5 +12,5 @@ export interface SignInPageProps extends Props {
   errorLogin?: ErrorMessageProps;
   passwordInput?: PasswordInputProps;
   errorPassword?: ErrorMessageProps;
-  formButton?: FormButtonProps;
+  formButton?: ButtonProps;
 }

@@ -1,4 +1,3 @@
-import { UserInfoByIdResponse } from "../../api/user-profile/get-user-info-by-id-api";
 import { MessageProps, ChatCardProps, FoundUserProps, TimeType } from "../../components";
 import { AddUsersToChatController } from "../../controllers/chat-controllers/add-users-to-chat-controller";
 import { CreateChatController } from "../../controllers/chat-controllers/create-chat-controller";
@@ -95,12 +94,12 @@ class ChatHandleService extends ShowErrorService {
 
           GetChatTokenController.get(Number(chatCardElement.id)).then((token: any) => {
             UserIdAndAvatarController.getIdAndAvatar()
-              .then((user: UserIdAndAvatarRequest) => {
+              .then((user: any) => {
                 if (webSocketController.isStarted) {
                   webSocketController.closeConnection();
                 }
 
-                startChat(user, selectedChat, token);
+                startChat(user, selectedChat!, token);
               })
               .catch((error) => {
                 console.error(error);
@@ -326,7 +325,7 @@ class ChatHandleService extends ShowErrorService {
     keydown: [
       {
         id: "message",
-        fn: (event: KeyboardEvent) => {
+        fn: (event: any) => {
           if (!event.shiftKey && event.code === "Enter") {
             event.preventDefault();
 
@@ -487,60 +486,57 @@ function subscribeToMessage(currentUser: UserIdAndAvatarRequest): void {
       return;
     }
 
-    UserInfoByIdController.getInfo(message.user_id).then(
-      (response: UserInfoByIdResponse) => {
-        const messages = store.getState().chatPage.messagesList
-          .messages as MessageProps[];
+    UserInfoByIdController.getInfo(message.user_id).then((response: any) => {
+      const messages = store.getState().chatPage.messagesList.messages as MessageProps[];
 
-        const newMessage = {
-          you: currentUser.id === response.id,
-          text: message.content,
-          avatar: {
-            avatarImgSrc: getAvatarLink(response.avatar),
-            size: "36px",
-          },
-          time: {
-            type: TimeType.Card,
-            date: new Date(),
-          },
-        };
+      const newMessage = {
+        you: currentUser.id === response.id,
+        text: message.content,
+        avatar: {
+          avatarImgSrc: getAvatarLink(response.avatar),
+          size: "36px",
+        },
+        time: {
+          type: TimeType.Card,
+          date: new Date(),
+        },
+      };
 
-        messages.push(newMessage);
+      messages.push(newMessage);
 
-        const chats = store.getState().chatPage.chatsList.chats;
-        const selectedChatId = store.getState().chatPage.selectedChat?.id as number;
+      const chats = store.getState().chatPage.chatsList.chats;
+      const selectedChatId = store.getState().chatPage.selectedChat?.id as number;
 
-        const updatedChats = chats.map((chat) => {
-          if (chat.id === selectedChatId) {
-            return {
-              ...chat,
-              textMessage: newMessage.text,
-              time: newMessage.time,
-            };
-          }
+      const updatedChats = chats.map((chat) => {
+        if (chat.id === selectedChatId) {
+          return {
+            ...chat,
+            textMessage: newMessage.text,
+            time: newMessage.time,
+          };
+        }
 
-          return chat;
-        });
+        return chat;
+      });
 
-        store.set(
-          getPathFromArray(["chatPage", "chatsList"]),
-          {
-            ...store.getState().chatPage.chatsList,
-            chats: updatedChats,
-          },
-          getEventName(CHAT_PAGE_EVENT_NAME, "chatsList")
-        );
+      store.set(
+        getPathFromArray(["chatPage", "chatsList"]),
+        {
+          ...store.getState().chatPage.chatsList,
+          chats: updatedChats,
+        },
+        getEventName(CHAT_PAGE_EVENT_NAME, "chatsList")
+      );
 
-        store.set(
-          getPathFromArray(["chatPage", "messagesList"]),
-          {
-            ...store.getState().chatPage.messagesList,
-            messages: messages,
-          },
-          getEventName(CHAT_PAGE_EVENT_NAME, "messagesList")
-        );
-      }
-    );
+      store.set(
+        getPathFromArray(["chatPage", "messagesList"]),
+        {
+          ...store.getState().chatPage.messagesList,
+          messages: messages,
+        },
+        getEventName(CHAT_PAGE_EVENT_NAME, "messagesList")
+      );
+    });
   });
 }
 

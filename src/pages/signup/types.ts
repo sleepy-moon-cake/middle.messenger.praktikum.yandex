@@ -1,9 +1,11 @@
-import { FormButtonProps } from "../../components/button/button";
-import { ErrorMessageProps } from "../../components/error-message/error-message";
-import { EmailInputProps } from "../../components/inputs/email/email-input";
-import { PasswordInputProps } from "../../components/inputs/password/password-input";
-import { PhoneInputProps } from "../../components/inputs/phone/phone-input";
-import { TextInputProps } from "../../components/inputs/text/text-input";
+import {
+  TextInputProps,
+  PhoneInputProps,
+  PasswordInputProps,
+  EmailInputProps,
+  ButtonProps,
+  ErrorMessageProps,
+} from "../../components";
 import { Props } from "../../core/types";
 
 export interface SignUpPageProps extends Props {
@@ -21,5 +23,5 @@ export interface SignUpPageProps extends Props {
   errorPassword?: ErrorMessageProps;
   passwordAgainInput?: PasswordInputProps;
   errorPasswordAgain?: ErrorMessageProps;
-  formButton?: FormButtonProps;
+  formButton?: ButtonProps;
 }

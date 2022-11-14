@@ -8,6 +8,15 @@ const __dirname = path.dirname(__filename);
 export default {
   mode: "development",
   devtool: "inline-source-map",
+  devServer: {
+    static: {
+      directory: path.join(__dirname, "dist"),
+    },
+    compress: true,
+    port: 3000,
+    hot: true,
+    historyApiFallback: true,
+  },
   entry: "/src/index.ts",
   output: { path: path.resolve(__dirname, "dist"), filename: "bundle.js", clean: true },
   resolve: {
@@ -37,15 +46,15 @@ export default {
       },
       {
         test: /\.scss?$/,
-        use: ["style-loader", "css-loader", "sass-loader"],
+        use: ["style-loader", "css-loader", "resolve-url-loader", "sass-loader"],
       },
       {
-        test: /\.(png|jpe?g|gif|svg|woff|woff2|eot|ttf|otf)$/i,
-        use: [
-          {
-            loader: "file-loader",
-          },
-        ],
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        type: "asset",
+      },
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/i,
+        type: "asset",
       },
     ],
   },

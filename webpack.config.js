@@ -49,12 +49,8 @@ export default {
         use: ["style-loader", "css-loader", "resolve-url-loader", "sass-loader"],
       },
       {
-        test: /\.(png|svg|jpg|jpeg|gif)$/i,
-        type: "asset",
-      },
-      {
-        test: /\.(woff|woff2|eot|ttf|otf)$/i,
-        type: "asset",
+        test: /\.(png|jpe?g|gif|svg|woff|woff2|eot|ttf|otf)$/i,
+        use: ["file-loader"],
       },
     ],
   },

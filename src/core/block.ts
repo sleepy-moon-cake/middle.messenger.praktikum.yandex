@@ -4,7 +4,7 @@ import { EventsEnum, Meta, StoreEvent } from "./block-types";
 import { EventBus } from "./event-bus";
 import { Events, Props } from "./types";
 
-export class Block<T> {
+export class Block<T = unknown> {
   props: Props;
 
   protected eventBus: EventBus;

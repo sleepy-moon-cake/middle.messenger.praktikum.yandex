@@ -1,3 +1,4 @@
+import { InputProps } from "../components";
 import { Avatar } from "../components/avatar/avatar";
 import { FormButton } from "../components/button/button";
 import { ChatCard } from "../components/chat-card/chat-card";

@@ -24,6 +24,8 @@ export type Options = {
   responseType?: ResponseTypes;
 };
 
+export type OptionsParams = Options & { method: typeof Methods[keyof typeof Methods] };
+
 export class Http {
   private _baseUrl: string;
 

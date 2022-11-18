@@ -49,7 +49,7 @@ export function compileTemplateToElement(
         const path = getPathFromArray([pageEventName, dataName]);
 
         if (isArray(data)) {
-          const childComponents = Object.values(data).map((value: Props) => {
+          const childComponents = Object.values(data as Props[]).map((value: Props) => {
             const component = getComponent(
               componentName,
               pageEventName,
@@ -157,5 +157,5 @@ function getValueFromObjectByPath(
 ): InstanceType<typeof Block> | undefined {
   const pathArray = path.split(".");
 
-  return pathArray.reduce((acc: ComponentState, key: string) => acc && acc[key], state);
+  return pathArray.reduce((acc: any, key: string) => acc && acc[key], state);
 }

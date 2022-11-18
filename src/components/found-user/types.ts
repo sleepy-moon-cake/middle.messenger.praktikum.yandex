@@ -1,5 +1,5 @@
+import { AvatarProps } from "../../components";
 import { Props } from "../../core/types";
-import { AvatarProps } from "../avatar/avatar";
 
 export enum UserActionIcon {
   Add = "add",

@@ -1,6 +1,6 @@
 import { ErrorResponse } from "../../api/types";
 import { ChangeUserPasswordAPI } from "../../api/user-profile/change-user-password-api";
-import { Options, ResponseType } from "../../services/http-service";
+import { Options, ResponseTypes } from "../../services/http-service";
 
 type UserPasswordFormModel = {
   oldPassword: string;
@@ -30,7 +30,7 @@ export class ChangeUserPasswordController {
 function prepareDataToRequest(data: UserPasswordFormModel): Options {
   return {
     withCredentials: true,
-    responseType: ResponseType.json,
+    responseType: ResponseTypes.json,
     headers: {
       "content-type": "application/json",
     },

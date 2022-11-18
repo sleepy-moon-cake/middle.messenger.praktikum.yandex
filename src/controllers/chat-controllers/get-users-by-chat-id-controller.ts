@@ -3,11 +3,11 @@ import {
   UsersResponse,
 } from "../../api/chat/get-users-by-chat-id-api";
 import { ErrorResponse } from "../../api/types";
+import { UsersListProps } from "../../components";
 import { UserActionIcon } from "../../components/found-user/types";
-import { UsersListProps } from "../../components/found-users/users-list";
 import { getEventName } from "../../core/utils/get-event-name";
 import { getPathFromArray } from "../../core/utils/get-path-from-array";
-import { Options, ResponseType } from "../../services/http-service";
+import { Options, ResponseTypes } from "../../services/http-service";
 import store from "../../store/store";
 import { getAvatarLink, isArray } from "../../utils";
 
@@ -49,7 +49,7 @@ function isNotArray(response: any) {
 function getOptions(): Options {
   return {
     withCredentials: true,
-    responseType: ResponseType.json,
+    responseType: ResponseTypes.json,
   };
 }
 

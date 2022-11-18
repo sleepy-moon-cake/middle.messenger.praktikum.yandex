@@ -3,7 +3,7 @@ import {
   GetUserInfoAPI,
   UserInfoResponse,
 } from "../../api/user-profile/get-user-info-api";
-import { Options, ResponseType } from "../../services/http-service";
+import { Options, ResponseTypes } from "../../services/http-service";
 
 export type UserIdAndAvatarRequest = {
   id: number;
@@ -43,6 +43,6 @@ function isErrorResponse(response: any): response is ErrorResponse {
 function getOptions(): Options {
   return {
     withCredentials: true,
-    responseType: ResponseType.json,
+    responseType: ResponseTypes.json,
   };
 }

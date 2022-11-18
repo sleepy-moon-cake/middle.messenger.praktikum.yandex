@@ -1,4 +1,3 @@
-import { Indexed } from "../core/types";
 import { queryStringify } from "../utils";
 
 export enum Methods {
@@ -8,7 +7,7 @@ export enum Methods {
   DELETE = "DELETE",
 }
 
-export enum ResponseType {
+export enum ResponseTypes {
   default = "",
   text = "text",
   arraybuffer = "arraybuffer",
@@ -18,12 +17,14 @@ export enum ResponseType {
 }
 
 export type Options = {
-  data?: Indexed | FormData;
+  data?: any | FormData;
   headers?: Record<string, string>;
   timeout?: number;
   withCredentials?: boolean;
-  responseType?: ResponseType;
+  responseType?: ResponseTypes;
 };
+
+export type OptionsParams = Options & { method: typeof Methods[keyof typeof Methods] };
 
 export class Http {
   private _baseUrl: string;
@@ -33,7 +34,7 @@ export class Http {
   }
 
   get<T>(url: string, options: Options = {} as Options): Promise<T> {
-    const stringData = options.data ? queryStringify(options.data as Indexed) : null;
+    const stringData = options.data ? queryStringify(options.data as any) : null;
     const processedUrl = stringData ? url + stringData : url;
 
     return this.request<T>(
@@ -62,7 +63,7 @@ export class Http {
       headers = {},
       method,
       withCredentials,
-      responseType = ResponseType.default,
+      responseType = ResponseTypes.default,
     }: Options & { method: typeof Methods[keyof typeof Methods] },
     timeout = 5000
   ): Promise<T> {

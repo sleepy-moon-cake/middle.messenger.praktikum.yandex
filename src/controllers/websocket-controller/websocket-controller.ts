@@ -3,6 +3,7 @@ import { MessageResponse } from "../../api/websocket/types";
 import { LastMessageResponse } from "../../api/websocket/types";
 import { WebsocketApi } from "../../api/websocket/websocket-api";
 import { WSS_HOST } from "../../constants";
+import { Indexed } from "../../core/types";
 import { isArray } from "../../utils";
 
 type ReturnedThenFunction = {
@@ -11,8 +12,11 @@ type ReturnedThenFunction = {
 
 class WebsocketController {
   private _socketApi!: WebsocketApi;
+
   private _url!: string;
+
   private _startCallBack!: (isOpened: boolean) => void;
+
   public isStarted = false;
 
   public start(userId: number, chatId: number, token: string): ReturnedThenFunction {
@@ -95,11 +99,13 @@ function isMessageResponse(response: any): response is MessageResponse {
   return isNotArray(response) && response.type === "message";
 }
 
-function isLastMessagesResponse(response: any): response is LastMessageResponse[] {
+function isLastMessagesResponse(
+  response: Indexed | Indexed[]
+): response is LastMessageResponse[] {
   return isArray(response);
 }
 
-function isNotArray(response: any) {
+function isNotArray(response: Indexed | Indexed[]) {
   return !isArray(response);
 }
 

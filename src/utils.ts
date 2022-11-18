@@ -1,6 +1,7 @@
 import { HOST } from "./constants";
+import { Indexed } from "./core/types";
 
-export function isObject(value: unknown): value is Record<any, any> {
+export function isObject(value: unknown): value is Indexed {
   return Object.prototype.toString.call(value) === "[object Object]";
 }
 
@@ -8,7 +9,7 @@ export function isArray(value: unknown): value is [] {
   return Array.isArray(value);
 }
 
-function getParams(data: Record<any, any> | [], parentKey: string = "") {
+function getParams(data: Indexed | [], parentKey: string = "") {
   const result: [string, string][] = [];
 
   for (const [key, value] of Object.entries(data)) {
@@ -22,13 +23,7 @@ function getParams(data: Record<any, any> | [], parentKey: string = "") {
   return result;
 }
 
-/**
- * На входе: объект.
- * Пример: { key: 1, key2: 'test', key3: false, key4: true, key5: [1, 2, 3], key6: {a: 1}, key7: {b: {d: 2} } }
- * На выходе: строка.
- * Пример: '?key=1&key2=test&key3=false&key4=true&key5[0]=1&key5[1]=2&key5[2]=3&key6[a]=1&key7[b][d]=2'
- */
-export function queryStringify(data: Record<any, any> | undefined): string {
+export function queryStringify(data: Indexed | undefined): string {
   if (!isObject(data)) {
     throw new Error("input must be an object");
   }
@@ -41,7 +36,7 @@ export function queryStringify(data: Record<any, any> | undefined): string {
   );
 }
 
-export function isDeepEqual(a: Record<any, any>, b: Record<any, any>): boolean {
+export function isDeepEqual(a: Indexed, b: Indexed): boolean {
   const aKeys = Object.keys(a);
   const bKeys = Object.keys(b);
 
@@ -52,7 +47,7 @@ export function isDeepEqual(a: Record<any, any>, b: Record<any, any>): boolean {
   return aKeys.every((key: string) => {
     if (isObject(a[key]) || isArray(a[key])) {
       if (isObject(b[key]) || isArray(b[key])) {
-        return isDeepEqual(a[key] as Record<any, any>, b[key] as Record<any, any>);
+        return isDeepEqual(a[key] as Indexed, b[key] as Indexed);
       }
       return false;
     } else {
@@ -62,7 +57,7 @@ export function isDeepEqual(a: Record<any, any>, b: Record<any, any>): boolean {
 }
 
 export function cloneDeep<T extends object = object>(obj: T) {
-  return (function _cloneDeep(
+  return (function cloneDeep$(
     item: T
   ): T | Date | Set<unknown> | Map<unknown, unknown> | object | T[] {
     if (item === null || typeof item !== "object") {
@@ -76,7 +71,7 @@ export function cloneDeep<T extends object = object>(obj: T) {
     if (item instanceof Array) {
       let copy = [] as unknown[];
 
-      item.forEach((_, i) => (copy[i] = _cloneDeep(item[i])));
+      item.forEach((_, i) => (copy[i] = cloneDeep$(item[i])));
 
       return copy;
     }
@@ -84,7 +79,7 @@ export function cloneDeep<T extends object = object>(obj: T) {
     if (item instanceof Set) {
       let copy = new Set();
 
-      item.forEach((v) => copy.add(_cloneDeep(v)));
+      item.forEach((v) => copy.add(cloneDeep$(v)));
 
       return copy;
     }
@@ -92,7 +87,7 @@ export function cloneDeep<T extends object = object>(obj: T) {
     if (item instanceof Map) {
       let copy = new Map();
 
-      item.forEach((v, k) => copy.set(k, _cloneDeep(v)));
+      item.forEach((v, k) => copy.set(k, cloneDeep$(v)));
 
       return copy;
     }
@@ -101,10 +96,10 @@ export function cloneDeep<T extends object = object>(obj: T) {
       let copy: object = {};
       Object.getOwnPropertySymbols(item).forEach(
         // @ts-ignore
-        (s: any) => (copy[s] = _cloneDeep(item[s]))
+        (s: any) => (copy[s] = cloneDeep$(item[s]))
       );
       // @ts-ignore
-      Object.keys(item).forEach((k) => (copy[k] = _cloneDeep(item[k])));
+      Object.keys(item).forEach((k) => (copy[k] = cloneDeep$(item[k])));
 
       return copy;
     }
@@ -113,10 +108,7 @@ export function cloneDeep<T extends object = object>(obj: T) {
   })(obj);
 }
 
-export function debounce(
-  fn: (...args: unknown[]) => void,
-  ms: number
-): (...args: unknown[]) => void {
+export function debounce(fn: any, ms: number): (...args: unknown[]) => void {
   let timeout: NodeJS.Timeout;
 
   return function (...args: unknown[]): void {

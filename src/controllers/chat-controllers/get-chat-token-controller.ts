@@ -1,6 +1,6 @@
 import { ChatTokenResponse, GetChatTokenAPI } from "../../api/chat/get-chat-token-api";
 import { ErrorResponse } from "../../api/types";
-import { Options, ResponseType } from "../../services/http-service";
+import { Options, ResponseTypes } from "../../services/http-service";
 
 const getChatTokenAPI = new GetChatTokenAPI();
 
@@ -32,6 +32,6 @@ function isErrorResponse(response: Record<any, any>): response is ErrorResponse 
 function getOptions(): Options {
   return {
     withCredentials: true,
-    responseType: ResponseType.json,
+    responseType: ResponseTypes.json,
   };
 }

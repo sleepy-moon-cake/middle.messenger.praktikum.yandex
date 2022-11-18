@@ -1,13 +1,15 @@
-import { AvatarProps } from "../../components/avatar/avatar";
-import { ChatsListProps } from "../../components/chat-list/chats-list";
-import { ChatCardProps } from "../../components/chat/chat-card/chat-card";
-import { ErrorMessageProps } from "../../components/error-message/error-message";
-import { SearchInputProps } from "../../components/inputs/search/search-input";
-import { EllipsisMenuProps } from "../../components/menus/ellipsis-menu/ellipsis-menu";
-import { MessagesListProps } from "../../components/messages-list/messages-list";
-import { PopupAddUserProps } from "../../components/popups/popup-add-user/popup-add-user";
-import { PopupCreateChatProps } from "../../components/popups/popup-create-chat/popup-create-chat";
-import { PopupDeleteUserProps } from "../../components/popups/popup-delete-user/popup-delete-user";
+import {
+  PopupAddUserProps,
+  AvatarProps,
+  ChatsListProps,
+  ChatCardProps,
+  ErrorMessageProps,
+  SearchInputProps,
+  EllipsisMenuProps,
+  MessagesListProps,
+  PopupCreateChatProps,
+  PopupDeleteUserProps,
+} from "../../components";
 import { TimeProps } from "../../components/time/types";
 import { Props } from "../../core/types";
 import { FieldName } from "../../services/form-services/form-validation-service";

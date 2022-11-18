@@ -1,10 +1,12 @@
-import { FormButtonProps } from "../../components/button/button";
-import { ErrorMessageProps } from "../../components/error-message/error-message";
-import { EmailInputProps } from "../../components/inputs/email/email-input";
-import { PasswordInputProps } from "../../components/inputs/password/password-input";
-import { PhoneInputProps } from "../../components/inputs/phone/phone-input";
-import { TextInputProps } from "../../components/inputs/text/text-input";
-import { PopupAvatarProps } from "../../components/popups/popup-avatar/popup-avatar";
+import {
+  PopupAvatarProps,
+  ButtonProps,
+  ErrorMessageProps,
+  EmailInputProps,
+  PasswordInputProps,
+  PhoneInputProps,
+  TextInputProps,
+} from "../../components";
 import { Props } from "../../core/types";
 
 export interface SettingsPageProps extends Props {
@@ -20,13 +22,13 @@ export interface SettingsPageProps extends Props {
   errorEmail: ErrorMessageProps;
   phoneInput: PhoneInputProps;
   errorPhone: ErrorMessageProps;
-  changeDataButton: FormButtonProps;
+  changeDataButton: ButtonProps;
   oldPasswordInput: PasswordInputProps;
   errorOldPassword: ErrorMessageProps;
   passwordInput: PasswordInputProps;
   errorPassword: ErrorMessageProps;
   passwordAgainInput: PasswordInputProps;
   errorPasswordAgain: ErrorMessageProps;
-  changePasswordButton: FormButtonProps;
+  changePasswordButton: ButtonProps;
   popupAvatar: PopupAvatarProps;
 }

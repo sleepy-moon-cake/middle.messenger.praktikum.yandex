@@ -5,4 +5,8 @@ type ElementEvent = {
 
 export type Events = Record<string, ElementEvent[]>;
 
-export type Props = Record<any, any>;
+export type Props = Indexed;
+
+export type Indexed<T = unknown> = {
+  [key in string]: T;
+};

@@ -27,3 +27,10 @@ export type SearchInputProps = InputBase & {
 export type PasswordInputProps = InputBase & {
   inputContainerClass?: string;
 };
+
+export type InputProps =
+  | TextInputProps
+  | PhoneInputProps
+  | EmailInputProps
+  | SearchInputProps
+  | PasswordInputProps;

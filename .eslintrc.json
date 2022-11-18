@@ -6,9 +6,15 @@
     "project": ["./tsconfig.json"]
   },
   "rules": {
-    "@typescript-eslint/no-unused-vars": 2,
+    "@typescript-eslint/no-unused-vars": "warn",
+    "@typescript-eslint/no-use-before-define":["error", { "functions": false }],
+    "@typescript-eslint/no-shadow": "warn", 
+    "@typescript-eslint/default-param-last": "warn",
+    "@typescript-eslint/return-await": "warn",
     "semi": ["error", "always"],
-    "quotes": ["error", "double"],
+    "quotes": [2, "double", {
+      "allowTemplateLiterals": true
+    }],
     "react/jsx-filename-extension": "off",
     "eol-last": "off",
     "linebreak-style": "off",

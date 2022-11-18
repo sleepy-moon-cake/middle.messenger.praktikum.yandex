@@ -4,8 +4,11 @@ import { BlockInheritor, RouteProps } from "./types";
 
 export class Route {
   private _pathname: string;
+
   private _blockClass: BlockInheritor;
+
   private _block: InstanceType<typeof Block> | null;
+
   private _props: RouteProps;
 
   constructor(pathname: string, view: BlockInheritor, props: RouteProps) {

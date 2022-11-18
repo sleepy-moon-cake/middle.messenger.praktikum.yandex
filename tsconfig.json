@@ -10,13 +10,13 @@
     "target": "es2016",
     "noImplicitAny": true,
     "alwaysStrict": true,
-    "noUnusedParameters": true,
+    "noUnusedParameters": false,
     "noUnusedLocals": true,
     "removeComments": true,
     "preserveConstEnums": true,
     "strictNullChecks": true,
     "sourceMap": true,
-    "types": ["node", "pug", "sinon", "jsdom" ],
+    "types": ["node", "pug", "jest", "sinon", "jsdom", "html-webpack-plugin"],
     "lib": ["ES2017", "dom"]
   },
   "exclude": ["node_modules", "dist", ".parcel-cache"]

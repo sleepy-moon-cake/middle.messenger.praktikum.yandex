@@ -45,9 +45,9 @@ export class HandleFormService {
 
   private serializeForm({ elements }: HTMLFormElement): Record<string, string> | null {
     return Array.from(elements)
-      .filter((element: HTMLInputElement) => Boolean(element.name))
-      .reduce<Record<string, string>>((obj, element: HTMLInputElement) => {
-        const { name, value } = element;
+      .filter((element: any) => Boolean(element.name))
+      .reduce<Record<string, string>>((obj, element) => {
+        const { name, value } = element as any;
 
         obj[name] = value;
 
@@ -59,8 +59,8 @@ export class HandleFormService {
     const { elements } = event.target as HTMLFormElement;
 
     return Array.from(elements)
-      .filter((element: HTMLInputElement) => Boolean(element.name))
-      .map((element: HTMLInputElement) => {
+      .filter((element: any) => Boolean(element.name))
+      .map((element: any) => {
         const isFieldHasValidation = this.formValidationService.isFieldHasValidation(
           element.name
         );

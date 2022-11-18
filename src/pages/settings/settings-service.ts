@@ -365,7 +365,7 @@ class SettingsService extends ShowErrorService {
           const avatarBlobImg =
             store.getState().settingsPage.popupAvatar.avatarBlobImgSrc;
 
-          form.append("avatar", avatarBlobImg, "my-avatar.png");
+          form.append("avatar", avatarBlobImg as string, "my-avatar.png");
 
           ChangeUserAvatarController.change(form);
         },

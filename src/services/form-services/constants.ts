@@ -41,7 +41,7 @@ export const FIELD_ERROR_TEXT: FieldErrorType = {
     text:
       "The Latin alphabet is acceptable, " +
       "it can include numbers and special characters like a hyphen, " +
-      'there must be a "dog" (@) and a dot after it, ' +
+      "there must be a 'dog' (@) and a dot after it, " +
       "but there must be letters before the dot",
     length: null,
   },
